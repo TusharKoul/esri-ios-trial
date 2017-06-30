@@ -28,7 +28,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         configureSearch()
         loadMap()
-        addPoint()
+        addPointOnMap()
     }
     
     func configureSearch(){
@@ -42,19 +42,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //MARK: - Map related
     
     private func loadMap() {
-        self.mapView.map = AGSMap(basemapType: .darkGrayCanvasVector, latitude: 34.057, longitude: -117.196, levelOfDetail: 17)
+        self.mapView.map = AGSMap(basemapType: .darkGrayCanvasVector, latitude: 34.057, longitude: -117.196, levelOfDetail: 1)
         self.mapView.graphicsOverlays.add(graphicsOverlay)
     }
     
     
-    private func addPoint() {
+    private func addPointOnMap() {
         let latitude = 34.057, longitude = -117.196
         let point = AGSPoint(x: longitude, y: latitude, spatialReference: AGSSpatialReference.wgs84())
+        addPointOnMap(point)
+    }
+
+    private func addPointOnMap(_ point:AGSPoint) {
         let symbol = AGSSimpleMarkerSymbol(style: .diamond, color: .red, size: 10)
         let graphic = AGSGraphic(geometry: point, symbol: symbol, attributes: nil)
         self.graphicsOverlay.graphics.add(graphic)
     }
-
     
     
     
@@ -85,7 +88,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //MARK: - Search Table UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("cell pressed at " + String(indexPath.row))
+        let selectedSuggestion = self.suggestResults[indexPath.row]
+        
+        self.locatorTask.geocode(with: selectedSuggestion) { (results, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            else {
+                self.handleGeocodeResults(results)
+            }
+        }
+        
     }
     
     
@@ -108,7 +121,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let timer = timer {
             timer.invalidate()
         }
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.fetchSuggestions), userInfo: searchText, repeats: false)
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.fetchSuggestions), userInfo: searchText, repeats: false)
     }
     
     
@@ -160,6 +173,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
             }
         }
+    }
+    
+    func handleGeocodeResults(_ results:[AGSGeocodeResult]?) {
+        guard let results = results  else { return }
+        if(results.count == 0) { return }
+        
+        let point = results[0].displayLocation
+        addPointOnMap(point!)
+        
     }
     
 }
