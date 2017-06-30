@@ -9,7 +9,7 @@
 import UIKit
 import ArcGIS
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, AGSGeoViewTouchDelegate {
 
     @IBOutlet weak var mapView: AGSMapView!
     @IBOutlet weak var searchResultsTableView: UITableView!
@@ -44,6 +44,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     private func loadMap() {
         self.mapView.map = AGSMap(basemapType: .darkGrayCanvasVector, latitude: 34.057, longitude: -117.196, levelOfDetail: 1)
         self.mapView.graphicsOverlays.add(graphicsOverlay)
+        self.mapView.touchDelegate = self
     }
     
     
@@ -181,7 +182,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let point = results[0].displayLocation
         addPointOnMap(point!)
-        
     }
+    
+    
+    
+    //MARK: - AGSGeoViewTouchDelegate
+    
+    func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
+        //use the following method to identify graphics in a specific graphics overlay
+        //otherwise if you need to identify on all the graphics overlay present in the map view
+        //use `identifyGraphicsOverlaysAtScreenCoordinate:tolerance:maximumGraphics:completion:` method provided on map view
+        let tolerance:Double = 12
+        
+        self.mapView.callout.dismiss()
+        
+        self.mapView.identify(self.graphicsOverlay, screenPoint: screenPoint, tolerance: tolerance, returnPopupsOnly: false, maximumResults: 10) { (result: AGSIdentifyGraphicsOverlayResult) -> Void in
+            if let error = result.error {
+                print("error while identifying :: \(error.localizedDescription)")
+            }
+            else {
+                //if a graphics is found then show an alert
+                if result.graphics.count > 0 {
+                    if self.mapView.callout.isHidden {
+                        self.mapView.callout.title = "Location"
+                        self.mapView.callout.detail = String(format: "x: %.2f, y: %.2f", mapPoint.x, mapPoint.y)
+                        self.mapView.callout.isAccessoryButtonHidden = true
+                        self.mapView.callout.show(at: mapPoint, screenOffset: CGPoint.zero, rotateOffsetWithMap: false, animated: true)
+                    }
+                }
+            }
+        }
+    }
+
     
 }
