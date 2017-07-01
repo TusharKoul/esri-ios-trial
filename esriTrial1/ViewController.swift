@@ -54,9 +54,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         addPointOnMap(point)
     }
 
-    private func addPointOnMap(_ point:AGSPoint) {
+    private func addPointOnMap(_ point:AGSPoint, attributes:[String : Any]? = nil) {
         let symbol = AGSSimpleMarkerSymbol(style: .diamond, color: .red, size: 10)
-        let graphic = AGSGraphic(geometry: point, symbol: symbol, attributes: nil)
+        let graphic = AGSGraphic(geometry: point, symbol: symbol, attributes: attributes)
         self.graphicsOverlay.graphics.add(graphic)
     }
     
@@ -180,8 +180,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         guard let results = results  else { return }
         if(results.count == 0) { return }
         
-        let point = results[0].displayLocation
-        addPointOnMap(point!)
+        let result = results[0]
+        let attributes = [
+            "label" : result.label
+        ]
+        addPointOnMap(result.displayLocation!,attributes:attributes)
     }
     
     
@@ -204,8 +207,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 //if a graphics is found then show an alert
                 if result.graphics.count > 0 {
                     if self.mapView.callout.isHidden {
-                        self.mapView.callout.title = "Location"
-                        self.mapView.callout.detail = String(format: "x: %.2f, y: %.2f", mapPoint.x, mapPoint.y)
+                        self.mapView.callout.title = result.graphics[0].attributes["label"] as? String
+                        self.mapView.callout.detail = "Location: " + String(format: "x: %.2f, y: %.2f", mapPoint.x, mapPoint.y)
                         self.mapView.callout.isAccessoryButtonHidden = true
                         self.mapView.callout.show(at: mapPoint, screenOffset: CGPoint.zero, rotateOffsetWithMap: false, animated: true)
                     }
