@@ -20,8 +20,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     private var suggestResults:[AGSSuggestResult]!
     private var locatorTask = AGSLocatorTask(url: URL(string: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer")!)
     private var suggestRequestOperation:AGSCancelable!
+
+    private var timer:Timer?
     
-    var timer:Timer?
+    private var mapCenterPoint = AGSPoint(x: -117.196, y: 34.057, spatialReference: AGSSpatialReference.wgs84())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,21 +44,46 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //MARK: - Map related
     
     private func loadMap() {
-        self.mapView.map = AGSMap(basemapType: .darkGrayCanvasVector, latitude: 34.057, longitude: -117.196, levelOfDetail: 1)
+        self.mapView.map = AGSMap(basemapType: .darkGrayCanvasVector, latitude: mapCenterPoint.y, longitude: mapCenterPoint.x, levelOfDetail: 1)
         self.mapView.graphicsOverlays.add(graphicsOverlay)
         self.mapView.touchDelegate = self
     }
     
     
     private func addPointOnMap() {
-        let latitude = 34.057, longitude = -117.196
-        let point = AGSPoint(x: longitude, y: latitude, spatialReference: AGSSpatialReference.wgs84())
-        addPointOnMap(point)
+        addPointOnMap(mapCenterPoint)
     }
+    
 
     private func addPointOnMap(_ point:AGSPoint, attributes:[String : Any]? = nil) {
         let symbol = AGSSimpleMarkerSymbol(style: .diamond, color: .red, size: 10)
         let graphic = AGSGraphic(geometry: point, symbol: symbol, attributes: attributes)
+        self.graphicsOverlay.graphics.add(graphic)
+    }
+    
+    
+    private func addLineOnMap(startPoint:AGSPoint,endPoint:AGSPoint, isGeodesic:Bool=false) {
+        //building line's geometry
+        let polylineBuilder = AGSPolylineBuilder(spatialReference: AGSSpatialReference.wgs84())
+        polylineBuilder.addPointWith(x: startPoint.x, y: startPoint.y)
+        polylineBuilder.addPointWith(x: endPoint.x, y: endPoint.y)
+        
+        let geometry:AGSGeometry!
+        
+        if(isGeodesic) {
+            geometry = AGSGeometryEngine.geodeticDensifyGeometry(polylineBuilder.toGeometry(), maxSegmentLength: 1000, lengthUnit: AGSLinearUnit(unitID: .kilometers)!, curveType: .geodesic)
+        }
+        else {
+            geometry = polylineBuilder.toGeometry()
+        }
+        
+        //what symbol to build line with
+        let lineSymbol = AGSSimpleLineSymbol(style: .solid, color: UIColor.blue, width: 3)
+        
+        //actually building the line graphic
+        let graphic = AGSGraphic(geometry: geometry, symbol: lineSymbol, attributes: nil)
+        
+        //adding line graphic to map
         self.graphicsOverlay.graphics.add(graphic)
     }
     
@@ -185,6 +212,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             "label" : result.label
         ]
         addPointOnMap(result.displayLocation!,attributes:attributes)
+        addLineOnMap(startPoint: mapCenterPoint, endPoint: result.displayLocation!, isGeodesic: true)
     }
     
     
