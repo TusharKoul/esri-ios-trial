@@ -50,6 +50,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.mapView.touchDelegate = self
     }
     
+    private func loadAllPlacesOnMap() {
+        let places = getAllPlaces()
+        for place in places {
+            self.addPlaceOnMap(place)
+        }
+    }
+    
+    private func addPlaceOnMap(_ place:Place) {
+        let attributes = [
+            "place" : place
+        ]
+        let point = AGSPoint(x: place.locationX, y: place.locationY, spatialReference: AGSSpatialReference.wgs84())
+        addPointOnMap(point,attributes:attributes)
+    }
+    
     
     private func addPointOnMap() {
         addPointOnMap(mapCenterPoint)
@@ -118,17 +133,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedSuggestion = self.suggestResults[indexPath.row]
-        
-        self.locatorTask.geocode(with: selectedSuggestion) { (results, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            else {
-                self.searchResultsTableView.isHidden = true
-                self.handleGeocodeResults(results)
-            }
-        }
-        
+        self.geocodeSuggestion(selectedSuggestion)
     }
     
     
@@ -209,16 +214,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    
+    func geocodeSuggestion(_ selectedSuggestion:AGSSuggestResult) {
+        self.locatorTask.geocode(with: selectedSuggestion) { (results, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            else {
+                self.searchResultsTableView.isHidden = true
+                self.handleGeocodeResults(results)
+            }
+        }
+    }
+    
+    
     func handleGeocodeResults(_ results:[AGSGeocodeResult]?) {
         guard let results = results  else { return }
         if(results.count == 0) { return }
         
         let result = results[0]
-        let attributes = [
-            "label" : result.label
-        ]
-        addPointOnMap(result.displayLocation!,attributes:attributes)
-        addLineOnMap(startPoint: mapCenterPoint, endPoint: result.displayLocation!, isGeodesic: true)
+        
+        //center the map at the place chosen, then show callout on completion
+        self.mapView.setViewpointCenter(result.displayLocation!) { (finished) in
+            self.showCallout(mapPoint: result.displayLocation!,labelText: result.label)
+        }
+        
     }
     
     
