@@ -63,17 +63,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             "place" : place
         ]
         let point = AGSPoint(x: place.locationX, y: place.locationY, spatialReference: AGSSpatialReference.wgs84())
-        addPointOnMap(point,attributes:attributes)
-    }
-    
-    
-    private func addPointOnMap() {
-        addPointOnMap(mapCenterPoint)
-    }
-    
-
-    private func addPointOnMap(_ point:AGSPoint, attributes:[String : Any]? = nil) {
-        let symbol = AGSSimpleMarkerSymbol(style: .diamond, color: .red, size: 10)
+        var symbol:AGSSimpleMarkerSymbol!
+        if place.isVisited {
+            symbol = AGSSimpleMarkerSymbol(style: .diamond, color: .green, size: 10)
+        }
+        else if place.isWishlist {
+            symbol = AGSSimpleMarkerSymbol(style: .circle, color: .red, size: 10)
+        }
         let graphic = AGSGraphic(geometry: point, symbol: symbol, attributes: attributes)
         self.graphicsOverlay.graphics.add(graphic)
     }
@@ -279,7 +275,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.addPlaceOnMap(place)
                 self.mapView.callout.dismiss()
             }
-            calloutView.placeLabel.text = labelText//"Location: " + String(format: "x: %.2f, y: %.2f", mapPoint.x, mapPoint.y)
+            calloutView.placeLabel.text = labelText
             self.mapView.callout.customView = calloutView
             self.mapView.callout.show(at: mapPoint, screenOffset: CGPoint.zero, rotateOffsetWithMap: false, animated: true)
         }
