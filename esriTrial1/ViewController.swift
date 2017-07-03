@@ -37,6 +37,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.searchBar.delegate = self
         self.searchResultsTableView.delegate = self
         self.searchResultsTableView.dataSource = self
+        self.searchResultsTableView.isHidden = true
     }
     
     
@@ -123,6 +124,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 print(error.localizedDescription)
             }
             else {
+                self.searchResultsTableView.isHidden = true
                 self.handleGeocodeResults(results)
             }
         }
@@ -162,6 +164,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         // called when cancel button pressed
         print("searchBarCancelButtonClicked")
+        self.searchResultsTableView.isHidden = true
     }
     
     
@@ -181,6 +184,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // if no search string, no need to process
         if searchText.isEmpty {
+            self.searchResultsTableView.isHidden = true
             return
         }
         
@@ -193,10 +197,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if searchText == self.searchBar.text { //check if the search string has not changed in the meanwhile
                 if let error = error {
                     print(error.localizedDescription)
+                    self.searchResultsTableView.isHidden = true
                 }
                 else {
                     //update the suggest results and reload the table
                     self.suggestResults = result
+                    self.searchResultsTableView.isHidden = false
                     self.searchResultsTableView.reloadData()
                 }
             }
