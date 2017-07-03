@@ -7,5 +7,6 @@ target 'esriTrial1' do
 
   # Pods for esriTrial1
 	pod 'ArcGIS-Runtime-SDK-iOS', '~> 100.0.0’
+    pod 'RealmSwift'
 
 end

@@ -9,6 +9,7 @@
 import UIKit
 import ArcGIS
 
+import RealmSwift
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, AGSGeoViewTouchDelegate {
 
     @IBOutlet weak var mapView: AGSMapView!
@@ -29,8 +30,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         
         configureSearch()
-        loadMap()
-        addPointOnMap()
+        configureMap()
+        loadAllPlacesOnMap()
     }
     
     func configureSearch(){
@@ -44,7 +45,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //MARK: - Map related
     
-    private func loadMap() {
+    private func configureMap() {
         self.mapView.map = AGSMap(basemapType: .darkGrayCanvasVector, latitude: mapCenterPoint.y, longitude: mapCenterPoint.x, levelOfDetail: 1)
         self.mapView.graphicsOverlays.add(graphicsOverlay)
         self.mapView.touchDelegate = self
@@ -260,7 +261,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             else {
                 //if a graphics is found then show an alert
                 if result.graphics.count > 0 {
-                    self.showCallout(mapPoint: mapPoint, labelText: result.graphics[0].attributes["label"] as? String)
+                    let place = result.graphics[0].attributes["place"] as? Place
+                    self.showCallout(mapPoint: mapPoint, labelText: place?.placeName)
                 }
             }
         }
@@ -272,12 +274,49 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func showCallout(mapPoint: AGSPoint, labelText:String?) {
         if self.mapView.callout.isHidden {
             let calloutView = CustomCalloutView.instanceFromNib() as! CustomCalloutView
-            calloutView.placeLabel.text = "Location: " + String(format: "x: %.2f, y: %.2f", mapPoint.x, mapPoint.y)
+            calloutView.onSave = {(selectedIndex) -> Void in
+                let place = self.savePlace(placeName: labelText, isVisited: (selectedIndex == 0), isWishlist: (selectedIndex == 1), location: mapPoint)
+                self.addPlaceOnMap(place)
+                self.mapView.callout.dismiss()
+            }
+            calloutView.placeLabel.text = labelText//"Location: " + String(format: "x: %.2f, y: %.2f", mapPoint.x, mapPoint.y)
             self.mapView.callout.customView = calloutView
             self.mapView.callout.show(at: mapPoint, screenOffset: CGPoint.zero, rotateOffsetWithMap: false, animated: true)
         }
-
     }
-
     
+    
+    
+    //MARK: - Model DB related
+    
+    func getAllPlaces() -> Results<Place> {
+        let realm = try! Realm()
+        let places = realm.objects(Place.self)
+        return places
+    }
+    
+    
+    func savePlace(placeName:String?, isVisited:Bool, isWishlist:Bool, location:AGSPoint) -> Place {
+        let place = Place()
+        place.locationX = location.x
+        place.locationY = location.y
+        place.isVisited = isVisited
+        place.isWishlist = isWishlist
+        if let placeName = placeName {
+            place.placeName = placeName
+        }
+        else {
+            place.placeName = ""
+        }
+        
+        let realm = try! Realm()
+        // You only need to do this once (per thread)
+        
+        // Add to the Realm inside a transaction
+        try! realm.write {
+            realm.add(place)
+        }
+        
+        return place
+    }
 }
