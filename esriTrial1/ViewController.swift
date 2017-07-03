@@ -137,18 +137,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //MARK: - Search bar delegate
     
-    public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        // called when text starts editing
-        print("searchBarTextDidBeginEditing")
-    }
-    
-    
-    public func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        // called when text ends editing
-        print("searchBarTextDidEndEditing")
-    }
-    
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if let timer = timer {
             timer.invalidate()
@@ -157,15 +145,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        // called when keyboard search button pressed
-        print("searchBarSearchButtonClicked")
-    }
-
-    
     public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        // called when cancel button pressed
-        print("searchBarCancelButtonClicked")
         self.searchResultsTableView.isHidden = true
     }
     
@@ -194,7 +174,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let suggestParameters = AGSSuggestParameters()
 
         //get suggestions
-        print("searching...")
         self.suggestRequestOperation = self.locatorTask.suggest(withSearchText: searchText, parameters: suggestParameters) { (result: [AGSSuggestResult]?, error: Error?) -> Void in
             if searchText == self.searchBar.text { //check if the search string has not changed in the meanwhile
                 if let error = error {
