@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5494EE27037019F0E9C098AA /* Pods_esriTrial1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4FC0209A3A6E7A1A3523BC /* Pods_esriTrial1.framework */; };
+		DBE3AA901F0ABF41002E90D1 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE3AA8E1F0ABF41002E90D1 /* CustomCalloutView.swift */; };
+		DBE3AA911F0ABF41002E90D1 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBE3AA8F1F0ABF41002E90D1 /* CustomCalloutView.xib */; };
 		FFCDD7C01F02285D00531638 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCDD7BF1F02285D00531638 /* AppDelegate.swift */; };
 		FFCDD7C21F02285D00531638 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCDD7C11F02285D00531638 /* ViewController.swift */; };
 		FFCDD7C51F02285D00531638 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFCDD7C31F02285D00531638 /* Main.storyboard */; };
@@ -18,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		5A4FC0209A3A6E7A1A3523BC /* Pods_esriTrial1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_esriTrial1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBE3AA8E1F0ABF41002E90D1 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
+		DBE3AA8F1F0ABF41002E90D1 /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
 		F2F41FFF0C0DF64B0E326223 /* Pods-esriTrial1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-esriTrial1.release.xcconfig"; path = "Pods/Target Support Files/Pods-esriTrial1/Pods-esriTrial1.release.xcconfig"; sourceTree = "<group>"; };
 		F7BA0F491471C01E61DA6884 /* Pods-esriTrial1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-esriTrial1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-esriTrial1/Pods-esriTrial1.debug.xcconfig"; sourceTree = "<group>"; };
 		FFCDD7BC1F02285D00531638 /* esriTrial1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = esriTrial1.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +85,8 @@
 		FFCDD7BE1F02285D00531638 /* esriTrial1 */ = {
 			isa = PBXGroup;
 			children = (
+				DBE3AA8E1F0ABF41002E90D1 /* CustomCalloutView.swift */,
+				DBE3AA8F1F0ABF41002E90D1 /* CustomCalloutView.xib */,
 				FFCDD7BF1F02285D00531638 /* AppDelegate.swift */,
 				FFCDD7C11F02285D00531638 /* ViewController.swift */,
 				FFCDD7C31F02285D00531638 /* Main.storyboard */,
@@ -157,6 +163,7 @@
 				FFCDD7CA1F02285D00531638 /* LaunchScreen.storyboard in Resources */,
 				FFCDD7C71F02285D00531638 /* Assets.xcassets in Resources */,
 				FFF204341F05FB5100AB8448 /* ArcGIS.bundle in Resources */,
+				DBE3AA911F0ABF41002E90D1 /* CustomCalloutView.xib in Resources */,
 				FFCDD7C51F02285D00531638 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBE3AA901F0ABF41002E90D1 /* CustomCalloutView.swift in Sources */,
 				FFCDD7C21F02285D00531638 /* ViewController.swift in Sources */,
 				FFCDD7C01F02285D00531638 /* AppDelegate.swift in Sources */,
 			);
