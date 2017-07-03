@@ -240,15 +240,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             else {
                 //if a graphics is found then show an alert
                 if result.graphics.count > 0 {
-                    if self.mapView.callout.isHidden {
-                        self.mapView.callout.title = result.graphics[0].attributes["label"] as? String
-                        self.mapView.callout.detail = "Location: " + String(format: "x: %.2f, y: %.2f", mapPoint.x, mapPoint.y)
-                        self.mapView.callout.isAccessoryButtonHidden = true
-                        self.mapView.callout.show(at: mapPoint, screenOffset: CGPoint.zero, rotateOffsetWithMap: false, animated: true)
-                    }
+                    self.showCallout(mapPoint: mapPoint, labelText: result.graphics[0].attributes["label"] as? String)
                 }
             }
         }
+    }
+    
+    
+    //MARK: - Callout related
+    
+    func showCallout(mapPoint: AGSPoint, labelText:String?) {
+        if self.mapView.callout.isHidden {
+            let calloutView = CustomCalloutView.instanceFromNib() as! CustomCalloutView
+            calloutView.placeLabel.text = "Location: " + String(format: "x: %.2f, y: %.2f", mapPoint.x, mapPoint.y)
+            self.mapView.callout.customView = calloutView
+            self.mapView.callout.show(at: mapPoint, screenOffset: CGPoint.zero, rotateOffsetWithMap: false, animated: true)
+        }
+
     }
 
     
