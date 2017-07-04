@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomCalloutView" customModule="esriTrial1" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="289" height="108"/>
+            <rect key="frame" x="0.0" y="0.0" width="289" height="146"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="x1L-fD-AVO">
@@ -26,7 +26,7 @@
                     </connections>
                 </segmentedControl>
                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9UO-Xv-AL8">
-                    <rect key="frame" x="16" y="70" width="257" height="30"/>
+                    <rect key="frame" x="16" y="108" width="257" height="30"/>
                     <state key="normal" title="Save"/>
                     <connections>
                         <action selector="saveClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="T1p-H3-0ku"/>
@@ -38,30 +38,42 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11O-mf-uc5">
+                    <rect key="frame" x="16" y="70" width="257" height="30"/>
+                    <state key="normal" title="Show Flight Paths"/>
+                    <connections>
+                        <action selector="getFlightPathsClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="YGg-1L-S4k"/>
+                        <action selector="saveClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="RFe-1j-2jn"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="9UO-Xv-AL8" firstAttribute="top" secondItem="x1L-fD-AVO" secondAttribute="bottom" constant="8" id="4FR-uz-irH"/>
                 <constraint firstAttribute="trailing" secondItem="9UO-Xv-AL8" secondAttribute="trailing" constant="16" id="5aY-Cg-VH3"/>
                 <constraint firstItem="9UO-Xv-AL8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="BLc-T8-lxk"/>
                 <constraint firstItem="dTb-eT-kFg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="HwC-3b-LMZ"/>
                 <constraint firstAttribute="bottom" secondItem="9UO-Xv-AL8" secondAttribute="bottom" constant="8" id="L0R-9I-kJw"/>
+                <constraint firstAttribute="trailing" secondItem="11O-mf-uc5" secondAttribute="trailing" constant="16" id="Oq0-Ij-z9r"/>
                 <constraint firstAttribute="trailing" secondItem="x1L-fD-AVO" secondAttribute="trailing" constant="16" id="X3s-bX-iqo"/>
                 <constraint firstItem="dTb-eT-kFg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="ZaE-6y-4Lf"/>
+                <constraint firstItem="11O-mf-uc5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="ZpQ-eb-EAc"/>
                 <constraint firstAttribute="trailing" secondItem="dTb-eT-kFg" secondAttribute="trailing" constant="16" id="and-S5-qGs"/>
                 <constraint firstItem="x1L-fD-AVO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="ffR-lP-TUg"/>
+                <constraint firstItem="9UO-Xv-AL8" firstAttribute="top" secondItem="11O-mf-uc5" secondAttribute="bottom" constant="8" id="idK-Ht-siX"/>
                 <constraint firstItem="x1L-fD-AVO" firstAttribute="top" secondItem="dTb-eT-kFg" secondAttribute="bottom" constant="8" id="tTM-xk-AoL"/>
+                <constraint firstItem="11O-mf-uc5" firstAttribute="top" secondItem="x1L-fD-AVO" secondAttribute="bottom" constant="8" id="tVY-ot-hCs"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="getFlightPathsButton" destination="11O-mf-uc5" id="Mzn-Lf-hcO"/>
                 <outlet property="placeLabel" destination="dTb-eT-kFg" id="ul7-ga-ExH"/>
                 <outlet property="placeSegmentedControl" destination="x1L-fD-AVO" id="z5K-A8-MPB"/>
                 <outlet property="saveButton" destination="9UO-Xv-AL8" id="QCF-rz-uSE"/>
             </connections>
-            <point key="canvasLocation" x="-375.5" y="-217"/>
+            <point key="canvasLocation" x="-627.5" y="-232"/>
         </view>
     </objects>
 </document>

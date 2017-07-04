@@ -15,4 +15,8 @@ class Place:Object {
     dynamic var isWishlist = false
     dynamic var locationX:Double = 0.0
     dynamic var locationY:Double = 0.0
+    
+    var location:AGSPoint {
+        return AGSPoint(x: self.locationX, y: self.locationY, spatialReference: AGSSpatialReference.wgs84())
+    }
 }

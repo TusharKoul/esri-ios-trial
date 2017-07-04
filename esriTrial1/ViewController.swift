@@ -16,7 +16,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var searchResultsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    private var graphicsOverlay = AGSGraphicsOverlay()
+    private var pointGraphicOverlay = AGSGraphicsOverlay()
+    private var lineGraphicOverlay = AGSGraphicsOverlay()
+    
     private var searchResults:Array = [String]()
     private var suggestResults:[AGSSuggestResult]!
     private var locatorTask = AGSLocatorTask(url: URL(string: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer")!)
@@ -47,7 +49,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     private func configureMap() {
         self.mapView.map = AGSMap(basemapType: .darkGrayCanvasVector, latitude: mapCenterPoint.y, longitude: mapCenterPoint.x, levelOfDetail: 1)
-        self.mapView.graphicsOverlays.add(graphicsOverlay)
+        self.mapView.graphicsOverlays.add(pointGraphicOverlay)
+        self.mapView.graphicsOverlays.add(lineGraphicOverlay)
         self.mapView.touchDelegate = self
     }
     
@@ -59,10 +62,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     private func addPlaceOnMap(_ place:Place) {
-        let attributes = [
-            "place" : place
-        ]
-        let point = AGSPoint(x: place.locationX, y: place.locationY, spatialReference: AGSSpatialReference.wgs84())
         var symbol:AGSSimpleMarkerSymbol!
         if place.isVisited {
             symbol = AGSSimpleMarkerSymbol(style: .diamond, color: .green, size: 10)
@@ -70,8 +69,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         else if place.isWishlist {
             symbol = AGSSimpleMarkerSymbol(style: .circle, color: .red, size: 10)
         }
-        let graphic = AGSGraphic(geometry: point, symbol: symbol, attributes: attributes)
-        self.graphicsOverlay.graphics.add(graphic)
+        let graphic = AGSGraphic()
+        graphic.geometry = place.location
+        graphic.symbol = symbol
+        graphic.attributes["place"] = place
+        
+        self.pointGraphicOverlay.graphics.add(graphic)
     }
     
     
@@ -97,7 +100,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let graphic = AGSGraphic(geometry: geometry, symbol: lineSymbol, attributes: nil)
         
         //adding line graphic to map
-        self.graphicsOverlay.graphics.add(graphic)
+        self.lineGraphicOverlay.graphics.add(graphic)
     }
     
     
@@ -229,15 +232,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.mapView.callout.dismiss()
         
-        self.mapView.identify(self.graphicsOverlay, screenPoint: screenPoint, tolerance: tolerance, returnPopupsOnly: false, maximumResults: 10) { (result: AGSIdentifyGraphicsOverlayResult) -> Void in
+        self.mapView.identify(self.pointGraphicOverlay, screenPoint: screenPoint, tolerance: tolerance, returnPopupsOnly: false, maximumResults: 10) { (result: AGSIdentifyGraphicsOverlayResult) -> Void in
             if let error = result.error {
                 print("error while identifying :: \(error.localizedDescription)")
             }
             else {
-                //if a graphics is found then show an alert
-                if result.graphics.count > 0 {
-                    let place = result.graphics[0].attributes["place"] as? Place
-                    self.showCallout(mapPoint: mapPoint, labelText: place?.placeName)
+                //if a graphics is found, and its of type "point", then show an alert
+                for x in result.graphics {
+                    if x.geometry?.geometryType == AGSGeometryType.point {
+                        let place = result.graphics[0].attributes["place"] as! Place
+                        self.showCalloutFromPlace(place)
+                        break
+                    }
                 }
             }
         }
@@ -255,9 +261,38 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.mapView.callout.dismiss()
             }
             calloutView.placeLabel.text = labelText
+            calloutView.getFlightPathsButton.isHidden = true
             self.mapView.callout.customView = calloutView
             self.mapView.callout.show(at: mapPoint, screenOffset: CGPoint.zero, rotateOffsetWithMap: false, animated: true)
         }
+    }
+    
+    func showCalloutFromPlace(_ place:Place) {
+        if (self.mapView.callout.isHidden == false) { return }
+        
+        let calloutView = CustomCalloutView.instanceFromNib() as! CustomCalloutView
+        calloutView.onSave = {(selectedIndex) -> Void in
+//            updatePlace(isVisited: (selectedIndex == 0), isWishlist: (selectedIndex == 1))
+            self.mapView.callout.dismiss()
+        }
+        calloutView.onGetFlightPaths = {() -> () in
+            self.lineGraphicOverlay.graphics.removeAllObjects()
+            for p in self.getAllPlaces() {
+                self.addLineOnMap(startPoint: p.location, endPoint: place.location, isGeodesic: true)
+            }
+            self.mapView.callout.dismiss()
+        }
+        calloutView.placeLabel.text = place.placeName
+        var selectedIndex = -1
+        if place.isVisited {
+            selectedIndex = 0
+        }
+        else if place.isWishlist {
+            selectedIndex = 1
+        }
+        calloutView.placeSegmentedControl.selectedSegmentIndex = selectedIndex
+        self.mapView.callout.customView = calloutView
+        self.mapView.callout.show(at: place.location, screenOffset: CGPoint.zero, rotateOffsetWithMap: false, animated: true)
     }
     
     
