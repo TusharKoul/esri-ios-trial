@@ -87,7 +87,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let geometry:AGSGeometry!
         
         if(isGeodesic) {
-            geometry = AGSGeometryEngine.geodeticDensifyGeometry(polylineBuilder.toGeometry(), maxSegmentLength: 1000, lengthUnit: AGSLinearUnit(unitID: .kilometers)!, curveType: .geodesic)
+            geometry = AGSGeometryEngine.geodeticDensifyGeometry(polylineBuilder.toGeometry(), maxSegmentLength: 100, lengthUnit: AGSLinearUnit(unitID: .kilometers)!, curveType: .geodesic)
         }
         else {
             geometry = polylineBuilder.toGeometry()
