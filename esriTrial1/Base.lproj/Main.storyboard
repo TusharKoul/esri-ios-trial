@@ -35,7 +35,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="335" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Aca-Ny-EW8" id="Djg-mE-dBc">
-                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -134,6 +134,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lFp-qy-aAk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="861.60000000000002" y="146.17691154422789"/>
+        </scene>
+        <!--Map Benchmark View Controller-->
+        <scene sceneID="cPc-kc-uyI">
+            <objects>
+                <viewController id="Lrg-RU-u8g" customClass="GMapBenchmarkViewController" customModule="esriTrial1" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KCh-j7-a02"/>
+                        <viewControllerLayoutGuide type="bottom" id="2g7-PB-5t3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Rw6-S9-8BX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eXp-j6-M2L" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="629"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="keo-hq-CLH">
+                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
+                                <state key="normal" title="START TEST"/>
+                                <connections>
+                                    <action selector="startTestPressed:" destination="Lrg-RU-u8g" eventType="touchUpInside" id="2bs-oq-yzx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="keo-hq-CLH" secondAttribute="trailing" id="HPk-c4-KMj"/>
+                            <constraint firstItem="keo-hq-CLH" firstAttribute="leading" secondItem="Rw6-S9-8BX" secondAttribute="leading" id="OuD-bi-tXH"/>
+                            <constraint firstItem="2g7-PB-5t3" firstAttribute="top" secondItem="keo-hq-CLH" secondAttribute="bottom" id="Prg-vD-GVv"/>
+                            <constraint firstItem="eXp-j6-M2L" firstAttribute="top" secondItem="Rw6-S9-8BX" secondAttribute="top" id="SRE-QK-vEf"/>
+                            <constraint firstItem="eXp-j6-M2L" firstAttribute="leading" secondItem="Rw6-S9-8BX" secondAttribute="leading" id="dyD-GO-yaw"/>
+                            <constraint firstAttribute="trailing" secondItem="eXp-j6-M2L" secondAttribute="trailing" id="frw-JE-BpB"/>
+                            <constraint firstItem="keo-hq-CLH" firstAttribute="top" secondItem="eXp-j6-M2L" secondAttribute="bottom" constant="8" id="vnV-lG-7A5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="eXp-j6-M2L" id="6dw-Zu-62c"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JKf-Vb-Lyw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1568.8" y="145.27736131934034"/>
         </scene>
     </scenes>
 </document>
