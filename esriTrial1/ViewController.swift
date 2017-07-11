@@ -69,10 +69,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         else if place.isWishlist {
             symbol = AGSSimpleMarkerSymbol(style: .circle, color: .red, size: 10)
         }
-        let graphic = AGSGraphic()
-        graphic.geometry = place.location
-        graphic.symbol = symbol
-        graphic.attributes["place"] = place
+        
+        let graphic = AGSGraphic(geometry: place.location, symbol: symbol, attributes: ["place":place])
         
         self.pointGraphicOverlay.graphics.add(graphic)
     }

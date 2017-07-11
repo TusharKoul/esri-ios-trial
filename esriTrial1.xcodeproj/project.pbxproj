@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5494EE27037019F0E9C098AA /* Pods_esriTrial1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4FC0209A3A6E7A1A3523BC /* Pods_esriTrial1.framework */; };
+		DBBC76191F144618001B028B /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBBC76181F144618001B028B /* ArcGIS.bundle */; };
+		DBBE50711F141F4F00CA0A96 /* BenchmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE50701F141F4F00CA0A96 /* BenchmarkViewController.swift */; };
 		DBE3AA901F0ABF41002E90D1 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE3AA8E1F0ABF41002E90D1 /* CustomCalloutView.swift */; };
 		DBE3AA911F0ABF41002E90D1 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBE3AA8F1F0ABF41002E90D1 /* CustomCalloutView.xib */; };
 		DBE3AA931F0AC547002E90D1 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE3AA921F0AC547002E90D1 /* Place.swift */; };
@@ -16,11 +18,12 @@
 		FFCDD7C51F02285D00531638 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFCDD7C31F02285D00531638 /* Main.storyboard */; };
 		FFCDD7C71F02285D00531638 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFCDD7C61F02285D00531638 /* Assets.xcassets */; };
 		FFCDD7CA1F02285D00531638 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFCDD7C81F02285D00531638 /* LaunchScreen.storyboard */; };
-		FFF204341F05FB5100AB8448 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FFF204331F05FB5100AB8448 /* ArcGIS.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5A4FC0209A3A6E7A1A3523BC /* Pods_esriTrial1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_esriTrial1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBBC76181F144618001B028B /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = ../../../Library/SDKs/ArcGIS/iOS/Frameworks/Static/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle; sourceTree = "<group>"; };
+		DBBE50701F141F4F00CA0A96 /* BenchmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenchmarkViewController.swift; sourceTree = "<group>"; };
 		DBE3AA8E1F0ABF41002E90D1 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		DBE3AA8F1F0ABF41002E90D1 /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
 		DBE3AA921F0AC547002E90D1 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -33,7 +36,6 @@
 		FFCDD7C61F02285D00531638 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FFCDD7C91F02285D00531638 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FFCDD7CB1F02285D00531638 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FFF204331F05FB5100AB8448 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = "Pods/ArcGIS-Runtime-SDK-iOS/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +62,7 @@
 		C2D10D1598D956F112DC8247 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FFF204331F05FB5100AB8448 /* ArcGIS.bundle */,
+				DBBC76181F144618001B028B /* ArcGIS.bundle */,
 				5A4FC0209A3A6E7A1A3523BC /* Pods_esriTrial1.framework */,
 			);
 			name = Frameworks;
@@ -96,6 +98,7 @@
 				FFCDD7C81F02285D00531638 /* LaunchScreen.storyboard */,
 				FFCDD7CB1F02285D00531638 /* Info.plist */,
 				DBE3AA921F0AC547002E90D1 /* Place.swift */,
+				DBBE50701F141F4F00CA0A96 /* BenchmarkViewController.swift */,
 			);
 			path = esriTrial1;
 			sourceTree = "<group>";
@@ -163,9 +166,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBBC76191F144618001B028B /* ArcGIS.bundle in Resources */,
 				FFCDD7CA1F02285D00531638 /* LaunchScreen.storyboard in Resources */,
 				FFCDD7C71F02285D00531638 /* Assets.xcassets in Resources */,
-				FFF204341F05FB5100AB8448 /* ArcGIS.bundle in Resources */,
 				DBE3AA911F0ABF41002E90D1 /* CustomCalloutView.xib in Resources */,
 				FFCDD7C51F02285D00531638 /* Main.storyboard in Resources */,
 			);
@@ -230,6 +233,7 @@
 				FFCDD7C21F02285D00531638 /* ViewController.swift in Sources */,
 				FFCDD7C01F02285D00531638 /* AppDelegate.swift in Sources */,
 				DBE3AA931F0AC547002E90D1 /* Place.swift in Sources */,
+				DBBE50711F141F4F00CA0A96 /* BenchmarkViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

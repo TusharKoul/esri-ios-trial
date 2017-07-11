@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6hT-AN-cuj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -91,6 +91,49 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-5.5999999999999996" y="146.17691154422789"/>
+        </scene>
+        <!--Benchmark View Controller-->
+        <scene sceneID="9rb-Cg-dA6">
+            <objects>
+                <viewController id="6hT-AN-cuj" customClass="BenchmarkViewController" customModule="esriTrial1" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7wf-xD-b7C"/>
+                        <viewControllerLayoutGuide type="bottom" id="1Lj-EP-gcN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qPR-M6-Ucc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rY5-1f-d1G" customClass="AGSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="629"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6Z-aa-Etr">
+                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
+                                <state key="normal" title="START TEST"/>
+                                <connections>
+                                    <action selector="startTestPressed:" destination="6hT-AN-cuj" eventType="touchUpInside" id="SFt-Ik-mXj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="g6Z-aa-Etr" firstAttribute="top" secondItem="rY5-1f-d1G" secondAttribute="bottom" constant="8" id="5hy-Gf-kuj"/>
+                            <constraint firstItem="rY5-1f-d1G" firstAttribute="top" secondItem="qPR-M6-Ucc" secondAttribute="top" id="IdF-LG-XyS"/>
+                            <constraint firstItem="rY5-1f-d1G" firstAttribute="leading" secondItem="qPR-M6-Ucc" secondAttribute="leading" id="bvh-Qj-Ez4"/>
+                            <constraint firstAttribute="trailing" secondItem="g6Z-aa-Etr" secondAttribute="trailing" id="hMe-pr-qfb"/>
+                            <constraint firstAttribute="trailing" secondItem="rY5-1f-d1G" secondAttribute="trailing" id="hRY-TB-0dE"/>
+                            <constraint firstItem="1Lj-EP-gcN" firstAttribute="top" secondItem="g6Z-aa-Etr" secondAttribute="bottom" id="rTG-eG-9hi"/>
+                            <constraint firstItem="g6Z-aa-Etr" firstAttribute="leading" secondItem="qPR-M6-Ucc" secondAttribute="leading" id="s63-58-Fwh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="rY5-1f-d1G" id="6q3-Le-YOA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lFp-qy-aAk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="861.60000000000002" y="146.17691154422789"/>
         </scene>
     </scenes>
 </document>
