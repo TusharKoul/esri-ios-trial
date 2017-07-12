@@ -10,6 +10,7 @@
 		5494EE27037019F0E9C098AA /* Pods_esriTrial1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4FC0209A3A6E7A1A3523BC /* Pods_esriTrial1.framework */; };
 		DB3F20851F145C4100EB0B32 /* GMapBenchmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3F20831F145C4100EB0B32 /* GMapBenchmarkViewController.swift */; };
 		DB3F208A1F14622E00EB0B32 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB3F20891F14622E00EB0B32 /* keys.plist */; };
+		DBAD71011F168F1E004EF227 /* Benchmarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAD71001F168F1E004EF227 /* Benchmarker.swift */; };
 		DBBC76191F144618001B028B /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBBC76181F144618001B028B /* ArcGIS.bundle */; };
 		DBBE50711F141F4F00CA0A96 /* BenchmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE50701F141F4F00CA0A96 /* BenchmarkViewController.swift */; };
 		DBE3AA901F0ABF41002E90D1 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE3AA8E1F0ABF41002E90D1 /* CustomCalloutView.swift */; };
@@ -26,6 +27,7 @@
 		5A4FC0209A3A6E7A1A3523BC /* Pods_esriTrial1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_esriTrial1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3F20831F145C4100EB0B32 /* GMapBenchmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMapBenchmarkViewController.swift; sourceTree = "<group>"; };
 		DB3F20891F14622E00EB0B32 /* keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
+		DBAD71001F168F1E004EF227 /* Benchmarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Benchmarker.swift; sourceTree = "<group>"; };
 		DBBC76181F144618001B028B /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = ../../../Library/SDKs/ArcGIS/iOS/Frameworks/Static/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle; sourceTree = "<group>"; };
 		DBBE50701F141F4F00CA0A96 /* BenchmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenchmarkViewController.swift; sourceTree = "<group>"; };
 		DBE3AA8E1F0ABF41002E90D1 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				DBBE50701F141F4F00CA0A96 /* BenchmarkViewController.swift */,
 				DB3F20831F145C4100EB0B32 /* GMapBenchmarkViewController.swift */,
 				DB3F20891F14622E00EB0B32 /* keys.plist */,
+				DBAD71001F168F1E004EF227 /* Benchmarker.swift */,
 			);
 			path = esriTrial1;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				DBE3AA931F0AC547002E90D1 /* Place.swift in Sources */,
 				DBBE50711F141F4F00CA0A96 /* BenchmarkViewController.swift in Sources */,
 				DB3F20851F145C4100EB0B32 /* GMapBenchmarkViewController.swift in Sources */,
+				DBAD71011F168F1E004EF227 /* Benchmarker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
