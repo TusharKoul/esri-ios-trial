@@ -9,5 +9,6 @@ target 'esriTrial1' do
 	pod 'ArcGIS-Runtime-SDK-iOS', '~> 100.1.0’
     pod 'RealmSwift'
     pod 'GoogleMaps'
+    pod 'Mapbox-iOS-SDK', '~> 3.6'
 
 end

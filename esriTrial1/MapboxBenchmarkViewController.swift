@@ -7,29 +7,46 @@
 //
 
 import UIKit
+import Mapbox
 
 class MapboxBenchmarkViewController: UIViewController {
+    
+    private let mapCenterPoint = CLLocationCoordinate2D(latitude: 34.057, longitude: -117.196)
 
+    @IBOutlet weak var mapView: MGLMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        mapView.styleURL = URL(string: "mapbox://styles/mapbox/streets-v10")
+        mapView.setCenter(mapCenterPoint, zoomLevel: 12, animated: false)
+    
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func startTestPressed(_ sender: Any) {
+        let b = Benchmarker()
+        let actionBlock = {
+            self.addGraphic()
+        }
+        let resetBlock = {
+            guard let annotations = self.mapView.annotations else {
+                return
+            }
+            
+            self.mapView.removeAnnotations(annotations)
+        }
+        b.runBenchmark(iterations: 100, actionCount: 10000, actionBlock: actionBlock, resetBlock: resetBlock)
     }
-    */
+    
+    func addGraphic() {
+        let hello = MGLPointAnnotation()
+        hello.coordinate = mapCenterPoint
+//        hello.title = "Hello world!"
+//        hello.subtitle = "Welcome to my marker"
+        
+        // Add marker `hello` to the map.
+        mapView.addAnnotation(hello)
+
+    }
 
 }

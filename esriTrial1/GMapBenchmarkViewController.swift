@@ -14,12 +14,14 @@ class GMapBenchmarkViewController: UIViewController {
 
     @IBOutlet weak var mapView: GMSMapView!
     
+    private let mapCenterPoint = CLLocationCoordinate2D(latitude: 34.057, longitude: -117.196)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.initializeGoogleMapApi()
 
-        let camera = GMSCameraPosition.camera(withLatitude: 34.057, longitude: -117.196, zoom: 10.0)
+        let camera = GMSCameraPosition.camera(withLatitude: mapCenterPoint.latitude, longitude: mapCenterPoint.longitude, zoom: 10.0)
         
         self.mapView.camera = camera
     }
@@ -44,7 +46,7 @@ class GMapBenchmarkViewController: UIViewController {
     func addGraphic() {
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: 34.057, longitude: -117.196)
+        marker.position = self.mapCenterPoint
         marker.map = self.mapView
     }
 }
