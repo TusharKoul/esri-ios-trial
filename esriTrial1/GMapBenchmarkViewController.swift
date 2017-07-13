@@ -19,17 +19,9 @@ class GMapBenchmarkViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.initializeGoogleMapApi()
-
         let camera = GMSCameraPosition.camera(withLatitude: mapCenterPoint.latitude, longitude: mapCenterPoint.longitude, zoom: 10.0)
         
         self.mapView.camera = camera
-    }
-    
-    func initializeGoogleMapApi() {
-        if let path = Bundle.main.path(forResource: "keys", ofType: "plist"), let keys = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
-            GMSServices.provideAPIKey(keys["gmapApiKey"] as! String)
-        }
     }
     
     @IBAction func startTestPressed(_ sender: Any) {

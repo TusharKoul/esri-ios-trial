@@ -19,7 +19,7 @@ class MapboxBenchmarkViewController: UIViewController {
         super.viewDidLoad()
 
         mapView.styleURL = URL(string: "mapbox://styles/mapbox/streets-v10")
-        mapView.setCenter(mapCenterPoint, zoomLevel: 12, animated: false)
+        mapView.setCenter(mapCenterPoint, zoomLevel: 10, animated: false)
     
     }
     
@@ -43,7 +43,6 @@ class MapboxBenchmarkViewController: UIViewController {
         hello.coordinate = mapCenterPoint
 //        hello.title = "Hello world!"
 //        hello.subtitle = "Welcome to my marker"
-        //Average time taken to do operation 10000 times = 0.00368870777998382, with sd = 0.0367018964863967
 
         // Add marker `hello` to the map.
         mapView.addAnnotation(hello)

@@ -21,7 +21,7 @@ class EsriBenchmarkViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.mapView.map = AGSMap(basemapType: .imagery, latitude: mapCenterPoint.y, longitude: mapCenterPoint.x, levelOfDetail: 1)
+        self.mapView.map = AGSMap(basemapType: .streets, latitude: mapCenterPoint.y, longitude: mapCenterPoint.x, levelOfDetail: 10)
         self.mapView.graphicsOverlays.add(self.pointGraphicOverlay)
 
     }
