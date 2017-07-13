@@ -13,7 +13,7 @@
 		DBAD71011F168F1E004EF227 /* Benchmarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAD71001F168F1E004EF227 /* Benchmarker.swift */; };
 		DBAD71031F169E57004EF227 /* MapboxBenchmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAD71021F169E57004EF227 /* MapboxBenchmarkViewController.swift */; };
 		DBBC76191F144618001B028B /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBBC76181F144618001B028B /* ArcGIS.bundle */; };
-		DBBE50711F141F4F00CA0A96 /* BenchmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE50701F141F4F00CA0A96 /* BenchmarkViewController.swift */; };
+		DBBE50711F141F4F00CA0A96 /* EsriBenchmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE50701F141F4F00CA0A96 /* EsriBenchmarkViewController.swift */; };
 		DBE3AA901F0ABF41002E90D1 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE3AA8E1F0ABF41002E90D1 /* CustomCalloutView.swift */; };
 		DBE3AA911F0ABF41002E90D1 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBE3AA8F1F0ABF41002E90D1 /* CustomCalloutView.xib */; };
 		DBE3AA931F0AC547002E90D1 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE3AA921F0AC547002E90D1 /* Place.swift */; };
@@ -31,7 +31,7 @@
 		DBAD71001F168F1E004EF227 /* Benchmarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Benchmarker.swift; sourceTree = "<group>"; };
 		DBAD71021F169E57004EF227 /* MapboxBenchmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapboxBenchmarkViewController.swift; sourceTree = "<group>"; };
 		DBBC76181F144618001B028B /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = ../../../Library/SDKs/ArcGIS/iOS/Frameworks/Static/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle; sourceTree = "<group>"; };
-		DBBE50701F141F4F00CA0A96 /* BenchmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenchmarkViewController.swift; sourceTree = "<group>"; };
+		DBBE50701F141F4F00CA0A96 /* EsriBenchmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsriBenchmarkViewController.swift; sourceTree = "<group>"; };
 		DBE3AA8E1F0ABF41002E90D1 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		DBE3AA8F1F0ABF41002E90D1 /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
 		DBE3AA921F0AC547002E90D1 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 				FFCDD7C81F02285D00531638 /* LaunchScreen.storyboard */,
 				FFCDD7CB1F02285D00531638 /* Info.plist */,
 				DBE3AA921F0AC547002E90D1 /* Place.swift */,
-				DBBE50701F141F4F00CA0A96 /* BenchmarkViewController.swift */,
+				DBBE50701F141F4F00CA0A96 /* EsriBenchmarkViewController.swift */,
 				DB3F20831F145C4100EB0B32 /* GMapBenchmarkViewController.swift */,
 				DB3F20891F14622E00EB0B32 /* keys.plist */,
 				DBAD71001F168F1E004EF227 /* Benchmarker.swift */,
@@ -260,7 +260,7 @@
 				FFCDD7C21F02285D00531638 /* ViewController.swift in Sources */,
 				FFCDD7C01F02285D00531638 /* AppDelegate.swift in Sources */,
 				DBE3AA931F0AC547002E90D1 /* Place.swift in Sources */,
-				DBBE50711F141F4F00CA0A96 /* BenchmarkViewController.swift in Sources */,
+				DBBE50711F141F4F00CA0A96 /* EsriBenchmarkViewController.swift in Sources */,
 				DB3F20851F145C4100EB0B32 /* GMapBenchmarkViewController.swift in Sources */,
 				DBAD71011F168F1E004EF227 /* Benchmarker.swift in Sources */,
 				DBAD71031F169E57004EF227 /* MapboxBenchmarkViewController.swift in Sources */,

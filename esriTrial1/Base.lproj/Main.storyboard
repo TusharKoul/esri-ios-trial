@@ -35,7 +35,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="335" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Aca-Ny-EW8" id="Djg-mE-dBc">
-                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -92,10 +92,10 @@
             </objects>
             <point key="canvasLocation" x="-5.5999999999999996" y="146.17691154422789"/>
         </scene>
-        <!--Benchmark View Controller-->
+        <!--Esri Benchmark View Controller-->
         <scene sceneID="9rb-Cg-dA6">
             <objects>
-                <viewController id="6hT-AN-cuj" customClass="BenchmarkViewController" customModule="esriTrial1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6hT-AN-cuj" customClass="EsriBenchmarkViewController" customModule="esriTrial1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7wf-xD-b7C"/>
                         <viewControllerLayoutGuide type="bottom" id="1Lj-EP-gcN"/>

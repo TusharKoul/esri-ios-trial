@@ -9,7 +9,7 @@
 import UIKit
 import ArcGIS
 
-class BenchmarkViewController: UIViewController {
+class EsriBenchmarkViewController: UIViewController {
 
     @IBOutlet weak var mapView: AGSMapView!
     
@@ -21,7 +21,7 @@ class BenchmarkViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.mapView.map = AGSMap(basemapType: .darkGrayCanvasVector, latitude: mapCenterPoint.y, longitude: mapCenterPoint.x, levelOfDetail: 1)
+        self.mapView.map = AGSMap(basemapType: .imagery, latitude: mapCenterPoint.y, longitude: mapCenterPoint.x, levelOfDetail: 1)
         self.mapView.graphicsOverlays.add(self.pointGraphicOverlay)
 
     }
