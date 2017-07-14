@@ -26,10 +26,10 @@ class GMapBenchmarkViewController: UIViewController {
     
     @IBAction func startTestPressed(_ sender: Any) {
         let b = Benchmarker()
-        let actionBlock = {
+        let actionBlock = { [unowned self] in
             self.addGraphic()
         }
-        let resetBlock = {
+        let resetBlock = { [unowned self] in
             self.mapView.clear()
         }
         b.runBenchmark(iterations: 100, actionCount: 10000, actionBlock: actionBlock, resetBlock: resetBlock)

@@ -25,10 +25,10 @@ class MapboxBenchmarkViewController: UIViewController {
     
     @IBAction func startTestPressed(_ sender: Any) {
         let b = Benchmarker()
-        let actionBlock = {
+        let actionBlock = { [unowned self] in
             self.addGraphic()
         }
-        let resetBlock = {
+        let resetBlock = { [unowned self] in
             guard let annotations = self.mapView.annotations else {
                 return
             }
