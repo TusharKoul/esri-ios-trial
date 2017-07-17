@@ -68,8 +68,28 @@
                                             <segue destination="6hT-AN-cuj" kind="show" id="3MG-ch-lXw"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="YKq-20-Jbj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="AGX-0X-mnF">
                                         <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AGX-0X-mnF" id="84c-9Q-Quu">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Benchmark Esri Offline Routing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EEf-YI-KMe">
+                                                    <rect key="frame" x="8" y="12" width="359" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="3AS-BW-edo" kind="show" id="ssD-yK-3ux"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="YKq-20-Jbj">
+                                        <rect key="frame" x="0.0" y="176" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YKq-20-Jbj" id="h2g-je-hQv">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -89,7 +109,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="e5R-MW-ejb">
-                                        <rect key="frame" x="0.0" y="176" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e5R-MW-ejb" id="VOO-4D-7Hb">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -306,6 +326,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JKf-Vb-Lyw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-564" y="1039"/>
+        </scene>
+        <!--Esri Routing Benchmark View Controller-->
+        <scene sceneID="NTv-zq-veX">
+            <objects>
+                <viewController id="3AS-BW-edo" customClass="EsriRoutingBenchmarkViewController" customModule="esriTrial1" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6AT-ya-pGK"/>
+                        <viewControllerLayoutGuide type="bottom" id="dWx-R1-KRY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="btz-ot-rkZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vzq-Fu-vOA" customClass="AGSMapView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="565"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wPv-tN-1kV">
+                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
+                                <state key="normal" title="START TEST"/>
+                                <connections>
+                                    <action selector="startPressed:" destination="3AS-BW-edo" eventType="touchUpInside" id="cRr-Jh-hVa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Vzq-Fu-vOA" firstAttribute="leading" secondItem="btz-ot-rkZ" secondAttribute="leading" id="09K-1l-Kpc"/>
+                            <constraint firstAttribute="trailing" secondItem="wPv-tN-1kV" secondAttribute="trailing" id="0fg-UK-NFN"/>
+                            <constraint firstItem="dWx-R1-KRY" firstAttribute="top" secondItem="wPv-tN-1kV" secondAttribute="bottom" id="P1W-QB-kCL"/>
+                            <constraint firstItem="wPv-tN-1kV" firstAttribute="top" secondItem="Vzq-Fu-vOA" secondAttribute="bottom" constant="8" id="aCr-kP-OSX"/>
+                            <constraint firstAttribute="trailing" secondItem="Vzq-Fu-vOA" secondAttribute="trailing" id="bZf-Vg-THf"/>
+                            <constraint firstItem="Vzq-Fu-vOA" firstAttribute="top" secondItem="6AT-ya-pGK" secondAttribute="bottom" id="uC0-KI-S7k"/>
+                            <constraint firstItem="wPv-tN-1kV" firstAttribute="leading" secondItem="btz-ot-rkZ" secondAttribute="leading" id="z0B-TS-Xi2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="Vzq-Fu-vOA" id="4Ei-L7-3i6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pxk-xG-dC1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="824.79999999999995" y="1038.5307346326838"/>
         </scene>
         <!--Mapbox Benchmark View Controller-->
         <scene sceneID="ZtN-1k-tRk">

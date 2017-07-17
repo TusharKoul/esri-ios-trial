@@ -8,11 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		5494EE27037019F0E9C098AA /* Pods_esriTrial1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4FC0209A3A6E7A1A3523BC /* Pods_esriTrial1.framework */; };
+		DB16CA4A1F1D4ADA003A0635 /* EsriRoutingBenchmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB16CA491F1D4ADA003A0635 /* EsriRoutingBenchmarkViewController.swift */; };
 		DB3F20851F145C4100EB0B32 /* GMapBenchmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3F20831F145C4100EB0B32 /* GMapBenchmarkViewController.swift */; };
 		DB3F208A1F14622E00EB0B32 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB3F20891F14622E00EB0B32 /* keys.plist */; };
+		DB61C1221F1D4D4300ECA3A4 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DB61C1211F1D4D4300ECA3A4 /* ArcGIS.bundle */; };
+		DB61C12E1F1D4E8800ECA3A4 /* sandiego.geodatabase in Resources */ = {isa = PBXBuildFile; fileRef = DB61C1251F1D4E8800ECA3A4 /* sandiego.geodatabase */; };
+		DB61C12F1F1D4E8800ECA3A4 /* Streets_ND_adjacencies in Resources */ = {isa = PBXBuildFile; fileRef = DB61C1271F1D4E8800ECA3A4 /* Streets_ND_adjacencies */; };
+		DB61C1301F1D4E8800ECA3A4 /* Streets_ND_edge_chains in Resources */ = {isa = PBXBuildFile; fileRef = DB61C1281F1D4E8800ECA3A4 /* Streets_ND_edge_chains */; };
+		DB61C1311F1D4E8800ECA3A4 /* Streets_ND_historical_traffic in Resources */ = {isa = PBXBuildFile; fileRef = DB61C1291F1D4E8800ECA3A4 /* Streets_ND_historical_traffic */; };
+		DB61C1321F1D4E8800ECA3A4 /* Streets_ND_schema in Resources */ = {isa = PBXBuildFile; fileRef = DB61C12A1F1D4E8800ECA3A4 /* Streets_ND_schema */; };
+		DB61C1331F1D4E8800ECA3A4 /* Streets_ND_source_data in Resources */ = {isa = PBXBuildFile; fileRef = DB61C12B1F1D4E8800ECA3A4 /* Streets_ND_source_data */; };
+		DB61C1341F1D4E8800ECA3A4 /* Streets_ND_weight_values in Resources */ = {isa = PBXBuildFile; fileRef = DB61C12C1F1D4E8800ECA3A4 /* Streets_ND_weight_values */; };
+		DB61C1351F1D4E8800ECA3A4 /* streetmap_SD.tpk in Resources */ = {isa = PBXBuildFile; fileRef = DB61C12D1F1D4E8800ECA3A4 /* streetmap_SD.tpk */; };
 		DBAD71011F168F1E004EF227 /* Benchmarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAD71001F168F1E004EF227 /* Benchmarker.swift */; };
 		DBAD71031F169E57004EF227 /* MapboxBenchmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAD71021F169E57004EF227 /* MapboxBenchmarkViewController.swift */; };
-		DBBC76191F144618001B028B /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBBC76181F144618001B028B /* ArcGIS.bundle */; };
 		DBBE50711F141F4F00CA0A96 /* EsriBenchmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE50701F141F4F00CA0A96 /* EsriBenchmarkViewController.swift */; };
 		DBE3AA901F0ABF41002E90D1 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE3AA8E1F0ABF41002E90D1 /* CustomCalloutView.swift */; };
 		DBE3AA911F0ABF41002E90D1 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBE3AA8F1F0ABF41002E90D1 /* CustomCalloutView.xib */; };
@@ -26,11 +35,20 @@
 
 /* Begin PBXFileReference section */
 		5A4FC0209A3A6E7A1A3523BC /* Pods_esriTrial1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_esriTrial1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB16CA491F1D4ADA003A0635 /* EsriRoutingBenchmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsriRoutingBenchmarkViewController.swift; sourceTree = "<group>"; };
 		DB3F20831F145C4100EB0B32 /* GMapBenchmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMapBenchmarkViewController.swift; sourceTree = "<group>"; };
 		DB3F20891F14622E00EB0B32 /* keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
+		DB61C1211F1D4D4300ECA3A4 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = ../../../Library/SDKs/ArcGIS/iOS/Frameworks/Static/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle; sourceTree = "<group>"; };
+		DB61C1251F1D4E8800ECA3A4 /* sandiego.geodatabase */ = {isa = PBXFileReference; lastKnownFileType = file; path = sandiego.geodatabase; sourceTree = "<group>"; };
+		DB61C1271F1D4E8800ECA3A4 /* Streets_ND_adjacencies */ = {isa = PBXFileReference; lastKnownFileType = file; path = Streets_ND_adjacencies; sourceTree = "<group>"; };
+		DB61C1281F1D4E8800ECA3A4 /* Streets_ND_edge_chains */ = {isa = PBXFileReference; lastKnownFileType = file; path = Streets_ND_edge_chains; sourceTree = "<group>"; };
+		DB61C1291F1D4E8800ECA3A4 /* Streets_ND_historical_traffic */ = {isa = PBXFileReference; lastKnownFileType = file; path = Streets_ND_historical_traffic; sourceTree = "<group>"; };
+		DB61C12A1F1D4E8800ECA3A4 /* Streets_ND_schema */ = {isa = PBXFileReference; lastKnownFileType = file; path = Streets_ND_schema; sourceTree = "<group>"; };
+		DB61C12B1F1D4E8800ECA3A4 /* Streets_ND_source_data */ = {isa = PBXFileReference; lastKnownFileType = file; path = Streets_ND_source_data; sourceTree = "<group>"; };
+		DB61C12C1F1D4E8800ECA3A4 /* Streets_ND_weight_values */ = {isa = PBXFileReference; lastKnownFileType = file; path = Streets_ND_weight_values; sourceTree = "<group>"; };
+		DB61C12D1F1D4E8800ECA3A4 /* streetmap_SD.tpk */ = {isa = PBXFileReference; lastKnownFileType = file; path = streetmap_SD.tpk; sourceTree = "<group>"; };
 		DBAD71001F168F1E004EF227 /* Benchmarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Benchmarker.swift; sourceTree = "<group>"; };
 		DBAD71021F169E57004EF227 /* MapboxBenchmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapboxBenchmarkViewController.swift; sourceTree = "<group>"; };
-		DBBC76181F144618001B028B /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = ../../../Library/SDKs/ArcGIS/iOS/Frameworks/Static/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle; sourceTree = "<group>"; };
 		DBBE50701F141F4F00CA0A96 /* EsriBenchmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsriBenchmarkViewController.swift; sourceTree = "<group>"; };
 		DBE3AA8E1F0ABF41002E90D1 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		DBE3AA8F1F0ABF41002E90D1 /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
@@ -70,10 +88,41 @@
 		C2D10D1598D956F112DC8247 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DBBC76181F144618001B028B /* ArcGIS.bundle */,
+				DB61C1211F1D4D4300ECA3A4 /* ArcGIS.bundle */,
 				5A4FC0209A3A6E7A1A3523BC /* Pods_esriTrial1.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB61C1231F1D4E8800ECA3A4 /* SharedResources */ = {
+			isa = PBXGroup;
+			children = (
+				DB61C1241F1D4E8800ECA3A4 /* san-diego */,
+				DB61C12D1F1D4E8800ECA3A4 /* streetmap_SD.tpk */,
+			);
+			path = SharedResources;
+			sourceTree = "<group>";
+		};
+		DB61C1241F1D4E8800ECA3A4 /* san-diego */ = {
+			isa = PBXGroup;
+			children = (
+				DB61C1251F1D4E8800ECA3A4 /* sandiego.geodatabase */,
+				DB61C1261F1D4E8800ECA3A4 /* sandiego.tn */,
+			);
+			path = "san-diego";
+			sourceTree = "<group>";
+		};
+		DB61C1261F1D4E8800ECA3A4 /* sandiego.tn */ = {
+			isa = PBXGroup;
+			children = (
+				DB61C1271F1D4E8800ECA3A4 /* Streets_ND_adjacencies */,
+				DB61C1281F1D4E8800ECA3A4 /* Streets_ND_edge_chains */,
+				DB61C1291F1D4E8800ECA3A4 /* Streets_ND_historical_traffic */,
+				DB61C12A1F1D4E8800ECA3A4 /* Streets_ND_schema */,
+				DB61C12B1F1D4E8800ECA3A4 /* Streets_ND_source_data */,
+				DB61C12C1F1D4E8800ECA3A4 /* Streets_ND_weight_values */,
+			);
+			path = sandiego.tn;
 			sourceTree = "<group>";
 		};
 		FFCDD7B31F02285C00531638 = {
@@ -97,6 +146,7 @@
 		FFCDD7BE1F02285D00531638 /* esriTrial1 */ = {
 			isa = PBXGroup;
 			children = (
+				DB61C1231F1D4E8800ECA3A4 /* SharedResources */,
 				DBE3AA8E1F0ABF41002E90D1 /* CustomCalloutView.swift */,
 				DBE3AA8F1F0ABF41002E90D1 /* CustomCalloutView.xib */,
 				FFCDD7BF1F02285D00531638 /* AppDelegate.swift */,
@@ -111,6 +161,7 @@
 				DB3F20891F14622E00EB0B32 /* keys.plist */,
 				DBAD71001F168F1E004EF227 /* Benchmarker.swift */,
 				DBAD71021F169E57004EF227 /* MapboxBenchmarkViewController.swift */,
+				DB16CA491F1D4ADA003A0635 /* EsriRoutingBenchmarkViewController.swift */,
 			);
 			path = esriTrial1;
 			sourceTree = "<group>";
@@ -179,12 +230,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBBC76191F144618001B028B /* ArcGIS.bundle in Resources */,
 				FFCDD7CA1F02285D00531638 /* LaunchScreen.storyboard in Resources */,
+				DB61C1221F1D4D4300ECA3A4 /* ArcGIS.bundle in Resources */,
+				DB61C12F1F1D4E8800ECA3A4 /* Streets_ND_adjacencies in Resources */,
 				DB3F208A1F14622E00EB0B32 /* keys.plist in Resources */,
+				DB61C1351F1D4E8800ECA3A4 /* streetmap_SD.tpk in Resources */,
 				FFCDD7C71F02285D00531638 /* Assets.xcassets in Resources */,
 				DBE3AA911F0ABF41002E90D1 /* CustomCalloutView.xib in Resources */,
+				DB61C1331F1D4E8800ECA3A4 /* Streets_ND_source_data in Resources */,
 				FFCDD7C51F02285D00531638 /* Main.storyboard in Resources */,
+				DB61C1321F1D4E8800ECA3A4 /* Streets_ND_schema in Resources */,
+				DB61C1341F1D4E8800ECA3A4 /* Streets_ND_weight_values in Resources */,
+				DB61C1311F1D4E8800ECA3A4 /* Streets_ND_historical_traffic in Resources */,
+				DB61C1301F1D4E8800ECA3A4 /* Streets_ND_edge_chains in Resources */,
+				DB61C12E1F1D4E8800ECA3A4 /* sandiego.geodatabase in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBE3AA901F0ABF41002E90D1 /* CustomCalloutView.swift in Sources */,
+				DB16CA4A1F1D4ADA003A0635 /* EsriRoutingBenchmarkViewController.swift in Sources */,
 				FFCDD7C21F02285D00531638 /* ViewController.swift in Sources */,
 				FFCDD7C01F02285D00531638 /* AppDelegate.swift in Sources */,
 				DBE3AA931F0AC547002E90D1 /* Place.swift in Sources */,
