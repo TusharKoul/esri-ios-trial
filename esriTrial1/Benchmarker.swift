@@ -35,7 +35,7 @@ class Benchmarker {
             resetBlock?()
             iter -= 1
         }
-        
+        print(observations)
         print("Average time taken to do operation \(actionCount) times = \(averageOf(observations)), with sd = \(standardDeviationOf(observations))")
     }
     

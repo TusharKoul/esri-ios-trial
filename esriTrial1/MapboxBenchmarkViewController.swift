@@ -35,7 +35,7 @@ class MapboxBenchmarkViewController: UIViewController {
             
             self.mapView.removeAnnotations(annotations)
         }
-        b.runBenchmark(iterations: 100, actionCount: 10000, actionBlock: actionBlock, resetBlock: resetBlock)
+        b.runBenchmark(iterations: 10, actionCount: 10000, actionBlock: actionBlock, resetBlock: resetBlock)
     }
     
     func addGraphic() {

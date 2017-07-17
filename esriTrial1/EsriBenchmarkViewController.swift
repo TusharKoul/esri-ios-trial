@@ -22,8 +22,12 @@ class EsriBenchmarkViewController: UIViewController {
         super.viewDidLoad()
         
         self.mapView.map = AGSMap(basemapType: .streets, latitude: mapCenterPoint.y, longitude: mapCenterPoint.x, levelOfDetail: 10)
+        
+        //renderer
+//        self.pointGraphicOverlay.renderer = AGSSimpleRenderer(symbol: self.pointSymbol)
+//        self.pointGraphicOverlay.renderingMode = .static
+        
         self.mapView.graphicsOverlays.add(self.pointGraphicOverlay)
-
     }
 
     @IBAction func startTestPressed(_ sender: Any) {
@@ -34,11 +38,16 @@ class EsriBenchmarkViewController: UIViewController {
         let resetBlock = { [unowned self] in
             self.pointGraphicOverlay.graphics.removeAllObjects()
         }
-        b.runBenchmark(iterations: 100, actionCount: 10000, actionBlock: actionBlock, resetBlock: resetBlock)
+        b.runBenchmark(iterations: 10, actionCount: 10000, actionBlock: actionBlock, resetBlock: resetBlock)
     }
     
     func addGraphic() {
         let graphic = AGSGraphic(geometry: self.mapCenterPoint, symbol: self.pointSymbol, attributes: nil)
+        
+//        uncomment below line in case using renderer
+//        let graphic = AGSGraphic(geometry: self.mapCenterPoint, symbol: nil, attributes: nil)
+        
         self.pointGraphicOverlay.graphics.add(graphic)
     }
+    
 }
