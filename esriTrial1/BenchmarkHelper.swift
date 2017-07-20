@@ -1,5 +1,5 @@
 //
-//  Benchmarker.swift
+//  BenchmarkHelper.swift
 //  esriTrial1
 //
 //  Created by Tushar Koul on 7/12/17.
@@ -10,8 +10,9 @@ import Foundation
 
 //for CACurrentMediaTime
 import QuartzCore
+import CoreLocation
 
-class Benchmarker {
+class BenchmarkHelper {
  
     func runBenchmark(iterations:Int, actionCount:Int, actionBlock:() -> (), resetBlock:(() -> ())? ) {
         var iter = iterations
@@ -53,6 +54,23 @@ class Benchmarker {
         return sqrt(sumOfSquaredAvgDiff / length)
     }
     
+    class func generateRandomCoordinates(num:Int) -> [CLLocationCoordinate2D] {
+        var points = [CLLocationCoordinate2D]()
+        for _ in 1...num {
+            points.append(generateRandomCoordinate())
+        }
+        return points
+    }
+    
+    class func generateRandomCoordinate() -> CLLocationCoordinate2D{
+        let latitude = self.randomNumberBetween(firstNum: -90.0, secondNum: 90.0)
+        let longitude = self.randomNumberBetween(firstNum: -180.0, secondNum: 180.0)
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    
+    class func randomNumberBetween(firstNum: Double, secondNum: Double) -> Double{
+        return Double(arc4random()) / Double(UINT32_MAX) * abs(firstNum - secondNum) + min(firstNum, secondNum)
+    }
 
 
 }
