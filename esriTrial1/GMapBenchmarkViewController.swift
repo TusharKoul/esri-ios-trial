@@ -19,26 +19,59 @@ class GMapBenchmarkViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let camera = GMSCameraPosition.camera(withLatitude: mapCenterPoint.latitude, longitude: mapCenterPoint.longitude, zoom: 10.0)
+        let camera = GMSCameraPosition.camera(withLatitude: mapCenterPoint.latitude, longitude: mapCenterPoint.longitude, zoom: 0)
         
         self.mapView.camera = camera
     }
     
     @IBAction func startTestPressed(_ sender: Any) {
-        let b = Benchmarker()
-        let actionBlock = { [unowned self] in
-            self.addGraphic()
+//        self.testAddPoint()
+//        self.testAddPolyline()
+        self.testAddPolygon()
+    }
+    
+    func testAddPoint() {
+        self.testAddGraphic(withActionCount: 10000, actionBlock: { [unowned self] in
+            let marker = GMSMarker()
+            marker.position = self.mapCenterPoint
+            marker.map = self.mapView
+        })
+    }
+
+    func testAddPolyline() {
+        let path = GMSMutablePath()
+        
+        let coordinates = BenchmarkHelper.generateRandomCoordinates(num: 50)
+        for c in coordinates {
+            path.add(c)
         }
+        
+        self.testAddGraphic(withActionCount: 10000) { [unowned self] in
+            let polyline = GMSPolyline(path: path)
+            polyline.map = self.mapView
+        }
+    }
+    
+    func testAddPolygon() {
+        let path = GMSMutablePath()
+        
+        let coordinates = BenchmarkHelper.generateRandomCoordinates(num: 50)
+        for c in coordinates {
+            path.add(c)
+        }
+        
+        self.testAddGraphic(withActionCount: 10000) { [unowned self] in
+            let polygon = GMSPolygon(path: path)
+            polygon.map = self.mapView
+        }
+    }
+    
+    func testAddGraphic(withActionCount actionCount:Int, actionBlock:(()->())) {
+        let b = BenchmarkHelper()
         let resetBlock = { [unowned self] in
             self.mapView.clear()
         }
-        b.runBenchmark(iterations: 10, actionCount: 10000, actionBlock: actionBlock, resetBlock: resetBlock)
+        b.runBenchmark(iterations: 10, actionCount: actionCount, actionBlock: actionBlock, resetBlock: resetBlock)
     }
 
-    func addGraphic() {
-        // Creates a marker in the center of the map.
-        let marker = GMSMarker()
-        marker.position = self.mapCenterPoint
-        marker.map = self.mapView
-    }
 }

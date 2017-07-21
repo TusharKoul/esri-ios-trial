@@ -69,7 +69,7 @@ class EsriRoutingBenchmarkViewController: UIViewController {
         let viewPoint = self.mapView.currentViewpoint(with: .boundingGeometry)
         let envelope = viewPoint?.targetGeometry.extent
         
-        for _ in 0...10 {
+        for _ in 1...10 {
             let pt = self.randomPointInEnvelope(envelope: envelope!)
             let stop = AGSStop(point: pt)
             res.append(stop)
