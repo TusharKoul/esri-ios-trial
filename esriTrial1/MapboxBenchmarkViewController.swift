@@ -9,13 +9,11 @@
 import UIKit
 import Mapbox
 
-class MapboxBenchmarkViewController: UIViewController,MGLMapViewDelegate {
+class MapboxBenchmarkViewController: UIViewController {
     
     private let mapCenterPoint = CLLocationCoordinate2D(latitude: 34.057, longitude: -117.196)
-    private let ausPoint = CLLocationCoordinate2D(latitude: 19.7968689, longitude: -0.5310485)
-    
-    var allowOscillate = false
-    var oscillateToggle = true
+    private let africaPoint = CLLocationCoordinate2D(latitude: 19.7968689, longitude: -0.5310485)
+    private let ausPoint = CLLocationCoordinate2D(latitude: -21.182631, longitude: 121.5026582)
 
     @IBOutlet weak var mapView: MGLMapView!
     
@@ -24,8 +22,6 @@ class MapboxBenchmarkViewController: UIViewController,MGLMapViewDelegate {
 
         self.mapView.styleURL = URL(string: "mapbox://styles/mapbox/streets-v10")
         self.mapView.setCenter(mapCenterPoint, zoomLevel: 3, animated: false)
-        self.mapView.delegate = self
-    
     }
     
     @IBAction func startTestPressed(_ sender: Any) {
@@ -36,8 +32,7 @@ class MapboxBenchmarkViewController: UIViewController,MGLMapViewDelegate {
 //        self.testAddPolygon()
 //        self.testAddPolygonBatch()
         
-        self.allowOscillate = true
-        self.oscillateViewpoints(toggle: self.oscillateToggle)
+        self.oscillateViewpoints(toggle: true)
     }
     
     
@@ -45,23 +40,17 @@ class MapboxBenchmarkViewController: UIViewController,MGLMapViewDelegate {
         var point:CLLocationCoordinate2D
         
         if(toggle) {
-            point = self.ausPoint
+            point = self.africaPoint
         }
         else {
             point = self.mapCenterPoint
         }
         
-        self.mapView.setCenter(point, zoomLevel: 3, animated: true)
-    }
-    
-    
-    func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
-        if self.allowOscillate {
-            self.oscillateToggle = !self.allowOscillate
-            self.oscillateViewpoints(toggle: self.oscillateToggle)
+        self.mapView.setCenter(point, zoomLevel: 3, direction: 0, animated: true) {
+            self.oscillateViewpoints(toggle: !toggle)
         }
     }
-
+    
     
     func testAddPoint() {
         self.testAddGraphic(withActionCount: 10000, actionBlock: { [unowned self] in
@@ -72,11 +61,14 @@ class MapboxBenchmarkViewController: UIViewController,MGLMapViewDelegate {
     }
     
     func testAddPointBatch() {
+        
+        let coordinates = BenchmarkHelper.generateRandomCoordinates(num: 3000)
+        
         self.testAddGraphic(withActionCount: 1, actionBlock: { [unowned self] in
             var graphics = [MGLPointAnnotation]()
-            for _ in 1...10000 {
+            for c in coordinates {
                 let graphic = MGLPointAnnotation()
-                graphic.coordinate = self.mapCenterPoint
+                graphic.coordinate = c
                 graphics.append(graphic)
             }
             self.mapView.addAnnotations(graphics)
@@ -122,6 +114,7 @@ class MapboxBenchmarkViewController: UIViewController,MGLMapViewDelegate {
             self.mapView.addAnnotations(graphics)
         }
     }
+    
     
     func testAddGraphic(withActionCount actionCount:Int, actionBlock:(()->())) {
         let b = BenchmarkHelper()
