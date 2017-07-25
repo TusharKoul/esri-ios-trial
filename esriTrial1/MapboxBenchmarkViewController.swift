@@ -9,28 +9,59 @@
 import UIKit
 import Mapbox
 
-class MapboxBenchmarkViewController: UIViewController {
+class MapboxBenchmarkViewController: UIViewController,MGLMapViewDelegate {
     
     private let mapCenterPoint = CLLocationCoordinate2D(latitude: 34.057, longitude: -117.196)
+    private let ausPoint = CLLocationCoordinate2D(latitude: 19.7968689, longitude: -0.5310485)
+    
+    var allowOscillate = false
+    var oscillateToggle = true
 
     @IBOutlet weak var mapView: MGLMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mapView.styleURL = URL(string: "mapbox://styles/mapbox/streets-v10")
-        mapView.setCenter(mapCenterPoint, zoomLevel: 0, animated: false)
+        self.mapView.styleURL = URL(string: "mapbox://styles/mapbox/streets-v10")
+        self.mapView.setCenter(mapCenterPoint, zoomLevel: 3, animated: false)
+        self.mapView.delegate = self
     
     }
     
     @IBAction func startTestPressed(_ sender: Any) {
 //        self.testAddPoint()
-//        self.testAddPointBatch()
+        self.testAddPointBatch()
 //        self.testAddPolyline()
 //        self.testAddPolylineBatch()
 //        self.testAddPolygon()
-        self.testAddPolygonBatch()
+//        self.testAddPolygonBatch()
+        
+        self.allowOscillate = true
+        self.oscillateViewpoints(toggle: self.oscillateToggle)
     }
+    
+    
+    func oscillateViewpoints(toggle:Bool) {
+        var point:CLLocationCoordinate2D
+        
+        if(toggle) {
+            point = self.ausPoint
+        }
+        else {
+            point = self.mapCenterPoint
+        }
+        
+        self.mapView.setCenter(point, zoomLevel: 3, animated: true)
+    }
+    
+    
+    func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
+        if self.allowOscillate {
+            self.oscillateToggle = !self.allowOscillate
+            self.oscillateViewpoints(toggle: self.oscillateToggle)
+        }
+    }
+
     
     func testAddPoint() {
         self.testAddGraphic(withActionCount: 10000, actionBlock: { [unowned self] in
@@ -101,7 +132,7 @@ class MapboxBenchmarkViewController: UIViewController {
             
             self.mapView.removeAnnotations(annotations)
         }
-        b.runBenchmark(iterations: 10, actionCount: actionCount, actionBlock: actionBlock, resetBlock: resetBlock)
+        b.runBenchmark(iterations: 1, actionCount: actionCount, actionBlock: actionBlock, resetBlock: nil)
     }
     
 }
