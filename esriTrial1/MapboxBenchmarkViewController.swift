@@ -26,11 +26,11 @@ class MapboxBenchmarkViewController: UIViewController {
     
     @IBAction func startTestPressed(_ sender: Any) {
 //        self.testAddPoint()
-        self.testAddPointBatch()
+//        self.testAddPointBatch()
 //        self.testAddPolyline()
 //        self.testAddPolylineBatch()
 //        self.testAddPolygon()
-//        self.testAddPolygonBatch()
+        self.testAddPolygonBatch()
         
         self.oscillateViewpoints(toggle: true)
     }
@@ -62,7 +62,7 @@ class MapboxBenchmarkViewController: UIViewController {
     
     func testAddPointBatch() {
         
-        let coordinates = BenchmarkHelper.generateRandomCoordinates(num: 3000)
+        let coordinates = BenchmarkHelper.generateRandomCoordinates(num: 15000)
         
         self.testAddGraphic(withActionCount: 1, actionBlock: { [unowned self] in
             var graphics = [MGLPointAnnotation]()
@@ -85,9 +85,10 @@ class MapboxBenchmarkViewController: UIViewController {
     
     func testAddPolylineBatch() {
         let coordinates = BenchmarkHelper.generateRandomCoordinates(num: 50)
+        let objectCount = 3000
         self.testAddGraphic(withActionCount: 1) { [unowned self] in
             var graphics = [MGLPolyline]()
-            for _ in 1...10000 {
+            for _ in 1...objectCount {
                 let polyline = MGLPolyline(coordinates: coordinates, count: UInt(coordinates.count))
                 graphics.append(polyline)
             }
@@ -105,9 +106,10 @@ class MapboxBenchmarkViewController: UIViewController {
     
     func testAddPolygonBatch() {
         let coordinates = BenchmarkHelper.generateRandomCoordinates(num: 50)
+        let objecCount = 1000
         self.testAddGraphic(withActionCount: 1) { [unowned self] in
             var graphics = [MGLPolygon]()
-            for _ in 1...10000 {
+            for _ in 1...objecCount {
                 let polygon = MGLPolygon(coordinates: coordinates, count: UInt(coordinates.count))
                 graphics.append(polygon)
             }
