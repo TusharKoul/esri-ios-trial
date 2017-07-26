@@ -14,6 +14,7 @@
 		DB61C1221F1D4D4300ECA3A4 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DB61C1211F1D4D4300ECA3A4 /* ArcGIS.bundle */; };
 		DB61C1351F1D4E8800ECA3A4 /* streetmap_SD.tpk in Resources */ = {isa = PBXBuildFile; fileRef = DB61C12D1F1D4E8800ECA3A4 /* streetmap_SD.tpk */; };
 		DB61C1471F1D8DBF00ECA3A4 /* san-diego in Resources */ = {isa = PBXBuildFile; fileRef = DB61C1461F1D8DBF00ECA3A4 /* san-diego */; };
+		DB9DD4FD1F27FD1B0047C0DB /* BenchmarkSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9DD4FC1F27FD1B0047C0DB /* BenchmarkSettingsViewController.swift */; };
 		DBAD71011F168F1E004EF227 /* BenchmarkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAD71001F168F1E004EF227 /* BenchmarkHelper.swift */; };
 		DBAD71031F169E57004EF227 /* MapboxBenchmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAD71021F169E57004EF227 /* MapboxBenchmarkViewController.swift */; };
 		DBBE50711F141F4F00CA0A96 /* EsriBenchmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE50701F141F4F00CA0A96 /* EsriBenchmarkViewController.swift */; };
@@ -35,6 +36,7 @@
 		DB61C1211F1D4D4300ECA3A4 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = ../../../Library/SDKs/ArcGIS/iOS/Frameworks/Static/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle; sourceTree = "<group>"; };
 		DB61C12D1F1D4E8800ECA3A4 /* streetmap_SD.tpk */ = {isa = PBXFileReference; lastKnownFileType = file; path = streetmap_SD.tpk; sourceTree = "<group>"; };
 		DB61C1461F1D8DBF00ECA3A4 /* san-diego */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "san-diego"; sourceTree = "<group>"; };
+		DB9DD4FC1F27FD1B0047C0DB /* BenchmarkSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenchmarkSettingsViewController.swift; sourceTree = "<group>"; };
 		DBAD71001F168F1E004EF227 /* BenchmarkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenchmarkHelper.swift; sourceTree = "<group>"; };
 		DBAD71021F169E57004EF227 /* MapboxBenchmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapboxBenchmarkViewController.swift; sourceTree = "<group>"; };
 		DBBE50701F141F4F00CA0A96 /* EsriBenchmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsriBenchmarkViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				DBAD71001F168F1E004EF227 /* BenchmarkHelper.swift */,
 				DBAD71021F169E57004EF227 /* MapboxBenchmarkViewController.swift */,
 				DB16CA491F1D4ADA003A0635 /* EsriRoutingBenchmarkViewController.swift */,
+				DB9DD4FC1F27FD1B0047C0DB /* BenchmarkSettingsViewController.swift */,
 			);
 			path = esriTrial1;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				DBE3AA901F0ABF41002E90D1 /* CustomCalloutView.swift in Sources */,
 				DB16CA4A1F1D4ADA003A0635 /* EsriRoutingBenchmarkViewController.swift in Sources */,
 				FFCDD7C21F02285D00531638 /* ViewController.swift in Sources */,
+				DB9DD4FD1F27FD1B0047C0DB /* BenchmarkSettingsViewController.swift in Sources */,
 				FFCDD7C01F02285D00531638 /* AppDelegate.swift in Sources */,
 				DBE3AA931F0AC547002E90D1 /* Place.swift in Sources */,
 				DBBE50711F141F4F00CA0A96 /* EsriBenchmarkViewController.swift in Sources */,

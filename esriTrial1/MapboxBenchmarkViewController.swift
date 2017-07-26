@@ -9,32 +9,53 @@
 import UIKit
 import Mapbox
 
-class MapboxBenchmarkViewController: UIViewController {
+class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     
     private let mapCenterPoint = CLLocationCoordinate2D(latitude: 34.057, longitude: -117.196)
     private let africaPoint = CLLocationCoordinate2D(latitude: 19.7968689, longitude: -0.5310485)
     private let ausPoint = CLLocationCoordinate2D(latitude: -21.182631, longitude: 121.5026582)
+    
+    //initializing benchmarking variables with defaults
+    private var objectCount = 10000
+    private var objectKind = GraphicObjectKind.Point
+    private var batchMode = false
 
     @IBOutlet weak var mapView: MGLMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.setupVariables()
         self.mapView.styleURL = URL(string: "mapbox://styles/mapbox/streets-v10")
         self.mapView.setCenter(mapCenterPoint, zoomLevel: 3, animated: false)
     }
     
-    @IBAction func startTestPressed(_ sender: Any) {
-//        self.testAddPoint()
-//        self.testAddPointBatch()
-//        self.testAddPolyline()
-//        self.testAddPolylineBatch()
-//        self.testAddPolygon()
-        self.testAddPolygonBatch()
-        
-        self.oscillateViewpoints(toggle: true)
+    func setupVariables() {
+        self.objectCount = BenchmarkHelper.getObjectCount()
+        self.objectKind = BenchmarkHelper.getObjectKind()
+        self.batchMode = BenchmarkHelper.getBatchMode()
     }
     
+    @IBAction func startTestPressed(_ sender: Any) {
+        
+        switch self.objectKind {
+        case .Point:
+            self.batchMode ? self.testAddPointBatch() : self.testAddPoint()
+        case .Polyline:
+            self.batchMode ? self.testAddPolylineBatch() : self.testAddPolyline()
+        case .Polygon:
+            self.batchMode ? self.testAddPolygonBatch() : self.testAddPolygon()
+        }
+        
+//        self.oscillateViewpoints(toggle: true)
+    }
+    
+    @IBAction func clearPressed(_ sender: Any) {
+        guard let annotations = self.mapView.annotations else {
+            return
+        }
+        
+        self.mapView.removeAnnotations(annotations)
+    }
     
     func oscillateViewpoints(toggle:Bool) {
         var point:CLLocationCoordinate2D
@@ -128,6 +149,18 @@ class MapboxBenchmarkViewController: UIViewController {
             self.mapView.removeAnnotations(annotations)
         }
         b.runBenchmark(iterations: 1, actionCount: actionCount, actionBlock: actionBlock, resetBlock: nil)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PresentSettings" {
+            let settingsVC = segue.destination as! BenchmarkSettingsViewController
+            settingsVC.settingsDelegate = self
+        }
+    }
+    
+    func settingsDidSave() {
+        self.setupVariables()
     }
     
 }
