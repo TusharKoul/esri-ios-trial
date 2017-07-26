@@ -36,8 +36,9 @@ class BenchmarkHelper {
             resetBlock?()
             iter -= 1
         }
-        print(observations)
-        print("Average time taken to do operation \(actionCount) times = \(averageOf(observations)), with sd = \(standardDeviationOf(observations))")
+//        print(observations)
+        print(observations[0] * 1000.0)
+//        print("Average time taken to do operation \(actionCount) times = \(averageOf(observations)), with sd = \(standardDeviationOf(observations))")
     }
     
     func averageOf(_ inputArray:[Double]) -> Double {
@@ -71,6 +72,46 @@ class BenchmarkHelper {
     class func randomNumberBetween(firstNum: Double, secondNum: Double) -> Double{
         return Double(arc4random()) / Double(UINT32_MAX) * abs(firstNum - secondNum) + min(firstNum, secondNum)
     }
+    
+    
+    class func setObjectCount(count:Int) {
+        UserDefaults.standard.set(count, forKey: "Settings_ObjectCount")
+    }
+    
+    class func getObjectCount() -> Int {
+        return UserDefaults.standard.integer(forKey:"Settings_ObjectCount")
+    }
 
-
+    class func setObjectKind(kind:GraphicObjectKind) {
+        UserDefaults.standard.set(kind.rawValue, forKey: "Settings_ObjectKind")
+    }
+    
+    class func getObjectKind() -> GraphicObjectKind {
+        return GraphicObjectKind(rawValue:UserDefaults.standard.integer(forKey: "Settings_ObjectKind"))!
+    }
+    
+    class func setBatchMode(isBatchMode:Bool) {
+        UserDefaults.standard.set(isBatchMode, forKey: "Settings_BatchMode")
+    }
+    
+    class func getBatchMode() -> Bool {
+        return UserDefaults.standard.bool(forKey:"Settings_BatchMode")
+    }
+    
+    class func setRendererEnabled(isRendererEnabled:Bool) {
+        UserDefaults.standard.set(isRendererEnabled, forKey: "Settings_RendererEnabled")
+    }
+    
+    class func getRendererEnabled() -> Bool {
+        return UserDefaults.standard.bool(forKey:"Settings_RendererEnabled")
+    }
+    
+    class func setRenderingMode(renderingModeVal:Int) {
+        UserDefaults.standard.set(renderingModeVal, forKey: "Settings_RenderingMode")
+    }
+    
+    class func getRenderingMode() -> Int {
+        return UserDefaults.standard.integer(forKey: "Settings_RenderingMode")
+    }
+    
 }
