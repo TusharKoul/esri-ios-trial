@@ -74,6 +74,17 @@ class BenchmarkHelper {
     }
     
     
+    class func isFirstLaunch()->Bool{
+        let defaults = UserDefaults.standard
+        if defaults.bool(forKey: "isAppAlreadyLaunchedOnce"){
+            return false
+        }else{
+            defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
+            return true
+        }
+    }
+
+    
     class func setObjectCount(count:Int) {
         UserDefaults.standard.set(count, forKey: "Settings_ObjectCount")
     }

@@ -18,12 +18,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         initializeGoogleMapApi()
+        setSettingDefaults()
         return true
     }
     
     func initializeGoogleMapApi() {
         if let path = Bundle.main.path(forResource: "keys", ofType: "plist"), let keys = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
             GMSServices.provideAPIKey(keys["gmapApiKey"] as! String)
+        }
+    }
+    
+    func setSettingDefaults() {
+        
+        if(BenchmarkHelper.isFirstLaunch()) {
+            BenchmarkHelper.setObjectCount(count: 1000)
+            BenchmarkHelper.setObjectKind(kind: .Point)
+            BenchmarkHelper.setBatchMode(isBatchMode: false)
+            BenchmarkHelper.setRendererEnabled(isRendererEnabled: false)
+            BenchmarkHelper.setRenderingMode(renderingModeVal: 0)
         }
     }
 
