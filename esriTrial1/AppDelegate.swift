@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if(BenchmarkHelper.isFirstLaunch()) {
             BenchmarkHelper.setObjectCount(count: 1000)
+            BenchmarkHelper.setPointCount(count: 500)
             BenchmarkHelper.setObjectKind(kind: .Point)
             BenchmarkHelper.setBatchMode(isBatchMode: false)
             BenchmarkHelper.setRendererEnabled(isRendererEnabled: false)

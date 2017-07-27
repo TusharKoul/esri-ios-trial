@@ -13,7 +13,8 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
 
     @IBOutlet weak var mapView: AGSMapView!
     
-    private let mapCenterPoint = AGSPoint(x: -117.196, y: 34.057, spatialReference: AGSSpatialReference.wgs84())
+    private let esriPoint = AGSPoint(x: -117.196, y: 34.057, spatialReference: AGSSpatialReference.wgs84())
+    private let quebecPoint = AGSPoint(x: -77.388195, y: 53.4647877, spatialReference: AGSSpatialReference.wgs84())
     private let ausPoint = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: 19.7968689, longitude: -0.5310485))
     
     private let pointGraphicOverlay = AGSGraphicsOverlay()
@@ -23,26 +24,29 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     private let lineSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 1)
     
     private let polygonGraphicOverlay = AGSGraphicsOverlay()
-    private let fillSymbol = AGSSimpleFillSymbol(style: .cross, color: .green, outline: nil)
-
+    private let fillSymbol = AGSSimpleFillSymbol(style: .solid, color: .green, outline: nil)
+    
     
     //initializing benchmarking variables with defaults
     private var objectCount = 10000
+    private var pointCount = 500
     private var objectKind = GraphicObjectKind.Point
     private var batchMode = false
     private var renderingEnabled = false
     private var renderingMode = AGSGraphicsRenderingMode.dynamic
     
+    private var isCleared = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mapView.map = AGSMap(basemapType: .streetsVector, latitude: mapCenterPoint.y, longitude: mapCenterPoint.x, levelOfDetail: 3)
+        self.mapView.map = AGSMap(basemapType: .streetsVector, latitude: esriPoint.y, longitude: esriPoint.x, levelOfDetail: 2)
         self.setupVariables()
         self.setupGraphicOverlays()
     }
     
     func setupVariables() {
         self.objectCount = BenchmarkHelper.getObjectCount()
+        self.pointCount = BenchmarkHelper.getPointCount()
         self.objectKind = BenchmarkHelper.getObjectKind()
         self.batchMode = BenchmarkHelper.getBatchMode()
         self.renderingEnabled = BenchmarkHelper.getRendererEnabled()
@@ -75,17 +79,20 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         
         switch self.objectKind {
         case .Point:
-            self.batchMode ? self.testAddPointBatch() : self.testAddPoint()
+//            self.batchMode ? self.testAddPointBatch() : self.testAddPoint()
+            self.testFPSPoint()
         case .Polyline:
-            self.batchMode ? self.testAddPolylineBatch() : self.testAddPolyline()
+//            self.batchMode ? self.testAddPolylineBatch() : self.testAddPolyline()
+            self.testFPSPolyline()
         case .Polygon:
-            self.batchMode ? self.testAddPolygonBatch() : self.testAddPolygon()
+//            self.batchMode ? self.testAddPolygonBatch() : self.testAddPolygon()
+            self.testFPSPolygon()
         }
-        
-//        self.oscillateViewpoints(toggle: true)
     }
     
     @IBAction func clearPressed(_ sender: Any) {
+        self.isCleared = true
+        
         self.pointGraphicOverlay.graphics.removeAllObjects()
         self.lineGraphicOverlay.graphics.removeAllObjects()
         self.polygonGraphicOverlay.graphics.removeAllObjects()
@@ -94,7 +101,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     func testAddPoint() {
         let symbol = self.renderingEnabled ? nil : self.pointSymbol
         self.testAddGraphic(withActionCount: self.objectCount) { [unowned self] in
-            let graphic = AGSGraphic(geometry: self.mapCenterPoint, symbol: symbol, attributes: nil)
+            let graphic = AGSGraphic(geometry: self.esriPoint, symbol: symbol, attributes: nil)
             self.pointGraphicOverlay.graphics.add(graphic)
         }
     }
@@ -113,37 +120,19 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         }
     }
     
-    func goToViewPoint(points:[AGSPoint],index:Int) {
-        
-        if index >= points.count {
-            return;
-        }
-        
-//        self.mapView.setViewpointCenter(points[index]) { (finished) in
-//            let newIndex = index + 1
-//            self.goToViewPoint(points: points, index: newIndex)
-//        }
-        let vp = AGSViewpoint(center: points[index], scale: 5000000)
-        self.mapView.setViewpoint(vp, duration: 1) { (finished) in
-            let newIndex = index + 1
-            self.goToViewPoint(points: points, index: newIndex)
-        }
-    }
     
     func oscillateViewpoints(toggle:Bool) {
-        var point:AGSPoint!
+        if self.isCleared {
+            return
+        }
         
+        var point:AGSPoint!
         if(toggle) {
-            point = self.mapCenterPoint
+            point = self.quebecPoint
         }
         else {
-            point = self.ausPoint
+            point = self.esriPoint
         }
-        
-//        let vp = AGSViewpoint(center: point, scale: 5000000)
-//        self.mapView.setViewpoint(vp, duration: 1) { (finished) in
-//            self.oscillateViewpoints(toggle: !toggle)
-//        }
         
         self.mapView.setViewpointCenter(point) { (finished) in
             self.oscillateViewpoints(toggle: !toggle)
@@ -155,7 +144,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         self.testAddGraphic(withActionCount: 1) { [unowned self] in
             let multipointBuilder = AGSMultipointBuilder(spatialReference: AGSSpatialReference.wgs84())
             for _ in 1...self.objectCount {
-                multipointBuilder.points.add(self.mapCenterPoint)
+                multipointBuilder.points.add(self.esriPoint)
             }
             let graphic = AGSGraphic(geometry: multipointBuilder.toGeometry(), symbol: symbol, attributes: nil)
             self.pointGraphicOverlay.graphics.add(graphic)
@@ -167,7 +156,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         self.testAddGraphic(withActionCount: 1) { [unowned self] in
             var points = [AGSPoint]()
             for _ in 1...self.objectCount {
-                points.append(self.mapCenterPoint)
+                points.append(self.esriPoint)
             }
             let multipoint = AGSMultipoint(points: points)
             let graphic = AGSGraphic(geometry: multipoint, symbol: symbol, attributes: nil)
@@ -176,7 +165,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     }
     
     func testAddPolyline() {
-        let points = self.generateRandomPoints(num: 50)
+        let points = self.generateRandomPoints(num: self.pointCount)
         
         let symbol = self.renderingEnabled ? nil : self.lineSymbol
         self.testAddGraphic(withActionCount: self.objectCount) { [unowned self] in
@@ -187,7 +176,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     }
     
     func testAddPolylineBatch() {
-        let points = self.generateRandomPoints(num: 50)
+        let points = self.generateRandomPoints(num: self.pointCount)
         
         let symbol = self.renderingEnabled ? nil : self.lineSymbol
         self.testAddGraphic(withActionCount: 1) { [unowned self] in
@@ -203,7 +192,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     }
     
     func testAddPolygon() {
-        let points = self.generateRandomPoints(num: 50)
+        let points = self.generateRandomPoints(num: self.pointCount)
         
         let symbol = self.renderingEnabled ? nil : self.fillSymbol
         self.testAddGraphic(withActionCount: self.objectCount) { [unowned self] in
@@ -214,7 +203,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     }
     
     func testAddPolygonBatch() {
-        let points = self.generateRandomPoints(num: 50)
+        let points = self.generateRandomPoints(num: self.pointCount)
         
         let symbol = self.renderingEnabled ? nil : self.fillSymbol
         self.testAddGraphic(withActionCount: 1) { [unowned self] in
@@ -229,7 +218,6 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     }
 
     
-    
     func testAddGraphic(withActionCount actionCount:Int, actionBlock:(()->())) {
         let b = BenchmarkHelper()
         let resetBlock = { [unowned self] in
@@ -240,6 +228,66 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         b.runBenchmark(iterations: 1, actionCount: actionCount, actionBlock: actionBlock, resetBlock: nil)
     }
     
+    
+    //MARK: - Test FPS
+    
+    func testFPSPoint() {
+        let points = self.generateRandomPointsBetweenBounds(num: self.objectCount,
+                                                            bottomLeftCoordinate: self.esriPoint.toCLLocationCoordinate2D(),
+                                                            topRightCoordinate: self.quebecPoint.toCLLocationCoordinate2D())
+        
+        let symbol = self.renderingEnabled ? nil : self.pointSymbol
+        var graphics = [AGSGraphic]()
+        for p in points {
+            let graphic = AGSGraphic(geometry: p, symbol: symbol, attributes: nil)
+            graphics.append(graphic)
+        }
+        self.pointGraphicOverlay.graphics.addObjects(from: graphics)
+        
+        self.isCleared = false
+        self.oscillateViewpoints(toggle: true)
+    }
+    
+    func testFPSPolyline() {
+        
+        let points = self.generateRandomPointsBetweenBounds(num: self.pointCount,
+                                                            bottomLeftCoordinate: self.esriPoint.toCLLocationCoordinate2D(),
+                                                            topRightCoordinate: self.quebecPoint.toCLLocationCoordinate2D())
+        
+        let symbol = self.renderingEnabled ? nil : self.lineSymbol
+        var graphics = [AGSGraphic]()
+        for _ in 1...self.objectCount {
+            let polyline = AGSPolyline(points: points)
+            let graphic = AGSGraphic(geometry: polyline, symbol: symbol, attributes: nil)
+            graphics.append(graphic)
+        }
+        self.lineGraphicOverlay.graphics.addObjects(from: graphics)
+        
+        self.isCleared = false
+        self.oscillateViewpoints(toggle: true)
+    }
+    
+    func testFPSPolygon() {
+        
+        let points = self.generateRandomPointsBetweenBounds(num: self.pointCount,
+                                                            bottomLeftCoordinate: self.esriPoint.toCLLocationCoordinate2D(),
+                                                            topRightCoordinate: self.quebecPoint.toCLLocationCoordinate2D())
+        
+        let symbol = self.renderingEnabled ? nil : self.fillSymbol
+        
+        var graphics = [AGSGraphic]()
+        for _ in 1...self.objectCount {
+            let polygon = AGSPolygon(points: points)
+            let graphic = AGSGraphic(geometry: polygon, symbol: symbol, attributes: nil)
+            graphics.append(graphic)
+        }
+        self.polygonGraphicOverlay.graphics.addObjects(from: graphics)
+        
+        self.isCleared = false
+        self.oscillateViewpoints(toggle: true)
+    }
+    
+    
     func generateRandomPoints(num:Int) -> [AGSPoint] {
         let coordinates = BenchmarkHelper.generateRandomCoordinates(num: num)
         var points = [AGSPoint]()
@@ -249,6 +297,17 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         return points
     }
     
+    func generateRandomPointsBetweenBounds(num:Int, bottomLeftCoordinate:CLLocationCoordinate2D, topRightCoordinate:CLLocationCoordinate2D) -> [AGSPoint] {
+        let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: num,
+                                                                                bottomLeftCoordinate: bottomLeftCoordinate,
+                                                                                topRightCoordinate: topRightCoordinate)
+        var points = [AGSPoint]()
+        for c in coordinates {
+            points.append(AGSPoint(clLocationCoordinate2D: c))
+        }
+        return points
+    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PresentSettings" {

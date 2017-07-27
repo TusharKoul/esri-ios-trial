@@ -22,11 +22,13 @@ enum GraphicObjectKind:Int {
 class BenchmarkSettingsViewController: UIViewController {
 
     @IBOutlet private weak var objectCountTextField: UITextField!
+    @IBOutlet private weak var pointCountTextField: UITextField!
     @IBOutlet private weak var graphicSegmentedControl: UISegmentedControl!
     @IBOutlet private weak var batchModeSwitch: UISwitch!
     @IBOutlet private weak var rendererSwitch: UISwitch!
     @IBOutlet private weak var renderingModeSegmentedControl: UISegmentedControl!
     @IBOutlet private weak var startButton: UIButton!
+    
     
     weak var settingsDelegate:BenchmarkSettingsDelegate?
     
@@ -37,6 +39,7 @@ class BenchmarkSettingsViewController: UIViewController {
     
     func loadDefaults() {
         self.objectCountTextField.text = String(BenchmarkHelper.getObjectCount())
+        self.pointCountTextField.text = String(BenchmarkHelper.getPointCount())
         self.graphicSegmentedControl.selectedSegmentIndex = BenchmarkHelper.getObjectKind().rawValue
         self.batchModeSwitch.setOn(BenchmarkHelper.getBatchMode(), animated: false)
         self.rendererSwitch.setOn(BenchmarkHelper.getRendererEnabled(), animated: false)
@@ -48,6 +51,9 @@ class BenchmarkSettingsViewController: UIViewController {
         
         let objectCount = Int(self.objectCountTextField.text!)!
         BenchmarkHelper.setObjectCount(count: objectCount)
+        
+        let pointCount = Int(self.pointCountTextField.text!)!
+        BenchmarkHelper.setPointCount(count: pointCount)
         
         let objectKind = GraphicObjectKind(rawValue:self.graphicSegmentedControl.selectedSegmentIndex)!
         BenchmarkHelper.setObjectKind(kind: objectKind)

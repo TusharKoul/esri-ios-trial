@@ -55,6 +55,22 @@ class BenchmarkHelper {
         return sqrt(sumOfSquaredAvgDiff / length)
     }
     
+    
+    class func generateRandomCoordinatesWithinBounds(num:Int, bottomLeftCoordinate : CLLocationCoordinate2D, topRightCoordinate:CLLocationCoordinate2D) -> [CLLocationCoordinate2D] {
+        var points = [CLLocationCoordinate2D]()
+        for _ in 1...num {
+            points.append(generateRandomCoordinateWithinBounds(bottomLeftCoordinate:bottomLeftCoordinate, topRightCoordinate: topRightCoordinate))
+        }
+        return points
+    }
+    
+    class func generateRandomCoordinateWithinBounds(bottomLeftCoordinate : CLLocationCoordinate2D, topRightCoordinate:CLLocationCoordinate2D) -> CLLocationCoordinate2D {
+        let latitude = self.randomNumberBetween(firstNum: bottomLeftCoordinate.latitude, secondNum: topRightCoordinate.latitude)
+        let longitude = self.randomNumberBetween(firstNum: bottomLeftCoordinate.longitude, secondNum: topRightCoordinate.longitude)
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    
+    
     class func generateRandomCoordinates(num:Int) -> [CLLocationCoordinate2D] {
         var points = [CLLocationCoordinate2D]()
         for _ in 1...num {
@@ -91,6 +107,14 @@ class BenchmarkHelper {
     
     class func getObjectCount() -> Int {
         return UserDefaults.standard.integer(forKey:"Settings_ObjectCount")
+    }
+    
+    class func setPointCount(count:Int) {
+        UserDefaults.standard.set(count, forKey: "Settings_PointCount")
+    }
+    
+    class func getPointCount() -> Int {
+        return UserDefaults.standard.integer(forKey:"Settings_PointCount")
     }
 
     class func setObjectKind(kind:GraphicObjectKind) {
