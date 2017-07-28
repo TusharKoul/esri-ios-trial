@@ -28,6 +28,7 @@ class BenchmarkSettingsViewController: UIViewController {
     @IBOutlet private weak var rendererSwitch: UISwitch!
     @IBOutlet private weak var renderingModeSegmentedControl: UISegmentedControl!
     @IBOutlet private weak var startButton: UIButton!
+    @IBOutlet private weak var overlayCountTextField: UITextField!
     
     
     weak var settingsDelegate:BenchmarkSettingsDelegate?
@@ -44,6 +45,7 @@ class BenchmarkSettingsViewController: UIViewController {
         self.batchModeSwitch.setOn(BenchmarkHelper.getBatchMode(), animated: false)
         self.rendererSwitch.setOn(BenchmarkHelper.getRendererEnabled(), animated: false)
         self.renderingModeSegmentedControl.selectedSegmentIndex = BenchmarkHelper.getRenderingMode()
+        self.overlayCountTextField.text = String(BenchmarkHelper.getOverlayCount())
     }
 
     
@@ -66,6 +68,10 @@ class BenchmarkSettingsViewController: UIViewController {
         
         let renderingMode = self.renderingModeSegmentedControl.selectedSegmentIndex
         BenchmarkHelper.setRenderingMode(renderingModeVal: renderingMode)
+        
+        let overlayCount = Int(self.overlayCountTextField.text!)!
+        BenchmarkHelper.setOverlayCount(count: overlayCount)
+
         
         self.dismiss(animated: true) { [weak self] in
             self?.settingsDelegate?.settingsDidSave()

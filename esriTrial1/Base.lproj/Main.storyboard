@@ -139,7 +139,7 @@
         <scene sceneID="z9u-PG-Uu7">
             <objects>
                 <navigationController id="HjY-Ke-sr4" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WAz-EO-LP1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WAz-EO-LP1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -481,6 +481,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" placeholder="count" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NE7-ij-XNT">
+                                <rect key="frame" x="813" y="335" width="191" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="191" id="oyL-Uj-amJ"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# of Graphic overlays" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdg-o7-shS">
+                                <rect key="frame" x="20" y="341" width="162" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
@@ -488,12 +503,15 @@
                             <constraint firstItem="ebj-VU-sIi" firstAttribute="top" secondItem="siT-ky-14R" secondAttribute="bottom" constant="20" id="1u0-dg-moF"/>
                             <constraint firstItem="z5d-Ne-WLL" firstAttribute="top" secondItem="9Ad-kl-GZJ" secondAttribute="bottom" id="6Xd-mL-UwA"/>
                             <constraint firstItem="yWi-dm-1bS" firstAttribute="leading" secondItem="3sC-ke-9h1" secondAttribute="leadingMargin" id="6j8-U6-iaF"/>
+                            <constraint firstItem="NE7-ij-XNT" firstAttribute="top" secondItem="6VO-Wr-M7K" secondAttribute="bottom" constant="24" id="Cof-dC-LI5"/>
                             <constraint firstItem="Kdh-6V-f8D" firstAttribute="leading" secondItem="3sC-ke-9h1" secondAttribute="leadingMargin" id="I2U-Fe-rDg"/>
                             <constraint firstItem="6VO-Wr-M7K" firstAttribute="trailing" secondItem="3sC-ke-9h1" secondAttribute="trailingMargin" id="ICz-WL-NaG"/>
                             <constraint firstItem="ebj-VU-sIi" firstAttribute="centerX" secondItem="siT-ky-14R" secondAttribute="centerX" id="InH-rA-9u4"/>
                             <constraint firstItem="siT-ky-14R" firstAttribute="top" secondItem="AYZ-gF-PwT" secondAttribute="bottom" constant="21" id="JAV-nc-dXU"/>
+                            <constraint firstItem="NE7-ij-XNT" firstAttribute="trailing" secondItem="3sC-ke-9h1" secondAttribute="trailingMargin" id="K6H-Sl-LaM"/>
                             <constraint firstItem="ABL-ES-m4W" firstAttribute="leading" secondItem="3sC-ke-9h1" secondAttribute="leading" id="Lgf-Te-gxE"/>
                             <constraint firstItem="yWi-dm-1bS" firstAttribute="top" secondItem="xWF-a8-vf4" secondAttribute="bottom" constant="24" id="Ljo-qd-RsK"/>
+                            <constraint firstItem="zdg-o7-shS" firstAttribute="top" secondItem="Kdh-6V-f8D" secondAttribute="bottom" constant="33" id="Oru-Lb-dMJ"/>
                             <constraint firstItem="hDL-F3-7e2" firstAttribute="trailing" secondItem="3sC-ke-9h1" secondAttribute="trailingMargin" id="OzY-yD-QNT"/>
                             <constraint firstItem="ABL-ES-m4W" firstAttribute="width" secondItem="9Ad-kl-GZJ" secondAttribute="width" id="PLo-Sp-9C7"/>
                             <constraint firstItem="y4u-d2-7BS" firstAttribute="trailing" secondItem="3sC-ke-9h1" secondAttribute="trailingMargin" id="QEt-hV-tP5"/>
@@ -511,6 +529,7 @@
                             <constraint firstAttribute="trailing" secondItem="9Ad-kl-GZJ" secondAttribute="trailing" id="gll-5f-rl9"/>
                             <constraint firstItem="AyP-Dm-10N" firstAttribute="top" secondItem="yWi-dm-1bS" secondAttribute="bottom" constant="24" id="k5g-tj-p5i"/>
                             <constraint firstItem="xWF-a8-vf4" firstAttribute="top" secondItem="xyX-O1-NmK" secondAttribute="bottom" constant="26" id="pXb-oP-xv0"/>
+                            <constraint firstItem="zdg-o7-shS" firstAttribute="leading" secondItem="3sC-ke-9h1" secondAttribute="leadingMargin" id="qmw-Vj-ccE"/>
                             <constraint firstItem="6VO-Wr-M7K" firstAttribute="top" secondItem="ebj-VU-sIi" secondAttribute="bottom" constant="20" id="sP0-Vj-74Y"/>
                             <constraint firstItem="AYZ-gF-PwT" firstAttribute="top" secondItem="hDL-F3-7e2" secondAttribute="bottom" constant="17" id="vpx-Y8-PB2"/>
                             <constraint firstItem="AYZ-gF-PwT" firstAttribute="trailing" secondItem="3sC-ke-9h1" secondAttribute="trailingMargin" id="zVZ-pX-03i"/>
@@ -520,6 +539,7 @@
                         <outlet property="batchModeSwitch" destination="siT-ky-14R" id="ec1-LV-Brh"/>
                         <outlet property="graphicSegmentedControl" destination="AYZ-gF-PwT" id="lNw-12-8fe"/>
                         <outlet property="objectCountTextField" destination="y4u-d2-7BS" id="HPx-8p-nYi"/>
+                        <outlet property="overlayCountTextField" destination="NE7-ij-XNT" id="sft-I3-tBj"/>
                         <outlet property="pointCountTextField" destination="hDL-F3-7e2" id="ozW-Jg-DFb"/>
                         <outlet property="rendererSwitch" destination="ebj-VU-sIi" id="tgY-3u-vIa"/>
                         <outlet property="renderingModeSegmentedControl" destination="6VO-Wr-M7K" id="8sl-q1-TbO"/>

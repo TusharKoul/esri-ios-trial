@@ -149,4 +149,12 @@ class BenchmarkHelper {
         return UserDefaults.standard.integer(forKey: "Settings_RenderingMode")
     }
     
+    class func setOverlayCount(count:Int) {
+        UserDefaults.standard.set(count, forKey: "Settings_OverlayCount")
+    }
+    
+    class func getOverlayCount() -> Int {
+        return UserDefaults.standard.integer(forKey:"Settings_OverlayCount")
+    }
+    
 }

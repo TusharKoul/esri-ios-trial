@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             BenchmarkHelper.setBatchMode(isBatchMode: false)
             BenchmarkHelper.setRendererEnabled(isRendererEnabled: false)
             BenchmarkHelper.setRenderingMode(renderingModeVal: 0)
+            BenchmarkHelper.setOverlayCount(count: 1)
         }
     }
 

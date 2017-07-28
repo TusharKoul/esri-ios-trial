@@ -17,13 +17,13 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     private let quebecPoint = AGSPoint(x: -77.388195, y: 53.4647877, spatialReference: AGSSpatialReference.wgs84())
     private let ausPoint = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: 19.7968689, longitude: -0.5310485))
     
-    private let pointGraphicOverlay = AGSGraphicsOverlay()
+    private var pointGraphicOverlays = [AGSGraphicsOverlay]()
     private let pointSymbol = AGSSimpleMarkerSymbol(style: .circle, color: .red, size: 10)
     
-    private let lineGraphicOverlay = AGSGraphicsOverlay()
+    private var lineGraphicOverlays = [AGSGraphicsOverlay]()
     private let lineSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 1)
     
-    private let polygonGraphicOverlay = AGSGraphicsOverlay()
+    private var polygonGraphicOverlays = [AGSGraphicsOverlay]()
     private let fillSymbol = AGSSimpleFillSymbol(style: .solid, color: .green, outline: nil)
     
     
@@ -34,6 +34,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     private var batchMode = false
     private var renderingEnabled = false
     private var renderingMode = AGSGraphicsRenderingMode.dynamic
+    private var layerCount = 1
     
     private var isCleared = true
     
@@ -51,23 +52,36 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         self.batchMode = BenchmarkHelper.getBatchMode()
         self.renderingEnabled = BenchmarkHelper.getRendererEnabled()
         self.renderingMode = AGSGraphicsRenderingMode(rawValue: BenchmarkHelper.getRenderingMode())!
+        self.layerCount = BenchmarkHelper.getOverlayCount()
     }
     
     func setupGraphicOverlays() {
+        self.mapView.graphicsOverlays.removeAllObjects()
         
         switch self.objectKind {
+            
         case .Point:
-            self.setupGraphicOverlay(overlay: self.pointGraphicOverlay, symbol: self.pointSymbol)
+            self.pointGraphicOverlays = self.createGraphicOverlays(count: self.layerCount, symbol: self.pointSymbol)
+            
         case .Polyline:
-            self.setupGraphicOverlay(overlay: self.lineGraphicOverlay, symbol: self.lineSymbol)
+            self.lineGraphicOverlays = self.createGraphicOverlays(count: self.layerCount, symbol: self.lineSymbol)
+
         case .Polygon:
-            self.setupGraphicOverlay(overlay: self.polygonGraphicOverlay, symbol: self.fillSymbol)
+            self.polygonGraphicOverlays = self.createGraphicOverlays(count: self.layerCount, symbol: self.fillSymbol)
         }
     }
     
+    func createGraphicOverlays(count:Int, symbol:AGSSymbol) -> [AGSGraphicsOverlay]{
+        var overlayGroup = [AGSGraphicsOverlay]()
+        for _ in 1...count {
+            let overlay = AGSGraphicsOverlay()
+            overlayGroup.append(overlay)
+            self.setupGraphicOverlay(overlay: overlay, symbol: symbol)
+        }
+        return overlayGroup
+    }
+    
     func setupGraphicOverlay(overlay:AGSGraphicsOverlay, symbol:AGSSymbol) {
-        self.mapView.graphicsOverlays.removeAllObjects()
-        
         if(self.renderingEnabled) {
             overlay.renderer = AGSSimpleRenderer(symbol: symbol)
             overlay.renderingMode = self.renderingMode
@@ -93,16 +107,17 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     @IBAction func clearPressed(_ sender: Any) {
         self.isCleared = true
         
-        self.pointGraphicOverlay.graphics.removeAllObjects()
-        self.lineGraphicOverlay.graphics.removeAllObjects()
-        self.polygonGraphicOverlay.graphics.removeAllObjects()
+        for overlay in self.mapView.graphicsOverlays {
+            let overlay = overlay as! AGSGraphicsOverlay
+            overlay.graphics.removeAllObjects()
+        }
     }
     
     func testAddPoint() {
         let symbol = self.renderingEnabled ? nil : self.pointSymbol
         self.testAddGraphic(withActionCount: self.objectCount) { [unowned self] in
             let graphic = AGSGraphic(geometry: self.esriPoint, symbol: symbol, attributes: nil)
-            self.pointGraphicOverlay.graphics.add(graphic)
+            self.pointGraphicOverlays[0].graphics.add(graphic)
         }
     }
     
@@ -116,7 +131,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
                 let graphic = AGSGraphic(geometry: p, symbol: symbol, attributes: nil)
                 graphics.append(graphic)
             }
-            self.pointGraphicOverlay.graphics.addObjects(from: graphics)
+            self.pointGraphicOverlays[0].graphics.addObjects(from: graphics)
         }
     }
     
@@ -147,7 +162,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
                 multipointBuilder.points.add(self.esriPoint)
             }
             let graphic = AGSGraphic(geometry: multipointBuilder.toGeometry(), symbol: symbol, attributes: nil)
-            self.pointGraphicOverlay.graphics.add(graphic)
+            self.pointGraphicOverlays[0].graphics.add(graphic)
         }
     }
     
@@ -160,7 +175,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
             }
             let multipoint = AGSMultipoint(points: points)
             let graphic = AGSGraphic(geometry: multipoint, symbol: symbol, attributes: nil)
-            self.pointGraphicOverlay.graphics.add(graphic)
+            self.pointGraphicOverlays[0].graphics.add(graphic)
         }
     }
     
@@ -171,7 +186,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         self.testAddGraphic(withActionCount: self.objectCount) { [unowned self] in
             let polyline = AGSPolyline(points: points)
             let graphic = AGSGraphic(geometry: polyline, symbol: symbol, attributes: nil)
-            self.lineGraphicOverlay.graphics.add(graphic)
+            self.lineGraphicOverlays[0].graphics.add(graphic)
         }
     }
     
@@ -187,7 +202,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
                 graphics.append(graphic)
             }
             
-            self.lineGraphicOverlay.graphics.addObjects(from: graphics)
+            self.lineGraphicOverlays[0].graphics.addObjects(from: graphics)
         }
     }
     
@@ -198,7 +213,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         self.testAddGraphic(withActionCount: self.objectCount) { [unowned self] in
             let polygon = AGSPolygon(points: points)
             let graphic = AGSGraphic(geometry: polygon, symbol: symbol, attributes: nil)
-            self.polygonGraphicOverlay.graphics.add(graphic)
+            self.polygonGraphicOverlays[0].graphics.add(graphic)
         }
     }
     
@@ -213,7 +228,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
                 let graphic = AGSGraphic(geometry: polygon, symbol: symbol, attributes: nil)
                 graphics.append(graphic)
             }
-            self.polygonGraphicOverlay.graphics.addObjects(from: graphics)
+            self.polygonGraphicOverlays[0].graphics.addObjects(from: graphics)
         }
     }
 
@@ -221,9 +236,10 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     func testAddGraphic(withActionCount actionCount:Int, actionBlock:(()->())) {
         let b = BenchmarkHelper()
         let resetBlock = { [unowned self] in
-            self.pointGraphicOverlay.graphics.removeAllObjects()
-            self.lineGraphicOverlay.graphics.removeAllObjects()
-            self.polygonGraphicOverlay.graphics.removeAllObjects()
+            for overlay in self.mapView.graphicsOverlays {
+                let overlay = overlay as! AGSGraphicsOverlay
+                overlay.graphics.removeAllObjects()
+            }
         }
         b.runBenchmark(iterations: 1, actionCount: actionCount, actionBlock: actionBlock, resetBlock: nil)
     }
@@ -232,56 +248,69 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     //MARK: - Test FPS
     
     func testFPSPoint() {
-        let points = self.generateRandomPointsBetweenBounds(num: self.objectCount,
-                                                            bottomLeftCoordinate: self.esriPoint.toCLLocationCoordinate2D(),
-                                                            topRightCoordinate: self.quebecPoint.toCLLocationCoordinate2D())
+        let objectsPerLayer = self.objectCount / self.layerCount
         
         let symbol = self.renderingEnabled ? nil : self.pointSymbol
-        var graphics = [AGSGraphic]()
-        for p in points {
-            let graphic = AGSGraphic(geometry: p, symbol: symbol, attributes: nil)
-            graphics.append(graphic)
+        
+        for overlay in self.pointGraphicOverlays {
+            let points = self.generateRandomPointsBetweenBounds(num: objectsPerLayer,
+                                                                bottomLeftCoordinate: self.esriPoint.toCLLocationCoordinate2D(),
+                                                                topRightCoordinate: self.quebecPoint.toCLLocationCoordinate2D())
+            
+            var graphics = [AGSGraphic]()
+            for p in points {
+                let graphic = AGSGraphic(geometry: p, symbol: symbol, attributes: nil)
+                graphics.append(graphic)
+            }
+            overlay.graphics.addObjects(from: graphics)
         }
-        self.pointGraphicOverlay.graphics.addObjects(from: graphics)
+        
         
         self.isCleared = false
         self.oscillateViewpoints(toggle: true)
     }
     
+    
     func testFPSPolyline() {
-        
+        let objectsPerLayer = self.objectCount / self.layerCount
         let points = self.generateRandomPointsBetweenBounds(num: self.pointCount,
                                                             bottomLeftCoordinate: self.esriPoint.toCLLocationCoordinate2D(),
                                                             topRightCoordinate: self.quebecPoint.toCLLocationCoordinate2D())
         
         let symbol = self.renderingEnabled ? nil : self.lineSymbol
-        var graphics = [AGSGraphic]()
-        for _ in 1...self.objectCount {
-            let polyline = AGSPolyline(points: points)
-            let graphic = AGSGraphic(geometry: polyline, symbol: symbol, attributes: nil)
-            graphics.append(graphic)
+        
+        for overlay in self.lineGraphicOverlays {
+            var graphics = [AGSGraphic]()
+            for _ in 1...objectsPerLayer {
+                let polyline = AGSPolyline(points: points)
+                let graphic = AGSGraphic(geometry: polyline, symbol: symbol, attributes: nil)
+                graphics.append(graphic)
+            }
+            overlay.graphics.addObjects(from: graphics)
         }
-        self.lineGraphicOverlay.graphics.addObjects(from: graphics)
         
         self.isCleared = false
         self.oscillateViewpoints(toggle: true)
     }
     
+    
     func testFPSPolygon() {
-        
+        let objectsPerLayer = self.objectCount / self.layerCount
         let points = self.generateRandomPointsBetweenBounds(num: self.pointCount,
                                                             bottomLeftCoordinate: self.esriPoint.toCLLocationCoordinate2D(),
                                                             topRightCoordinate: self.quebecPoint.toCLLocationCoordinate2D())
         
         let symbol = self.renderingEnabled ? nil : self.fillSymbol
         
-        var graphics = [AGSGraphic]()
-        for _ in 1...self.objectCount {
-            let polygon = AGSPolygon(points: points)
-            let graphic = AGSGraphic(geometry: polygon, symbol: symbol, attributes: nil)
-            graphics.append(graphic)
+        for overlay in self.polygonGraphicOverlays {
+            var graphics = [AGSGraphic]()
+            for _ in 1...objectsPerLayer {
+                let polygon = AGSPolygon(points: points)
+                let graphic = AGSGraphic(geometry: polygon, symbol: symbol, attributes: nil)
+                graphics.append(graphic)
+            }
+            overlay.graphics.addObjects(from: graphics)
         }
-        self.polygonGraphicOverlay.graphics.addObjects(from: graphics)
         
         self.isCleared = false
         self.oscillateViewpoints(toggle: true)
