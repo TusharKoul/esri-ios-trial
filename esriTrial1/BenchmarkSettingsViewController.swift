@@ -17,6 +17,17 @@ enum GraphicObjectKind:Int {
     case Point=0
     case Polyline
     case Polygon
+    
+    var description:String {
+        switch self {
+        case .Point:
+            return "Point"
+        case .Polyline:
+            return "Polyline"
+        case .Polygon:
+            return "Polygon"
+        }
+    }
 }
 
 class BenchmarkSettingsViewController: UIViewController {

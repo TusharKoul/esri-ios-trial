@@ -12,6 +12,7 @@ import ArcGIS
 class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
 
     @IBOutlet weak var mapView: AGSMapView!
+    @IBOutlet weak var testDescriptionLabel: UILabel!
     
     private let esriPoint = AGSPoint(x: -117.196, y: 34.057, spatialReference: AGSSpatialReference.wgs84())
     private let quebecPoint = AGSPoint(x: -77.388195, y: 53.4647877, spatialReference: AGSSpatialReference.wgs84())
@@ -43,6 +44,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         self.mapView.map = AGSMap(basemapType: .streetsVector, latitude: esriPoint.y, longitude: esriPoint.x, levelOfDetail: 2)
         self.setupVariables()
         self.setupGraphicOverlays()
+        self.setupTestDescriptionLabel()
     }
     
     func setupVariables() {
@@ -87,6 +89,25 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
             overlay.renderingMode = self.renderingMode
         }
         self.mapView.graphicsOverlays.add(overlay)
+    }
+    
+    func setupTestDescriptionLabel() {
+        var str = "Testing \(self.objectCount) \(self.objectKind.description),"
+        if self.objectKind != .Point {
+            str += " each with \(self.pointCount) points,"
+        }
+        str += " on \(self.layerCount) layers,"
+        if(self.renderingEnabled) {
+            switch self.renderingMode {
+            case .dynamic:
+                str += " with dynamic rendering"
+            case .static:
+                str += " with static rendering"
+            }
+        }
+        
+        self.testDescriptionLabel.text = str
+        
     }
     
     @IBAction func startTestPressed(_ sender: Any) {
@@ -348,5 +369,6 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     func settingsDidSave() {
         self.setupVariables()
         self.setupGraphicOverlays()
+        self.setupTestDescriptionLabel()
     }
 }

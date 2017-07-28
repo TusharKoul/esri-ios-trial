@@ -139,7 +139,7 @@
         <scene sceneID="z9u-PG-Uu7">
             <objects>
                 <navigationController id="HjY-Ke-sr4" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WAz-EO-LP1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WAz-EO-LP1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -247,7 +247,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rY5-1f-d1G" customClass="AGSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="715"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="686"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6Z-aa-Etr">
@@ -270,18 +270,27 @@
                                     <action selector="clearPressed:" destination="6hT-AN-cuj" eventType="touchUpInside" id="58p-fG-3m1"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test description" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="10U-6N-udk">
+                                <rect key="frame" x="20" y="694" width="984" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="g6Z-aa-Etr" firstAttribute="width" secondItem="cKU-9d-5kr" secondAttribute="width" id="3ah-j0-6r0"/>
                             <constraint firstItem="rY5-1f-d1G" firstAttribute="top" secondItem="qPR-M6-Ucc" secondAttribute="top" id="IdF-LG-XyS"/>
                             <constraint firstItem="g6Z-aa-Etr" firstAttribute="leading" secondItem="qPR-M6-Ucc" secondAttribute="leading" constant="8" id="KJf-qg-n9t"/>
-                            <constraint firstItem="cKU-9d-5kr" firstAttribute="top" secondItem="rY5-1f-d1G" secondAttribute="bottom" constant="8" id="O9E-NU-rYM"/>
                             <constraint firstItem="1Lj-EP-gcN" firstAttribute="top" secondItem="cKU-9d-5kr" secondAttribute="bottom" id="Qe2-R8-Jte"/>
+                            <constraint firstItem="cKU-9d-5kr" firstAttribute="top" secondItem="10U-6N-udk" secondAttribute="bottom" constant="8" id="R58-OD-gmY"/>
                             <constraint firstItem="1Lj-EP-gcN" firstAttribute="top" secondItem="g6Z-aa-Etr" secondAttribute="bottom" id="S6K-F6-14c"/>
                             <constraint firstItem="cKU-9d-5kr" firstAttribute="leading" secondItem="g6Z-aa-Etr" secondAttribute="trailing" constant="8" id="a2a-Ds-liB"/>
                             <constraint firstItem="rY5-1f-d1G" firstAttribute="leading" secondItem="qPR-M6-Ucc" secondAttribute="leading" id="bvh-Qj-Ez4"/>
+                            <constraint firstItem="10U-6N-udk" firstAttribute="top" secondItem="rY5-1f-d1G" secondAttribute="bottom" constant="8" id="e24-uo-CQU"/>
+                            <constraint firstItem="10U-6N-udk" firstAttribute="leading" secondItem="qPR-M6-Ucc" secondAttribute="leadingMargin" id="esI-YF-KYX"/>
                             <constraint firstAttribute="trailing" secondItem="rY5-1f-d1G" secondAttribute="trailing" id="hRY-TB-0dE"/>
+                            <constraint firstItem="10U-6N-udk" firstAttribute="trailing" secondItem="qPR-M6-Ucc" secondAttribute="trailingMargin" id="uRy-U2-NVa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cKU-9d-5kr" secondAttribute="trailing" id="vhr-wu-XDz"/>
                         </constraints>
                     </view>
@@ -295,6 +304,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="mapView" destination="rY5-1f-d1G" id="6q3-Le-YOA"/>
+                        <outlet property="testDescriptionLabel" destination="10U-6N-udk" id="3GX-yM-BV5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lFp-qy-aAk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -662,6 +672,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="sWf-o1-q3d"/>
+        <segue reference="Z6q-Ne-vjQ"/>
     </inferredMetricsTieBreakers>
 </document>
