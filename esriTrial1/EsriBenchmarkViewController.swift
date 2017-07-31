@@ -105,6 +105,13 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
                 str += " with static rendering"
             }
         }
+        else {
+            str += " without renderer"
+        }
+        
+        if(self.batchMode) {
+            str += " in batch mode"
+        }
         
         self.testDescriptionLabel.text = str
         

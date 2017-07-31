@@ -13,6 +13,7 @@ import GoogleMaps
 class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
 
     @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet weak var testDescriptionLabel: UILabel!
     
     private let esriPoint = CLLocationCoordinate2D(latitude: 34.057, longitude: -117.196)
     private let quebecPoint = CLLocationCoordinate2D(latitude: 53.4647877, longitude: -77.388195)
@@ -30,8 +31,11 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         super.viewDidLoad()
         
         self.setupVariables()
+        self.setupTestDescriptionLabel()
+        
         let camera = GMSCameraPosition.camera(withLatitude: esriPoint.latitude, longitude: esriPoint.longitude, zoom: 0)
         self.mapView.camera = camera
+        
     }
     
     func setupVariables() {
@@ -39,6 +43,17 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         self.pointCount = BenchmarkHelper.getPointCount()
         self.objectKind = BenchmarkHelper.getObjectKind()
     }
+    
+    
+    func setupTestDescriptionLabel() {
+        var str = "Testing \(self.objectCount) \(self.objectKind.description),"
+        if self.objectKind != .Point {
+            str += " each with \(self.pointCount) points,"
+        }
+        self.testDescriptionLabel.text = str
+    }
+
+    
     
     @IBAction func startTestPressed(_ sender: Any) {
         switch self.objectKind {
@@ -204,6 +219,7 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     
     func settingsDidSave() {
         self.setupVariables()
+        self.setupTestDescriptionLabel()
     }
 
 }

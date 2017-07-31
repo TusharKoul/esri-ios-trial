@@ -25,10 +25,12 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
     private var isCleared = true
 
     @IBOutlet weak var mapView: MGLMapView!
+    @IBOutlet weak var testDescriptionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupVariables()
+        self.setupTestDescriptionLabel()
         self.mapView.styleURL = URL(string: "mapbox://styles/mapbox/streets-v10")
         self.mapView.setCenter(esriPoint, zoomLevel: 1, animated: false)
     }
@@ -39,6 +41,21 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
         self.objectKind = BenchmarkHelper.getObjectKind()
         self.batchMode = BenchmarkHelper.getBatchMode()
     }
+    
+    
+    func setupTestDescriptionLabel() {
+        var str = "Testing \(self.objectCount) \(self.objectKind.description),"
+        if self.objectKind != .Point {
+            str += " each with \(self.pointCount) points,"
+        }
+        
+        if(self.batchMode) {
+            str += " in batch mode"
+        }
+        
+        self.testDescriptionLabel.text = str
+    }
+
     
     @IBAction func startTestPressed(_ sender: Any) {
         
