@@ -129,7 +129,13 @@
                             <outlet property="delegate" destination="nSu-ge-XZd" id="KGd-dV-WJo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Main" id="vsd-d1-ZIB"/>
+                    <navigationItem key="navigationItem" title="Main" id="vsd-d1-ZIB">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="4u4-Pm-ZK7">
+                            <connections>
+                                <segue destination="PEZ-NN-dPf" kind="presentation" id="KoS-dI-mo0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aj9-gG-p4F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -232,7 +238,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-1985" y="1041"/>
+            <point key="canvasLocation" x="-1987" y="1039"/>
         </scene>
         <!--Benchmark Esri-->
         <scene sceneID="9rb-Cg-dA6">
@@ -595,7 +601,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VM5-Er-Vv4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-538.39999999999998" y="1810.344827586207"/>
+            <point key="canvasLocation" x="-748" y="2248"/>
         </scene>
         <!--Esri Routing Benchmark View Controller-->
         <scene sceneID="NTv-zq-veX">
@@ -732,6 +738,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="sWf-o1-q3d"/>
+        <segue reference="KoS-dI-mo0"/>
     </inferredMetricsTieBreakers>
 </document>
