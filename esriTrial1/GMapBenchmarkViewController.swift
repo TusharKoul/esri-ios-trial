@@ -16,6 +16,12 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     @IBOutlet weak var testDescriptionLabel: UILabel!
     
     private let esriPoint = CLLocationCoordinate2D(latitude: 34.057, longitude: -117.196)
+    private let redlandsPoint1 = CLLocationCoordinate2D(latitude: 34.0770623, longitude: -117.1805055)
+    private let redlandsPoint2 = CLLocationCoordinate2D(latitude: 34.0483518, longitude: -117.2330623)
+    
+    private var bottomLeftPoint:CLLocationCoordinate2D!
+    private var topRightPoint:CLLocationCoordinate2D!
+    
     private let quebecPoint = CLLocationCoordinate2D(latitude: 53.4647877, longitude: -77.388195)
     private let africaPoint = CLLocationCoordinate2D(latitude: 19.7968689, longitude: -0.5310485)
     private let ausPoint = CLLocationCoordinate2D(latitude: -21.182631, longitude: 121.5026582)
@@ -33,7 +39,13 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         self.setupVariables()
         self.setupTestDescriptionLabel()
         
-        let camera = GMSCameraPosition.camera(withLatitude: esriPoint.latitude, longitude: esriPoint.longitude, zoom: 0)
+        self.bottomLeftPoint = self.esriPoint
+        self.topRightPoint = self.quebecPoint
+        let camera = GMSCameraPosition.camera(withLatitude: esriPoint.latitude, longitude: esriPoint.longitude, zoom: 2)
+//        self.bottomLeftPoint = self.redlandsPoint1
+//        self.topRightPoint = self.redlandsPoint2
+//        let camera = GMSCameraPosition.camera(withLatitude: esriPoint.latitude, longitude: esriPoint.longitude, zoom: 13)
+        
         self.mapView.camera = camera
         
     }
@@ -83,10 +95,10 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         
         var point:CLLocationCoordinate2D
         if(toggle) {
-            point = self.quebecPoint
+            point = self.bottomLeftPoint
         }
         else {
-            point = self.esriPoint
+            point = self.topRightPoint
         }
         
         
@@ -150,8 +162,8 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     
     func testPointFPS() {
         let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: self.objectCount,
-                                                                           bottomLeftCoordinate: self.esriPoint,
-                                                                           topRightCoordinate: self.quebecPoint)
+                                                                           bottomLeftCoordinate: self.bottomLeftPoint,
+                                                                           topRightCoordinate: self.topRightPoint)
         for c in coordinates {
             let marker = GMSMarker()
             marker.position = c
@@ -164,8 +176,8 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     
     func testPolylineFPS() {
         let path = self.getRandomPathWithinBounds(num: self.pointCount,
-                                                  bottomLeftCoordinate: self.esriPoint,
-                                                  topRightCoordinate: self.quebecPoint)
+                                                  bottomLeftCoordinate: self.bottomLeftPoint,
+                                                  topRightCoordinate: self.topRightPoint)
         for _ in 1...self.objectCount {
             let polygon = GMSPolyline(path: path)
             polygon.map = self.mapView
@@ -177,8 +189,8 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     
     func testPolylgonFPS() {
         let path = self.getRandomPathWithinBounds(num: self.pointCount,
-                                                  bottomLeftCoordinate: self.esriPoint,
-                                                  topRightCoordinate: self.quebecPoint)
+                                                  bottomLeftCoordinate: self.bottomLeftPoint,
+                                                  topRightCoordinate: self.topRightPoint)
         for _ in 1...self.objectCount {
             let polygon = GMSPolygon(path: path)
             polygon.map = self.mapView

@@ -12,6 +12,13 @@ import Mapbox
 class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     
     private let esriPoint = CLLocationCoordinate2D(latitude: 34.057, longitude: -117.196)
+    private let redlandsPoint1 = CLLocationCoordinate2D(latitude: 34.0770623, longitude: -117.1805055)
+    private let redlandsPoint2 = CLLocationCoordinate2D(latitude: 34.0483518, longitude: -117.2330623)
+    
+    private var bottomLeftPoint:CLLocationCoordinate2D!
+    private var topRightPoint:CLLocationCoordinate2D!
+    private var zoomLevel = 1.0
+    
     private let quebecPoint = CLLocationCoordinate2D(latitude: 53.4647877, longitude: -77.388195)
     private let africaPoint = CLLocationCoordinate2D(latitude: 19.7968689, longitude: -0.5310485)
     private let ausPoint = CLLocationCoordinate2D(latitude: -21.182631, longitude: 121.5026582)
@@ -32,7 +39,14 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
         self.setupVariables()
         self.setupTestDescriptionLabel()
         self.mapView.styleURL = URL(string: "mapbox://styles/mapbox/streets-v10")
-        self.mapView.setCenter(esriPoint, zoomLevel: 1, animated: false)
+        
+        self.bottomLeftPoint = self.esriPoint
+        self.topRightPoint = self.quebecPoint
+        self.zoomLevel = 1.0
+//        self.bottomLeftPoint = self.redlandsPoint1
+//        self.topRightPoint = self.redlandsPoint2
+//        self.zoomLevel = 12.0
+        self.mapView.setCenter(esriPoint, zoomLevel: self.zoomLevel, animated: false)
     }
     
     func setupVariables() {
@@ -91,13 +105,13 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
         var point:CLLocationCoordinate2D
         
         if(toggle) {
-            point = self.quebecPoint
+            point = self.bottomLeftPoint
         }
         else {
-            point = self.esriPoint
+            point = self.topRightPoint
         }
         
-        self.mapView.setCenter(point, zoomLevel: 1, direction: 0, animated: true) {
+        self.mapView.setCenter(point, zoomLevel: self.zoomLevel, direction: 0, animated: true) {
             self.oscillateViewpoints(toggle: !toggle)
         }
     }
@@ -184,8 +198,8 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
     
     func testPointFPS() {
         let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: self.objectCount,
-                                                                                bottomLeftCoordinate: self.esriPoint,
-                                                                                topRightCoordinate: self.quebecPoint)
+                                                                                bottomLeftCoordinate: self.bottomLeftPoint,
+                                                                                topRightCoordinate: self.topRightPoint)
         var graphics = [MGLPointAnnotation]()
         for c in coordinates {
             let graphic = MGLPointAnnotation()
@@ -200,8 +214,8 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
     
     func testPolylineFPS() {
         let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: self.pointCount,
-                                                                                bottomLeftCoordinate: self.esriPoint,
-                                                                                topRightCoordinate: self.quebecPoint)
+                                                                                bottomLeftCoordinate: self.bottomLeftPoint,
+                                                                                topRightCoordinate: self.topRightPoint)
         var graphics = [MGLPolyline]()
         for _ in 1...self.objectCount {
             let polyline = MGLPolyline(coordinates: coordinates, count: UInt(coordinates.count))
@@ -216,8 +230,8 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
     
     func testPolygonFPS() {
         let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: self.pointCount,
-                                                                                bottomLeftCoordinate: self.esriPoint,
-                                                                                topRightCoordinate: self.quebecPoint)
+                                                                                bottomLeftCoordinate: self.bottomLeftPoint,
+                                                                                topRightCoordinate: self.topRightPoint)
         var graphics = [MGLPolygon]()
         for _ in 1...self.objectCount {
             let polyline = MGLPolygon(coordinates: coordinates, count: UInt(coordinates.count))
