@@ -15,6 +15,12 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     @IBOutlet weak var testDescriptionLabel: UILabel!
     
     private let esriPoint = AGSPoint(x: -117.196, y: 34.057, spatialReference: AGSSpatialReference.wgs84())
+    private let redlandsPoint1 = AGSPoint(x: -117.1805055, y: 34.0770623, spatialReference: AGSSpatialReference.wgs84())
+    private let redlandsPoint2 = AGSPoint(x: -117.2330623, y: 34.0483518, spatialReference: AGSSpatialReference.wgs84())
+    
+    private var bottomLeftPoint:AGSPoint!
+    private var topRightPoint:AGSPoint!
+    
     private let quebecPoint = AGSPoint(x: -77.388195, y: 53.4647877, spatialReference: AGSSpatialReference.wgs84())
     private let ausPoint = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: 19.7968689, longitude: -0.5310485))
     
@@ -41,7 +47,15 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.bottomLeftPoint = self.esriPoint
+        self.topRightPoint = self.quebecPoint
         self.mapView.map = AGSMap(basemapType: .streetsVector, latitude: esriPoint.y, longitude: esriPoint.x, levelOfDetail: 2)
+        
+//        self.bottomLeftPoint = redlandsPoint1
+//        self.topRightPoint = redlandsPoint2
+//        self.mapView.map = AGSMap(basemapType: .streetsVector, latitude: esriPoint.y, longitude: esriPoint.x, levelOfDetail: 13)
+
         self.setupVariables()
         self.setupGraphicOverlays()
         self.setupTestDescriptionLabel()
@@ -171,10 +185,10 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         
         var point:AGSPoint!
         if(toggle) {
-            point = self.quebecPoint
+            point = self.topRightPoint
         }
         else {
-            point = self.esriPoint
+            point = self.bottomLeftPoint
         }
         
         self.mapView.setViewpointCenter(point) { (finished) in
@@ -282,8 +296,8 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         
         for overlay in self.pointGraphicOverlays {
             let points = self.generateRandomPointsBetweenBounds(num: objectsPerLayer,
-                                                                bottomLeftCoordinate: self.esriPoint.toCLLocationCoordinate2D(),
-                                                                topRightCoordinate: self.quebecPoint.toCLLocationCoordinate2D())
+                                                                bottomLeftCoordinate: self.bottomLeftPoint.toCLLocationCoordinate2D(),
+                                                                topRightCoordinate: self.topRightPoint.toCLLocationCoordinate2D())
             
             var graphics = [AGSGraphic]()
             for p in points {
@@ -302,8 +316,8 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     func testFPSPolyline() {
         let objectsPerLayer = self.objectCount / self.layerCount
         let points = self.generateRandomPointsBetweenBounds(num: self.pointCount,
-                                                            bottomLeftCoordinate: self.esriPoint.toCLLocationCoordinate2D(),
-                                                            topRightCoordinate: self.quebecPoint.toCLLocationCoordinate2D())
+                                                            bottomLeftCoordinate: self.bottomLeftPoint.toCLLocationCoordinate2D(),
+                                                            topRightCoordinate: self.topRightPoint.toCLLocationCoordinate2D())
         
         let symbol = self.renderingEnabled ? nil : self.lineSymbol
         
@@ -325,8 +339,8 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     func testFPSPolygon() {
         let objectsPerLayer = self.objectCount / self.layerCount
         let points = self.generateRandomPointsBetweenBounds(num: self.pointCount,
-                                                            bottomLeftCoordinate: self.esriPoint.toCLLocationCoordinate2D(),
-                                                            topRightCoordinate: self.quebecPoint.toCLLocationCoordinate2D())
+                                                            bottomLeftCoordinate: self.bottomLeftPoint.toCLLocationCoordinate2D(),
+                                                            topRightCoordinate: self.topRightPoint.toCLLocationCoordinate2D())
         
         let symbol = self.renderingEnabled ? nil : self.fillSymbol
         
