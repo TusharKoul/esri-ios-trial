@@ -59,6 +59,9 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         self.setupVariables()
         self.setupGraphicOverlays()
         self.setupTestDescriptionLabel()
+        
+//        print(ArcGISVersionNumber)
+//        print(ArcGISVersionString)
     }
     
     func setupVariables() {
@@ -131,17 +134,25 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         
     }
     
-    @IBAction func startTestPressed(_ sender: Any) {
-        
+    
+    @IBAction func startTimeTestPressed() {
         switch self.objectKind {
         case .Point:
-//            self.batchMode ? self.testAddPointBatch() : self.testAddPoint()
+            self.batchMode ? self.testAddPointBatch() : self.testAddPoint()
+        case .Polyline:
+            self.batchMode ? self.testAddPolylineBatch() : self.testAddPolyline()
+        case .Polygon:
+            self.batchMode ? self.testAddPolygonBatch() : self.testAddPolygon()
+        }
+    }
+    
+    @IBAction func startFpsTestPressed(_ sender: Any) {
+        switch self.objectKind {
+        case .Point:
             self.testFPSPoint()
         case .Polyline:
-//            self.batchMode ? self.testAddPolylineBatch() : self.testAddPolyline()
             self.testFPSPolyline()
         case .Polygon:
-//            self.batchMode ? self.testAddPolygonBatch() : self.testAddPolygon()
             self.testFPSPolygon()
         }
     }

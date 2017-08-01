@@ -66,17 +66,24 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     }
 
     
-    
-    @IBAction func startTestPressed(_ sender: Any) {
+    @IBAction func startTimeTestPressed() {
         switch self.objectKind {
         case .Point:
-//            self.testAddPoint()
+            self.testAddPoint()
+        case .Polyline:
+            self.testAddPolyline()
+        case .Polygon:
+            self.testAddPolygon()
+        }
+    }
+    
+    @IBAction func startFpsTestPressed(_ sender: Any) {
+        switch self.objectKind {
+        case .Point:
             self.testPointFPS()
         case .Polyline:
-//            self.testAddPolyline()
             self.testPolylineFPS()
         case .Polygon:
-//            self.testAddPolygon()
             self.testPolylgonFPS()
         }
     }

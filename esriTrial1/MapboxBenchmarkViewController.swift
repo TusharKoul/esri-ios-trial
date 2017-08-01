@@ -71,17 +71,28 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
     }
 
     
-    @IBAction func startTestPressed(_ sender: Any) {
+    @IBAction func startTimeTestPressed(_ sender: Any) {
         
         switch self.objectKind {
         case .Point:
-//            self.batchMode ? self.testAddPointBatch() : self.testAddPoint()
+            self.batchMode ? self.testAddPointBatch() : self.testAddPoint()
+        case .Polyline:
+            self.batchMode ? self.testAddPolylineBatch() : self.testAddPolyline()
+        case .Polygon:
+            self.batchMode ? self.testAddPolygonBatch() : self.testAddPolygon()
+        }
+        
+    }
+    
+    
+    @IBAction func startFpsTestPressed(_ sender: Any) {
+        
+        switch self.objectKind {
+        case .Point:
             self.testPointFPS()
         case .Polyline:
-//            self.batchMode ? self.testAddPolylineBatch() : self.testAddPolyline()
             self.testPolylineFPS()
         case .Polygon:
-//            self.batchMode ? self.testAddPolygonBatch() : self.testAddPolygon()
             self.testPolygonFPS()
         }
         

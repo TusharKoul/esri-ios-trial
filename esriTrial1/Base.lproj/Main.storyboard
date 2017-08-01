@@ -139,7 +139,7 @@
         <scene sceneID="z9u-PG-Uu7">
             <objects>
                 <navigationController id="HjY-Ke-sr4" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WAz-EO-LP1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WAz-EO-LP1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -251,19 +251,19 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6Z-aa-Etr">
-                                <rect key="frame" x="8" y="723" width="494" height="45"/>
+                                <rect key="frame" x="20" y="723" width="328" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="x8h-Ee-dhC"/>
+                                    <constraint firstAttribute="height" constant="45" id="VA1-A6-gd5"/>
                                 </constraints>
-                                <state key="normal" title="START TEST"/>
+                                <state key="normal" title="START TIME TEST"/>
                                 <connections>
-                                    <action selector="startTestPressed:" destination="6hT-AN-cuj" eventType="touchUpInside" id="SFt-Ik-mXj"/>
+                                    <action selector="startTimeTestPressed" destination="6hT-AN-cuj" eventType="touchUpInside" id="sz7-4F-rCE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKU-9d-5kr">
-                                <rect key="frame" x="510" y="723" width="494" height="45"/>
+                                <rect key="frame" x="676" y="723" width="328" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="hfe-CZ-gk7"/>
+                                    <constraint firstAttribute="height" constant="45" id="8Ka-3k-pJD"/>
                                 </constraints>
                                 <state key="normal" title="CLEAR"/>
                                 <connections>
@@ -276,22 +276,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KoC-Kg-QkB">
+                                <rect key="frame" x="348" y="723" width="328" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="ANc-Ak-fJ1"/>
+                                </constraints>
+                                <state key="normal" title="START FPS TEST"/>
+                                <connections>
+                                    <action selector="startFpsTestPressed:" destination="6hT-AN-cuj" eventType="touchUpInside" id="pNn-SV-Q8Z"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="g6Z-aa-Etr" firstAttribute="width" secondItem="cKU-9d-5kr" secondAttribute="width" id="3ah-j0-6r0"/>
+                            <constraint firstItem="g6Z-aa-Etr" firstAttribute="width" secondItem="KoC-Kg-QkB" secondAttribute="width" id="4dY-zo-a0G"/>
+                            <constraint firstItem="g6Z-aa-Etr" firstAttribute="leading" secondItem="qPR-M6-Ucc" secondAttribute="leadingMargin" id="BEO-SI-yrW"/>
+                            <constraint firstItem="cKU-9d-5kr" firstAttribute="leading" secondItem="KoC-Kg-QkB" secondAttribute="trailing" id="BnS-RS-Ebb"/>
+                            <constraint firstItem="KoC-Kg-QkB" firstAttribute="width" secondItem="cKU-9d-5kr" secondAttribute="width" id="CRV-2y-OmA"/>
                             <constraint firstItem="rY5-1f-d1G" firstAttribute="top" secondItem="qPR-M6-Ucc" secondAttribute="top" id="IdF-LG-XyS"/>
-                            <constraint firstItem="g6Z-aa-Etr" firstAttribute="leading" secondItem="qPR-M6-Ucc" secondAttribute="leading" constant="8" id="KJf-qg-n9t"/>
-                            <constraint firstItem="1Lj-EP-gcN" firstAttribute="top" secondItem="cKU-9d-5kr" secondAttribute="bottom" id="Qe2-R8-Jte"/>
-                            <constraint firstItem="cKU-9d-5kr" firstAttribute="top" secondItem="10U-6N-udk" secondAttribute="bottom" constant="8" id="R58-OD-gmY"/>
-                            <constraint firstItem="1Lj-EP-gcN" firstAttribute="top" secondItem="g6Z-aa-Etr" secondAttribute="bottom" id="S6K-F6-14c"/>
-                            <constraint firstItem="cKU-9d-5kr" firstAttribute="leading" secondItem="g6Z-aa-Etr" secondAttribute="trailing" constant="8" id="a2a-Ds-liB"/>
+                            <constraint firstItem="cKU-9d-5kr" firstAttribute="trailing" secondItem="qPR-M6-Ucc" secondAttribute="trailingMargin" id="NEF-mK-YXa"/>
+                            <constraint firstItem="KoC-Kg-QkB" firstAttribute="leading" secondItem="g6Z-aa-Etr" secondAttribute="trailing" id="NkF-Qm-Q2N"/>
                             <constraint firstItem="rY5-1f-d1G" firstAttribute="leading" secondItem="qPR-M6-Ucc" secondAttribute="leading" id="bvh-Qj-Ez4"/>
                             <constraint firstItem="10U-6N-udk" firstAttribute="top" secondItem="rY5-1f-d1G" secondAttribute="bottom" constant="8" id="e24-uo-CQU"/>
                             <constraint firstItem="10U-6N-udk" firstAttribute="leading" secondItem="qPR-M6-Ucc" secondAttribute="leadingMargin" id="esI-YF-KYX"/>
                             <constraint firstAttribute="trailing" secondItem="rY5-1f-d1G" secondAttribute="trailing" id="hRY-TB-0dE"/>
+                            <constraint firstItem="KoC-Kg-QkB" firstAttribute="leading" secondItem="g6Z-aa-Etr" secondAttribute="trailing" id="jiA-rV-579"/>
+                            <constraint firstItem="1Lj-EP-gcN" firstAttribute="top" secondItem="KoC-Kg-QkB" secondAttribute="bottom" id="kXQ-Zf-lAA"/>
+                            <constraint firstItem="1Lj-EP-gcN" firstAttribute="top" secondItem="g6Z-aa-Etr" secondAttribute="bottom" id="nFM-UK-3jZ"/>
                             <constraint firstItem="10U-6N-udk" firstAttribute="trailing" secondItem="qPR-M6-Ucc" secondAttribute="trailingMargin" id="uRy-U2-NVa"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="cKU-9d-5kr" secondAttribute="trailing" id="vhr-wu-XDz"/>
+                            <constraint firstItem="1Lj-EP-gcN" firstAttribute="top" secondItem="cKU-9d-5kr" secondAttribute="bottom" id="xrL-Bo-49C"/>
+                            <constraint firstItem="KoC-Kg-QkB" firstAttribute="top" secondItem="10U-6N-udk" secondAttribute="bottom" constant="8" id="yK4-A4-tRP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Benchmark Esri" id="UI5-Ub-fOW">
@@ -328,17 +342,17 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="keo-hq-CLH">
-                                <rect key="frame" x="0.0" y="723" width="512" height="45"/>
+                                <rect key="frame" x="0.0" y="723" width="341.5" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="5Kp-ai-Gmr"/>
                                 </constraints>
-                                <state key="normal" title="START TEST"/>
+                                <state key="normal" title="START TIME TEST"/>
                                 <connections>
-                                    <action selector="startTestPressed:" destination="Lrg-RU-u8g" eventType="touchUpInside" id="2bs-oq-yzx"/>
+                                    <action selector="startTimeTestPressed" destination="Lrg-RU-u8g" eventType="touchUpInside" id="dZc-ax-yOk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezc-iJ-Fpf">
-                                <rect key="frame" x="512" y="723" width="512" height="45"/>
+                                <rect key="frame" x="682.5" y="723" width="341.5" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="MAw-Gk-bKb"/>
                                 </constraints>
@@ -353,6 +367,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oq8-sF-lX5">
+                                <rect key="frame" x="341.5" y="723" width="341" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="TEF-CN-BBc"/>
+                                    <constraint firstAttribute="height" constant="45" id="WRe-Lj-ecx"/>
+                                </constraints>
+                                <state key="normal" title="START FPS TEST"/>
+                                <connections>
+                                    <action selector="startFpsTestPressed:" destination="Lrg-RU-u8g" eventType="touchUpInside" id="4H2-Ho-2um"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -362,10 +387,13 @@
                             <constraint firstItem="keo-hq-CLH" firstAttribute="leading" secondItem="Rw6-S9-8BX" secondAttribute="leading" id="P1b-rC-yec"/>
                             <constraint firstItem="2g7-PB-5t3" firstAttribute="top" secondItem="keo-hq-CLH" secondAttribute="bottom" id="QPF-Nh-uMD"/>
                             <constraint firstItem="eXp-j6-M2L" firstAttribute="top" secondItem="Rw6-S9-8BX" secondAttribute="top" id="SRE-QK-vEf"/>
+                            <constraint firstItem="Oq8-sF-lX5" firstAttribute="leading" secondItem="keo-hq-CLH" secondAttribute="trailing" id="TTZ-6Y-zdc"/>
                             <constraint firstItem="eXp-j6-M2L" firstAttribute="leading" secondItem="Rw6-S9-8BX" secondAttribute="leading" id="dyD-GO-yaw"/>
-                            <constraint firstItem="ezc-iJ-Fpf" firstAttribute="leading" secondItem="keo-hq-CLH" secondAttribute="trailing" id="fbg-vA-YUz"/>
+                            <constraint firstItem="ezc-iJ-Fpf" firstAttribute="leading" secondItem="Oq8-sF-lX5" secondAttribute="trailing" id="f3h-nQ-9hn"/>
                             <constraint firstAttribute="trailing" secondItem="eXp-j6-M2L" secondAttribute="trailing" id="frw-JE-BpB"/>
                             <constraint firstItem="z8q-vo-cnb" firstAttribute="leading" secondItem="Rw6-S9-8BX" secondAttribute="leadingMargin" id="g0P-UX-uDv"/>
+                            <constraint firstItem="Oq8-sF-lX5" firstAttribute="width" secondItem="ezc-iJ-Fpf" secondAttribute="width" id="ktF-Js-XC3"/>
+                            <constraint firstItem="2g7-PB-5t3" firstAttribute="top" secondItem="Oq8-sF-lX5" secondAttribute="bottom" id="ld1-Fn-vIu"/>
                             <constraint firstItem="ezc-iJ-Fpf" firstAttribute="top" secondItem="z8q-vo-cnb" secondAttribute="bottom" constant="8" id="mq4-tU-6rt"/>
                             <constraint firstItem="z8q-vo-cnb" firstAttribute="trailing" secondItem="Rw6-S9-8BX" secondAttribute="trailingMargin" id="q58-Mh-pPE"/>
                             <constraint firstItem="keo-hq-CLH" firstAttribute="width" secondItem="ezc-iJ-Fpf" secondAttribute="width" id="tUH-N7-QfU"/>
@@ -629,17 +657,17 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGN-qm-2jx">
-                                <rect key="frame" x="0.0" y="723" width="512" height="45"/>
+                                <rect key="frame" x="0.0" y="723" width="341.5" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="DFf-66-7Ud"/>
                                 </constraints>
-                                <state key="normal" title="START TEST"/>
+                                <state key="normal" title="START TIME TEST"/>
                                 <connections>
-                                    <action selector="startTestPressed:" destination="AS2-2x-lel" eventType="touchUpInside" id="KP0-iV-tXW"/>
+                                    <action selector="startTimeTestPressed:" destination="AS2-2x-lel" eventType="touchUpInside" id="MWA-Rv-HAG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkk-TB-PuG">
-                                <rect key="frame" x="512" y="723" width="512" height="45"/>
+                                <rect key="frame" x="682.5" y="723" width="341.5" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Sl3-3Y-fxq"/>
                                 </constraints>
@@ -654,11 +682,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yS-jE-UE1">
+                                <rect key="frame" x="341.5" y="723" width="341" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="8h9-my-aRc"/>
+                                    <constraint firstAttribute="height" constant="45" id="Hgt-NK-wCG"/>
+                                </constraints>
+                                <state key="normal" title="START FPS TEST"/>
+                                <connections>
+                                    <action selector="startFpsTestPressed:" destination="AS2-2x-lel" eventType="touchUpInside" id="6Nf-87-x7N"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="NGN-qm-2jx" firstAttribute="leading" secondItem="0ou-dX-lPN" secondAttribute="leading" id="19N-8q-g3Q"/>
                             <constraint firstItem="Ff7-XO-vnx" firstAttribute="top" secondItem="0ou-dX-lPN" secondAttribute="top" id="6rL-ka-636"/>
+                            <constraint firstItem="xkk-TB-PuG" firstAttribute="leading" secondItem="6yS-jE-UE1" secondAttribute="trailing" id="8AZ-wB-gVL"/>
+                            <constraint firstItem="6yS-jE-UE1" firstAttribute="width" secondItem="xkk-TB-PuG" secondAttribute="width" id="A1O-de-hbg"/>
+                            <constraint firstItem="6yS-jE-UE1" firstAttribute="leading" secondItem="NGN-qm-2jx" secondAttribute="trailing" id="HfF-2V-OHn"/>
                             <constraint firstItem="xkk-TB-PuG" firstAttribute="top" secondItem="Wby-Yi-cwQ" secondAttribute="bottom" constant="8" id="IV7-Ur-kTf"/>
                             <constraint firstItem="Wby-Yi-cwQ" firstAttribute="leading" secondItem="0ou-dX-lPN" secondAttribute="leadingMargin" id="JDw-a4-44e"/>
                             <constraint firstItem="FHb-9e-az1" firstAttribute="top" secondItem="NGN-qm-2jx" secondAttribute="bottom" id="LMg-9T-QfV"/>
@@ -666,9 +708,9 @@
                             <constraint firstItem="NGN-qm-2jx" firstAttribute="width" secondItem="xkk-TB-PuG" secondAttribute="width" id="Scm-fK-6gl"/>
                             <constraint firstItem="Wby-Yi-cwQ" firstAttribute="trailing" secondItem="0ou-dX-lPN" secondAttribute="trailingMargin" id="TmY-ui-xE0"/>
                             <constraint firstItem="Wby-Yi-cwQ" firstAttribute="top" secondItem="Ff7-XO-vnx" secondAttribute="bottom" constant="8" id="Uql-tk-Y7B"/>
-                            <constraint firstItem="xkk-TB-PuG" firstAttribute="leading" secondItem="NGN-qm-2jx" secondAttribute="trailing" id="Wgl-0j-TsW"/>
                             <constraint firstItem="Ff7-XO-vnx" firstAttribute="leading" secondItem="0ou-dX-lPN" secondAttribute="leading" id="Z91-WI-O08"/>
                             <constraint firstAttribute="trailing" secondItem="xkk-TB-PuG" secondAttribute="trailing" id="a5K-B9-AZH"/>
+                            <constraint firstItem="FHb-9e-az1" firstAttribute="top" secondItem="6yS-jE-UE1" secondAttribute="bottom" id="jWG-Ss-3dY"/>
                             <constraint firstItem="FHb-9e-az1" firstAttribute="top" secondItem="xkk-TB-PuG" secondAttribute="bottom" id="lrY-Q6-4av"/>
                         </constraints>
                     </view>
@@ -690,6 +732,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Z6q-Ne-vjQ"/>
+        <segue reference="sWf-o1-q3d"/>
     </inferredMetricsTieBreakers>
 </document>
