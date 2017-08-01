@@ -6,7 +6,8 @@ target 'esriTrial1' do
   use_frameworks!
 
   # Pods for esriTrial1
-	pod 'ArcGIS-Runtime-SDK-iOS', '~> 100.1.0’
+  pod 'ArcGIS-Runtime-SDK-iOS', '~> 100.1.0’
+#    pod 'ArcGIS-Runtime-SDK-iOS', '~> 100.0.0’
     pod 'RealmSwift'
     pod 'GoogleMaps'
     pod 'Mapbox-iOS-SDK', '~> 3.6'
