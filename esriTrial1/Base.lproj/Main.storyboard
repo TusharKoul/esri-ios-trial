@@ -157,6 +157,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="JqV-jS-2eR" kind="show" id="dEr-WS-q64"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0ju-Fn-jmJ">
                                         <rect key="frame" x="0.0" y="308" width="1024" height="44"/>
@@ -174,6 +177,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="L7p-2A-nNZ" kind="show" id="Pyr-Sw-X9Q"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -195,10 +201,10 @@
             </objects>
             <point key="canvasLocation" x="-815.20000000000005" y="145.27736131934034"/>
         </scene>
-        <!--Esri Plain-->
+        <!--Esri Plain View Controller-->
         <scene sceneID="APh-ch-MxW">
             <objects>
-                <viewController id="M0d-XT-z5j" customClass="EsriMemoryViewController" customModule="esriTrial1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="M0d-XT-z5j" customClass="EsriPlainViewController" customModule="esriTrial1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Gf-e9-SLo"/>
                         <viewControllerLayoutGuide type="bottom" id="zCn-E6-gPN"/>
@@ -220,26 +226,85 @@
                             <constraint firstAttribute="trailing" secondItem="Qsh-jJ-I2B" secondAttribute="trailing" id="lNO-gb-Pve"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Esri Plain" id="h1U-i7-IPc">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="WFt-N0-hLA">
-                            <connections>
-                                <action selector="addPressed:" destination="M0d-XT-z5j" id="WKy-t1-9Tm"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="Qsh-jJ-I2B" id="IsI-hA-jDx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1v-N7-HzT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-119.53124999999999" y="144.53125"/>
+            <point key="canvasLocation" x="-48" y="-1087"/>
+        </scene>
+        <!--Gmap Plain View Controller-->
+        <scene sceneID="T44-zX-Ug4">
+            <objects>
+                <viewController id="JqV-jS-2eR" customClass="GmapPlainViewController" customModule="esriTrial1" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oO3-4F-u2s"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qz1-gp-5uy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VLB-tG-NAM">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pBx-Pa-w8o" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Qz1-gp-5uy" firstAttribute="top" secondItem="pBx-Pa-w8o" secondAttribute="bottom" id="Bi2-1W-TlT"/>
+                            <constraint firstItem="pBx-Pa-w8o" firstAttribute="top" secondItem="VLB-tG-NAM" secondAttribute="top" id="K2c-pP-77I"/>
+                            <constraint firstItem="pBx-Pa-w8o" firstAttribute="leading" secondItem="VLB-tG-NAM" secondAttribute="leading" id="PkR-ag-N6Y"/>
+                            <constraint firstAttribute="trailing" secondItem="pBx-Pa-w8o" secondAttribute="trailing" id="WLC-0q-sXi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="pBx-Pa-w8o" id="sc2-4T-fVV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u1n-cc-PQt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-48.046875" y="-447.65625"/>
+        </scene>
+        <!--Mapbox Plain View Controller-->
+        <scene sceneID="KSU-gV-Iei">
+            <objects>
+                <viewController id="L7p-2A-nNZ" customClass="MapboxPlainViewController" customModule="esriTrial1" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CnE-Gb-k5O"/>
+                        <viewControllerLayoutGuide type="bottom" id="yAN-q8-7eU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="U4d-ve-UfL">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yyX-2P-gwY" customClass="MGLMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yyX-2P-gwY" firstAttribute="leading" secondItem="U4d-ve-UfL" secondAttribute="leading" id="Cae-Wa-1Ht"/>
+                            <constraint firstItem="yyX-2P-gwY" firstAttribute="top" secondItem="U4d-ve-UfL" secondAttribute="top" id="P62-Ip-7iE"/>
+                            <constraint firstAttribute="trailing" secondItem="yyX-2P-gwY" secondAttribute="trailing" id="ufv-qw-HUj"/>
+                            <constraint firstItem="yAN-q8-7eU" firstAttribute="top" secondItem="yyX-2P-gwY" secondAttribute="bottom" id="vop-Vt-plx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="yyX-2P-gwY" id="gIA-j3-JJW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gMa-Hk-Lbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-48.046875" y="185.9375"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="z9u-PG-Uu7">
             <objects>
                 <navigationController id="HjY-Ke-sr4" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WAz-EO-LP1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WAz-EO-LP1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -832,6 +897,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Z6q-Ne-vjQ"/>
+        <segue reference="KoS-dI-mo0"/>
     </inferredMetricsTieBreakers>
 </document>
