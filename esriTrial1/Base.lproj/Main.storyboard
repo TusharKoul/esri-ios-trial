@@ -121,6 +121,60 @@
                                             <segue destination="3AS-BW-edo" kind="show" id="ssD-yK-3ux"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="DJ4-8b-7g4">
+                                        <rect key="frame" x="0.0" y="220" width="1024" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DJ4-8b-7g4" id="Do2-dm-Ppb">
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Memory - Esri" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDP-gs-0Qy">
+                                                    <rect key="frame" x="8" y="12" width="359" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="M0d-XT-z5j" kind="show" id="yHe-XD-41A"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="o3c-iv-VEu">
+                                        <rect key="frame" x="0.0" y="264" width="1024" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o3c-iv-VEu" id="vF4-bd-PRa">
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Memory - Google Maps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBg-fG-KB7">
+                                                    <rect key="frame" x="8" y="12" width="359" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0ju-Fn-jmJ">
+                                        <rect key="frame" x="0.0" y="308" width="1024" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0ju-Fn-jmJ" id="CGg-jh-1ce">
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Memory - Mapbox" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFe-an-gTl">
+                                                    <rect key="frame" x="8" y="12" width="359" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -141,11 +195,51 @@
             </objects>
             <point key="canvasLocation" x="-815.20000000000005" y="145.27736131934034"/>
         </scene>
+        <!--Esri Plain-->
+        <scene sceneID="APh-ch-MxW">
+            <objects>
+                <viewController id="M0d-XT-z5j" customClass="EsriMemoryViewController" customModule="esriTrial1" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Gf-e9-SLo"/>
+                        <viewControllerLayoutGuide type="bottom" id="zCn-E6-gPN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="T2u-2B-fr4">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qsh-jJ-I2B" customClass="AGSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Qsh-jJ-I2B" firstAttribute="leading" secondItem="T2u-2B-fr4" secondAttribute="leading" id="PkE-XN-cJt"/>
+                            <constraint firstItem="zCn-E6-gPN" firstAttribute="top" secondItem="Qsh-jJ-I2B" secondAttribute="bottom" id="YIG-hb-2hz"/>
+                            <constraint firstItem="Qsh-jJ-I2B" firstAttribute="top" secondItem="T2u-2B-fr4" secondAttribute="top" id="iY0-Ja-1yl"/>
+                            <constraint firstAttribute="trailing" secondItem="Qsh-jJ-I2B" secondAttribute="trailing" id="lNO-gb-Pve"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Esri Plain" id="h1U-i7-IPc">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="WFt-N0-hLA">
+                            <connections>
+                                <action selector="addPressed:" destination="M0d-XT-z5j" id="WKy-t1-9Tm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="Qsh-jJ-I2B" id="IsI-hA-jDx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T1v-N7-HzT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-119.53124999999999" y="144.53125"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="z9u-PG-Uu7">
             <objects>
                 <navigationController id="HjY-Ke-sr4" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WAz-EO-LP1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WAz-EO-LP1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -738,6 +832,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="KoS-dI-mo0"/>
+        <segue reference="Z6q-Ne-vjQ"/>
     </inferredMetricsTieBreakers>
 </document>
