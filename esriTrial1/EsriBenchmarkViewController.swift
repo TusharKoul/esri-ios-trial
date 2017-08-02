@@ -319,8 +319,8 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         }
         
         
-        self.isCleared = false
-        self.oscillateViewpoints(toggle: true)
+//        self.isCleared = false
+//        self.oscillateViewpoints(toggle: true)
     }
     
     
@@ -342,8 +342,8 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
             overlay.graphics.addObjects(from: graphics)
         }
         
-        self.isCleared = false
-        self.oscillateViewpoints(toggle: true)
+//        self.isCleared = false
+//        self.oscillateViewpoints(toggle: true)
     }
     
     
@@ -365,8 +365,8 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
             overlay.graphics.addObjects(from: graphics)
         }
         
-        self.isCleared = false
-        self.oscillateViewpoints(toggle: true)
+//        self.isCleared = false
+//        self.oscillateViewpoints(toggle: true)
     }
     
     
@@ -380,9 +380,9 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     }
     
     func generateRandomPointsBetweenBounds(num:Int, bottomLeftCoordinate:CLLocationCoordinate2D, topRightCoordinate:CLLocationCoordinate2D) -> [AGSPoint] {
-        let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: num,
-                                                                                bottomLeftCoordinate: bottomLeftCoordinate,
-                                                                                topRightCoordinate: topRightCoordinate)
+        let coordinates = BenchmarkHelper.generateRandomCoordinates(num: num)
+//                                                                                bottomLeftCoordinate: bottomLeftCoordinate,
+//                                                                                topRightCoordinate: topRightCoordinate)
         var points = [AGSPoint]()
         for c in coordinates {
             points.append(AGSPoint(clLocationCoordinate2D: c))

@@ -168,17 +168,19 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     //MARK: - Testing FPS
     
     func testPointFPS() {
-        let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: self.objectCount,
-                                                                           bottomLeftCoordinate: self.bottomLeftPoint,
-                                                                           topRightCoordinate: self.topRightPoint)
+//        let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: self.objectCount,
+//                                                                           bottomLeftCoordinate: self.bottomLeftPoint,
+//                                                                           topRightCoordinate: self.topRightPoint)
+        
+        let coordinates = BenchmarkHelper.generateRandomCoordinates(num: self.objectCount)
         for c in coordinates {
             let marker = GMSMarker()
             marker.position = c
             marker.map = self.mapView
         }
         
-        self.isCleared = false
-        self.oscillateViewpoints(toggle: true)
+//        self.isCleared = false
+//        self.oscillateViewpoints(toggle: true)
     }
     
     func testPolylineFPS() {
@@ -190,8 +192,8 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
             polygon.map = self.mapView
         }
         
-        self.isCleared = false
-        self.oscillateViewpoints(toggle: true)
+//        self.isCleared = false
+//        self.oscillateViewpoints(toggle: true)
     }
     
     func testPolylgonFPS() {
@@ -203,8 +205,8 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
             polygon.map = self.mapView
         }
         
-        self.isCleared = false
-        self.oscillateViewpoints(toggle: true)
+//        self.isCleared = false
+//        self.oscillateViewpoints(toggle: true)
     }
     
     
@@ -218,9 +220,9 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     }
     
     func getRandomPathWithinBounds(num:Int, bottomLeftCoordinate:CLLocationCoordinate2D, topRightCoordinate:CLLocationCoordinate2D) -> GMSPath {
-        let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: num,
-                                                                                bottomLeftCoordinate: bottomLeftCoordinate,
-                                                                                topRightCoordinate: topRightCoordinate)
+        let coordinates = BenchmarkHelper.generateRandomCoordinates(num: num)
+//                                                                                bottomLeftCoordinate: bottomLeftCoordinate,
+//                                                                                topRightCoordinate: topRightCoordinate)
         let path = GMSMutablePath()
         for c in coordinates {
             path.add(c)

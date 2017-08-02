@@ -208,9 +208,9 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
     //MARK: - Test FPS
     
     func testPointFPS() {
-        let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: self.objectCount,
-                                                                                bottomLeftCoordinate: self.bottomLeftPoint,
-                                                                                topRightCoordinate: self.topRightPoint)
+        let coordinates = BenchmarkHelper.generateRandomCoordinates(num: self.objectCount)
+//                                                                                bottomLeftCoordinate: self.bottomLeftPoint,
+//                                                                                topRightCoordinate: self.topRightPoint)
         var graphics = [MGLPointAnnotation]()
         for c in coordinates {
             let graphic = MGLPointAnnotation()
@@ -219,14 +219,14 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
         }
         self.mapView.addAnnotations(graphics)
       
-        self.isCleared = false
-        self.oscillateViewpoints(toggle: true)
+//        self.isCleared = false
+//        self.oscillateViewpoints(toggle: true)
     }
     
     func testPolylineFPS() {
-        let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: self.pointCount,
-                                                                                bottomLeftCoordinate: self.bottomLeftPoint,
-                                                                                topRightCoordinate: self.topRightPoint)
+        let coordinates = BenchmarkHelper.generateRandomCoordinates(num: self.pointCount)
+//                                                                                bottomLeftCoordinate: self.bottomLeftPoint,
+//                                                                                topRightCoordinate: self.topRightPoint)
         var graphics = [MGLPolyline]()
         for _ in 1...self.objectCount {
             let polyline = MGLPolyline(coordinates: coordinates, count: UInt(coordinates.count))
@@ -235,14 +235,14 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
         self.mapView.addAnnotations(graphics)
         
         
-        self.isCleared = false
-        self.oscillateViewpoints(toggle: true)
+//        self.isCleared = false
+//        self.oscillateViewpoints(toggle: true)
     }
     
     func testPolygonFPS() {
-        let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: self.pointCount,
-                                                                                bottomLeftCoordinate: self.bottomLeftPoint,
-                                                                                topRightCoordinate: self.topRightPoint)
+        let coordinates = BenchmarkHelper.generateRandomCoordinates(num: self.pointCount)
+//                                                                                bottomLeftCoordinate: self.bottomLeftPoint,
+//                                                                                topRightCoordinate: self.topRightPoint)
         var graphics = [MGLPolygon]()
         for _ in 1...self.objectCount {
             let polyline = MGLPolygon(coordinates: coordinates, count: UInt(coordinates.count))
@@ -251,8 +251,8 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
         self.mapView.addAnnotations(graphics)
         
         
-        self.isCleared = false
-        self.oscillateViewpoints(toggle: true)
+//        self.isCleared = false
+//        self.oscillateViewpoints(toggle: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
