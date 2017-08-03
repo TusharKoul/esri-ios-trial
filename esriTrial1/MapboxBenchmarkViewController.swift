@@ -240,9 +240,9 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
     }
     
     func testPolygonFPS() {
-        let coordinates = BenchmarkHelper.generateRandomCoordinates(num: self.pointCount)
-//                                                                                bottomLeftCoordinate: self.bottomLeftPoint,
-//                                                                                topRightCoordinate: self.topRightPoint)
+        let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: self.pointCount,
+                                                                                bottomLeftCoordinate: self.bottomLeftPoint,
+                                                                                topRightCoordinate: self.topRightPoint)
         var graphics = [MGLPolygon]()
         for _ in 1...self.objectCount {
             let polyline = MGLPolygon(coordinates: coordinates, count: UInt(coordinates.count))

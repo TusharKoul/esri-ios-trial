@@ -220,9 +220,9 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     }
     
     func getRandomPathWithinBounds(num:Int, bottomLeftCoordinate:CLLocationCoordinate2D, topRightCoordinate:CLLocationCoordinate2D) -> GMSPath {
-        let coordinates = BenchmarkHelper.generateRandomCoordinates(num: num)
-//                                                                                bottomLeftCoordinate: bottomLeftCoordinate,
-//                                                                                topRightCoordinate: topRightCoordinate)
+        let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: num,
+                                                                                bottomLeftCoordinate: bottomLeftCoordinate,
+                                                                                topRightCoordinate: topRightCoordinate)
         let path = GMSMutablePath()
         for c in coordinates {
             path.add(c)
