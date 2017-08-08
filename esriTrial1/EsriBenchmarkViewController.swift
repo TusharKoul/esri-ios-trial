@@ -48,13 +48,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.bottomLeftPoint = self.esriPoint
-        self.topRightPoint = self.quebecPoint
-        self.mapView.map = AGSMap(basemapType: .streetsVector, latitude: esriPoint.y, longitude: esriPoint.x, levelOfDetail: 2)
-        
-//        self.bottomLeftPoint = redlandsPoint1
-//        self.topRightPoint = redlandsPoint2
-//        self.mapView.map = AGSMap(basemapType: .streetsVector, latitude: esriPoint.y, longitude: esriPoint.x, levelOfDetail: 13)
+        self.setupMap(isCityLevel: false)
 
         self.setupVariables()
         self.setupGraphicOverlays()
@@ -62,6 +56,20 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         
 //        print(ArcGISVersionNumber)
 //        print(ArcGISVersionString)
+    }
+    
+    func setupMap(isCityLevel:Bool) {
+        if isCityLevel {
+            self.bottomLeftPoint = redlandsPoint1
+            self.topRightPoint = redlandsPoint2
+            self.mapView.map = AGSMap(basemapType: .streetsVector, latitude: esriPoint.y, longitude: esriPoint.x, levelOfDetail: 13)
+        }
+        else {
+            self.bottomLeftPoint = self.esriPoint
+            self.topRightPoint = self.quebecPoint
+            self.mapView.map = AGSMap(basemapType: .streetsVector, latitude: esriPoint.y, longitude: esriPoint.x, levelOfDetail: 2)
+        }
+        
     }
     
     func setupVariables() {
