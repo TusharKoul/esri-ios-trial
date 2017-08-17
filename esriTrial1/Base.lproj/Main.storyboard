@@ -618,8 +618,8 @@
                                     <action selector="graphicSegmentDidChange:" destination="6hT-AN-cuj" eventType="valueChanged" id="KPJ-uy-3Ms"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# of objects" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWF-a8-vf4">
-                                <rect key="frame" x="20" y="46" width="91" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# of graphics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWF-a8-vf4">
+                                <rect key="frame" x="20" y="46" width="101" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -636,14 +636,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add with renderer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i33-fz-mcH">
-                                <rect key="frame" x="20" y="238" width="137" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add with renderer (ArcGIS Only)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i33-fz-mcH">
+                                <rect key="frame" x="20" y="238" width="245" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rendering Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kdh-6V-f8D">
-                                <rect key="frame" x="20" y="287" width="127" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rendering Mode (ArcGIS Only)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kdh-6V-f8D">
+                                <rect key="frame" x="20" y="287" width="235" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -687,8 +687,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# of points in graphic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWi-dm-1bS">
-                                <rect key="frame" x="20" y="91" width="162" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# of points in graphic (polylines, polygons only)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWi-dm-1bS">
+                                <rect key="frame" x="20" y="91" width="360" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -702,12 +702,47 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# of Graphic overlays" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdg-o7-shS">
-                                <rect key="frame" x="20" y="341" width="162" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# of Graphic overlays (ArcGIS Only)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdg-o7-shS">
+                                <rect key="frame" x="20" y="341" width="270" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Basemap Type (ArcGIS Only)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ayc-PF-lq6">
+                                <rect key="frame" x="20" y="383" width="221" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="lMs-zS-4if">
+                                <rect key="frame" x="734" y="380" width="270" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="270" id="4V2-Ls-QBG"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Imagery"/>
+                                    <segment title="Streets"/>
+                                    <segment title="Nav"/>
+                                    <segment title="Topo"/>
+                                    <segment title="Canvas"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zoom Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qm-xJ-ss9">
+                                <rect key="frame" x="20" y="429" width="89" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fd0-tG-5cP">
+                                <rect key="frame" x="813" y="426" width="191" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="191" id="gXY-do-P71"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Country"/>
+                                    <segment title="City"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
@@ -737,17 +772,26 @@
                             <constraint firstItem="dsS-m9-Edt" firstAttribute="top" secondItem="AyP-Dm-10N" secondAttribute="bottom" constant="30" id="cWR-LC-8ov"/>
                             <constraint firstItem="Kdh-6V-f8D" firstAttribute="top" secondItem="i33-fz-mcH" secondAttribute="bottom" constant="28" id="dB6-oS-dqC"/>
                             <constraint firstItem="y4u-d2-7BS" firstAttribute="top" secondItem="xyX-O1-NmK" secondAttribute="bottom" constant="20" id="dNV-Xh-5be"/>
+                            <constraint firstItem="0qm-xJ-ss9" firstAttribute="leading" secondItem="3sC-ke-9h1" secondAttribute="leadingMargin" id="dQL-Ri-6br"/>
+                            <constraint firstItem="lMs-zS-4if" firstAttribute="trailing" secondItem="3sC-ke-9h1" secondAttribute="trailingMargin" id="e8t-Gc-u7N"/>
                             <constraint firstItem="AyP-Dm-10N" firstAttribute="leading" secondItem="3sC-ke-9h1" secondAttribute="leadingMargin" id="foz-Ok-lTY"/>
+                            <constraint firstItem="Ayc-PF-lq6" firstAttribute="top" secondItem="zdg-o7-shS" secondAttribute="bottom" constant="21" id="gDw-vm-lsu"/>
                             <constraint firstAttribute="trailing" secondItem="9Ad-kl-GZJ" secondAttribute="trailing" id="gll-5f-rl9"/>
+                            <constraint firstItem="lMs-zS-4if" firstAttribute="top" secondItem="NE7-ij-XNT" secondAttribute="bottom" constant="15" id="gvm-qf-G4Y"/>
+                            <constraint firstItem="fd0-tG-5cP" firstAttribute="trailing" secondItem="3sC-ke-9h1" secondAttribute="trailingMargin" id="hUm-sU-zOc"/>
+                            <constraint firstItem="Ayc-PF-lq6" firstAttribute="leading" secondItem="3sC-ke-9h1" secondAttribute="leadingMargin" id="ihP-Fl-8ok"/>
+                            <constraint firstItem="0qm-xJ-ss9" firstAttribute="top" secondItem="Ayc-PF-lq6" secondAttribute="bottom" constant="25" id="jPm-Yv-zro"/>
                             <constraint firstItem="AyP-Dm-10N" firstAttribute="top" secondItem="yWi-dm-1bS" secondAttribute="bottom" constant="24" id="k5g-tj-p5i"/>
                             <constraint firstItem="xWF-a8-vf4" firstAttribute="top" secondItem="xyX-O1-NmK" secondAttribute="bottom" constant="26" id="pXb-oP-xv0"/>
                             <constraint firstItem="zdg-o7-shS" firstAttribute="leading" secondItem="3sC-ke-9h1" secondAttribute="leadingMargin" id="qmw-Vj-ccE"/>
                             <constraint firstItem="6VO-Wr-M7K" firstAttribute="top" secondItem="ebj-VU-sIi" secondAttribute="bottom" constant="20" id="sP0-Vj-74Y"/>
                             <constraint firstItem="AYZ-gF-PwT" firstAttribute="top" secondItem="hDL-F3-7e2" secondAttribute="bottom" constant="17" id="vpx-Y8-PB2"/>
+                            <constraint firstItem="fd0-tG-5cP" firstAttribute="top" secondItem="lMs-zS-4if" secondAttribute="bottom" constant="18" id="xZU-NF-k2x"/>
                             <constraint firstItem="AYZ-gF-PwT" firstAttribute="trailing" secondItem="3sC-ke-9h1" secondAttribute="trailingMargin" id="zVZ-pX-03i"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="basemapTypeSegmentedControl" destination="lMs-zS-4if" id="VcT-Rw-VPk"/>
                         <outlet property="batchModeSwitch" destination="siT-ky-14R" id="ec1-LV-Brh"/>
                         <outlet property="graphicSegmentedControl" destination="AYZ-gF-PwT" id="lNw-12-8fe"/>
                         <outlet property="objectCountTextField" destination="y4u-d2-7BS" id="HPx-8p-nYi"/>
@@ -756,11 +800,12 @@
                         <outlet property="rendererSwitch" destination="ebj-VU-sIi" id="tgY-3u-vIa"/>
                         <outlet property="renderingModeSegmentedControl" destination="6VO-Wr-M7K" id="8sl-q1-TbO"/>
                         <outlet property="startButton" destination="ABL-ES-m4W" id="h9h-MY-Me3"/>
+                        <outlet property="zoomLevelSegmentedControl" destination="fd0-tG-5cP" id="fHP-3m-vdD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VM5-Er-Vv4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-748" y="2248"/>
+            <point key="canvasLocation" x="-748.2421875" y="2247.65625"/>
         </scene>
         <!--Esri Routing Benchmark View Controller-->
         <scene sceneID="NTv-zq-veX">

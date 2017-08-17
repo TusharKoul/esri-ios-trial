@@ -30,6 +30,22 @@ enum GraphicObjectKind:Int {
     }
 }
 
+enum MapZoomLevel:Int {
+    case CountryLevel=0
+    case CityLevel
+    
+    var description:String {
+        switch self {
+        case .CountryLevel:
+            return "Country Level"
+        case .CityLevel:
+            return "City Level"
+        }
+    }
+}
+
+
+
 class BenchmarkSettingsViewController: UIViewController {
 
     @IBOutlet private weak var objectCountTextField: UITextField!
@@ -40,6 +56,8 @@ class BenchmarkSettingsViewController: UIViewController {
     @IBOutlet private weak var renderingModeSegmentedControl: UISegmentedControl!
     @IBOutlet private weak var startButton: UIButton!
     @IBOutlet private weak var overlayCountTextField: UITextField!
+    @IBOutlet private weak var basemapTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet private weak var zoomLevelSegmentedControl: UISegmentedControl!
     
     
     weak var settingsDelegate:BenchmarkSettingsDelegate?
@@ -57,6 +75,8 @@ class BenchmarkSettingsViewController: UIViewController {
         self.rendererSwitch.setOn(BenchmarkHelper.getRendererEnabled(), animated: false)
         self.renderingModeSegmentedControl.selectedSegmentIndex = BenchmarkHelper.getRenderingMode()
         self.overlayCountTextField.text = String(BenchmarkHelper.getOverlayCount())
+        self.basemapTypeSegmentedControl.selectedSegmentIndex = BenchmarkHelper.getBasemapType().rawValue
+        self.zoomLevelSegmentedControl.selectedSegmentIndex = BenchmarkHelper.getZoomLevel().rawValue
     }
 
     
@@ -83,6 +103,11 @@ class BenchmarkSettingsViewController: UIViewController {
         let overlayCount = Int(self.overlayCountTextField.text!)!
         BenchmarkHelper.setOverlayCount(count: overlayCount)
 
+        let basemapType = BasemapType(rawValue:self.basemapTypeSegmentedControl.selectedSegmentIndex)!
+        BenchmarkHelper.setBasemapType(basemapType: basemapType)
+        
+        let zoom = MapZoomLevel(rawValue:self.zoomLevelSegmentedControl.selectedSegmentIndex)!
+        BenchmarkHelper.setZoomLevel(zoomLevel: zoom)
         
         self.dismiss(animated: true) { [weak self] in
             self?.settingsDelegate?.settingsDidSave()

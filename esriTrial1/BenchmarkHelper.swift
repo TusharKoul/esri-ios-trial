@@ -11,6 +11,7 @@ import Foundation
 //for CACurrentMediaTime
 import QuartzCore
 import CoreLocation
+import ArcGIS
 
 class BenchmarkHelper {
  
@@ -133,6 +134,9 @@ class BenchmarkHelper {
         return UserDefaults.standard.bool(forKey:"Settings_BatchMode")
     }
     
+    
+    // values pertaining only to ArcGIS --
+    
     class func setRendererEnabled(isRendererEnabled:Bool) {
         UserDefaults.standard.set(isRendererEnabled, forKey: "Settings_RendererEnabled")
     }
@@ -155,6 +159,22 @@ class BenchmarkHelper {
     
     class func getOverlayCount() -> Int {
         return UserDefaults.standard.integer(forKey:"Settings_OverlayCount")
+    }
+    
+    class func setBasemapType(basemapType:BasemapType) {
+        UserDefaults.standard.set(basemapType.rawValue, forKey: "Settings_BasemapType")
+    }
+    
+    class func getBasemapType() -> BasemapType {
+        return BasemapType(rawValue:UserDefaults.standard.integer(forKey: "Settings_BasemapType"))!
+    }
+    
+    class func setZoomLevel(zoomLevel:MapZoomLevel) {
+        UserDefaults.standard.set(zoomLevel.rawValue, forKey: "Settings_MapZoomLevel")
+    }
+    
+    class func getZoomLevel() -> MapZoomLevel {
+        return MapZoomLevel(rawValue:UserDefaults.standard.integer(forKey: "Settings_MapZoomLevel"))!
     }
     
 }

@@ -30,6 +30,7 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     private var objectCount = 10000
     private var pointCount = 500
     private var objectKind = GraphicObjectKind.Point
+    private var zoomLevel:MapZoomLevel = .CountryLevel
     
     private var isCleared = true
     
@@ -39,12 +40,17 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         self.setupVariables()
         self.setupTestDescriptionLabel()
         
-        self.bottomLeftPoint = self.esriPoint
-        self.topRightPoint = self.quebecPoint
-        let camera = GMSCameraPosition.camera(withLatitude: esriPoint.latitude, longitude: esriPoint.longitude, zoom: 2)
-//        self.bottomLeftPoint = self.redlandsPoint1
-//        self.topRightPoint = self.redlandsPoint2
-//        let camera = GMSCameraPosition.camera(withLatitude: esriPoint.latitude, longitude: esriPoint.longitude, zoom: 13)
+        var camera:GMSCameraPosition
+        if self.zoomLevel == .CityLevel {
+            self.bottomLeftPoint = self.redlandsPoint1
+            self.topRightPoint = self.redlandsPoint2
+            camera = GMSCameraPosition.camera(withLatitude: esriPoint.latitude, longitude: esriPoint.longitude, zoom: 13)
+        }
+        else {
+            self.bottomLeftPoint = self.esriPoint
+            self.topRightPoint = self.quebecPoint
+            camera = GMSCameraPosition.camera(withLatitude: esriPoint.latitude, longitude: esriPoint.longitude, zoom: 2)
+        }
         
         self.mapView.camera = camera
         
@@ -54,6 +60,7 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         self.objectCount = BenchmarkHelper.getObjectCount()
         self.pointCount = BenchmarkHelper.getPointCount()
         self.objectKind = BenchmarkHelper.getObjectKind()
+        self.zoomLevel = BenchmarkHelper.getZoomLevel()
     }
     
     
@@ -168,9 +175,15 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     //MARK: - Testing FPS
     
     func testPointFPS() {
+        if (self.objectCount == 0) {
+            self.isCleared = false
+            self.oscillateViewpoints(toggle: true)
+            return
+        }
         let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: self.objectCount,
                                                                            bottomLeftCoordinate: self.bottomLeftPoint,
                                                                            topRightCoordinate: self.topRightPoint)
+        
         for c in coordinates {
             let marker = GMSMarker()
             marker.position = c
@@ -182,6 +195,12 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     }
     
     func testPolylineFPS() {
+        if (self.objectCount == 0) {
+            self.isCleared = false
+            self.oscillateViewpoints(toggle: true)
+            return
+        }
+        
         let path = self.getRandomPathWithinBounds(num: self.pointCount,
                                                   bottomLeftCoordinate: self.bottomLeftPoint,
                                                   topRightCoordinate: self.topRightPoint)
@@ -195,6 +214,12 @@ class GMapBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     }
     
     func testPolylgonFPS() {
+        if (self.objectCount == 0) {
+            self.isCleared = false
+            self.oscillateViewpoints(toggle: true)
+            return
+        }
+        
         let path = self.getRandomPathWithinBounds(num: self.pointCount,
                                                   bottomLeftCoordinate: self.bottomLeftPoint,
                                                   topRightCoordinate: self.topRightPoint)

@@ -9,6 +9,43 @@
 import UIKit
 import ArcGIS
 
+enum BasemapType:Int {
+    case ImageryRaster=0
+    case StreetVector
+    case NavigationVector
+    case Topographic
+    case LightGrayCanvas
+    
+    var url:URL {
+        switch self {
+        case .ImageryRaster:
+            return URL(string: "https://www.arcgis.com/home/webmap/viewer.html?webmap=86de95d4e0244cba80f0fa2c9403a7b2")!
+            
+        case .Topographic:
+            return URL(string: "http://www.arcgis.com/home/webmap/viewer.html?webmap=67372ff42cd145319639a99152b15bc3")!
+            
+        case .LightGrayCanvas:
+            return URL(string: "http://www.arcgis.com/home/webmap/viewer.html?webmap=979c6cc89af9449cbeb5342a439c6a76")!
+            
+        case .StreetVector:
+            return URL(string:"https://www.arcgis.com/home/webmap/viewer.html?webmap=55ebf90799fa4a3fa57562700a68c405")!
+            
+        case .NavigationVector:
+            return URL(string:"https://www.arcgis.com/home/webmap/viewer.html?webmap=c50de463235e4161b206d000587af18b")!
+        }
+    }
+    
+    var description:String {
+        switch self {
+        case .ImageryRaster: return "Imagery"
+        case .Topographic: return "Topographic"
+        case .LightGrayCanvas: return "Light gray canvas"
+        case .StreetVector: return "Street vector"
+        case .NavigationVector: return "Navigation vector"
+        }
+    }
+}
+
 class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
 
     @IBOutlet weak var mapView: AGSMapView!
@@ -42,35 +79,38 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     private var renderingEnabled = false
     private var renderingMode = AGSGraphicsRenderingMode.dynamic
     private var layerCount = 1
+    private var basemapType:BasemapType!
+    private var zoomLevel:MapZoomLevel = .CountryLevel
     
     private var isCleared = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setupMap(isCityLevel: false)
-
         self.setupVariables()
+        self.setupMap()
         self.setupGraphicOverlays()
         self.setupTestDescriptionLabel()
-        
-//        print(ArcGISVersionNumber)
-//        print(ArcGISVersionString)
     }
     
-    func setupMap(isCityLevel:Bool) {
-        if isCityLevel {
+    func setupMap() {
+        
+        self.mapView.map = AGSMap(url: self.basemapType.url)
+        
+        if self.zoomLevel == .CityLevel {
             self.bottomLeftPoint = redlandsPoint1
             self.topRightPoint = redlandsPoint2
-            self.mapView.map = AGSMap(basemapType: .streetsVector, latitude: esriPoint.y, longitude: esriPoint.x, levelOfDetail: 13)
+            //self.mapView.map = AGSMap(basemapType: .streetsVector, latitude: esriPoint.y, longitude: esriPoint.x, levelOfDetail: 13)
+            self.mapView.setViewpoint(AGSViewpoint(latitude: esriPoint.y, longitude: esriPoint.x, scale: 72223.819286))
         }
         else {
             self.bottomLeftPoint = self.esriPoint
             self.topRightPoint = self.quebecPoint
-            self.mapView.map = AGSMap(basemapType: .streetsVector, latitude: esriPoint.y, longitude: esriPoint.x, levelOfDetail: 2)
+            //self.mapView.map = AGSMap(basemapType: .streetsVector, latitude: esriPoint.y, longitude: esriPoint.x, levelOfDetail: 2)
+            self.mapView.setViewpoint(AGSViewpoint(latitude: esriPoint.y, longitude: esriPoint.x, scale: 147914381.897889))
         }
-        
     }
+    
     
     func setupVariables() {
         self.objectCount = BenchmarkHelper.getObjectCount()
@@ -80,7 +120,10 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         self.renderingEnabled = BenchmarkHelper.getRendererEnabled()
         self.renderingMode = AGSGraphicsRenderingMode(rawValue: BenchmarkHelper.getRenderingMode())!
         self.layerCount = BenchmarkHelper.getOverlayCount()
+        self.basemapType = BenchmarkHelper.getBasemapType()
+        self.zoomLevel = BenchmarkHelper.getZoomLevel()
     }
+    
     
     func setupGraphicOverlays() {
         self.mapView.graphicsOverlays.removeAllObjects()
@@ -137,6 +180,8 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         if(self.batchMode) {
             str += " in batch mode"
         }
+        
+        str += " on \(self.basemapType.description) map"
         
         self.testDescriptionLabel.text = str
         
@@ -314,6 +359,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         let symbol = self.renderingEnabled ? nil : self.pointSymbol
         
         for overlay in self.pointGraphicOverlays {
+            if objectsPerLayer <= 0 { break }
             let points = self.generateRandomPointsBetweenBounds(num: objectsPerLayer,
                                                                 bottomLeftCoordinate: self.bottomLeftPoint.toCLLocationCoordinate2D(),
                                                                 topRightCoordinate: self.topRightPoint.toCLLocationCoordinate2D())
@@ -341,6 +387,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         let symbol = self.renderingEnabled ? nil : self.lineSymbol
         
         for overlay in self.lineGraphicOverlays {
+            if objectsPerLayer <= 0 { break }
             var graphics = [AGSGraphic]()
             for _ in 1...objectsPerLayer {
                 let polyline = AGSPolyline(points: points)
@@ -364,6 +411,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
         let symbol = self.renderingEnabled ? nil : self.fillSymbol
         
         for overlay in self.polygonGraphicOverlays {
+            if objectsPerLayer <= 0 { break }
             var graphics = [AGSGraphic]()
             for _ in 1...objectsPerLayer {
                 let polygon = AGSPolygon(points: points)
@@ -408,6 +456,7 @@ class EsriBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate {
     
     func settingsDidSave() {
         self.setupVariables()
+        self.setupMap()
         self.setupGraphicOverlays()
         self.setupTestDescriptionLabel()
     }

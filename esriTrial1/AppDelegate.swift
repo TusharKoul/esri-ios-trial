@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             BenchmarkHelper.setRendererEnabled(isRendererEnabled: false)
             BenchmarkHelper.setRenderingMode(renderingModeVal: 0)
             BenchmarkHelper.setOverlayCount(count: 1)
+            BenchmarkHelper.setBasemapType(basemapType: .StreetVector)
         }
     }
 

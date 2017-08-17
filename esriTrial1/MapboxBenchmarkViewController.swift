@@ -17,7 +17,7 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
     
     private var bottomLeftPoint:CLLocationCoordinate2D!
     private var topRightPoint:CLLocationCoordinate2D!
-    private var zoomLevel = 1.0
+    private var zoomValue = 1.0
     
     private let quebecPoint = CLLocationCoordinate2D(latitude: 53.4647877, longitude: -77.388195)
     private let africaPoint = CLLocationCoordinate2D(latitude: 19.7968689, longitude: -0.5310485)
@@ -28,6 +28,7 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
     private var pointCount = 500
     private var objectKind = GraphicObjectKind.Point
     private var batchMode = false
+    private var zoomLevel:MapZoomLevel = .CountryLevel
     
     private var isCleared = true
 
@@ -40,13 +41,17 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
         self.setupTestDescriptionLabel()
         self.mapView.styleURL = URL(string: "mapbox://styles/mapbox/streets-v10")
         
-        self.bottomLeftPoint = self.esriPoint
-        self.topRightPoint = self.quebecPoint
-        self.zoomLevel = 1.0
-//        self.bottomLeftPoint = self.redlandsPoint1
-//        self.topRightPoint = self.redlandsPoint2
-//        self.zoomLevel = 12.0
-        self.mapView.setCenter(esriPoint, zoomLevel: self.zoomLevel, animated: false)
+        if self.zoomLevel == .CityLevel {
+            self.bottomLeftPoint = self.redlandsPoint1
+            self.topRightPoint = self.redlandsPoint2
+            self.zoomValue = 12.0
+        }
+        else {
+            self.bottomLeftPoint = self.esriPoint
+            self.topRightPoint = self.quebecPoint
+            self.zoomValue = 1.1
+        }
+        self.mapView.setCenter(esriPoint, zoomLevel: self.zoomValue, animated: false)
     }
     
     func setupVariables() {
@@ -54,6 +59,7 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
         self.pointCount = BenchmarkHelper.getPointCount()
         self.objectKind = BenchmarkHelper.getObjectKind()
         self.batchMode = BenchmarkHelper.getBatchMode()
+        self.zoomLevel = BenchmarkHelper.getZoomLevel()
     }
     
     
@@ -122,7 +128,7 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
             point = self.topRightPoint
         }
         
-        self.mapView.setCenter(point, zoomLevel: self.zoomLevel, direction: 0, animated: true) {
+        self.mapView.setCenter(point, zoomLevel: self.zoomValue, direction: 0, animated: true) {
             self.oscillateViewpoints(toggle: !toggle)
         }
     }
@@ -208,6 +214,11 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
     //MARK: - Test FPS
     
     func testPointFPS() {
+        if (self.objectCount == 0) {
+            self.isCleared = false
+            self.oscillateViewpoints(toggle: true)
+            return
+        }
         let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: self.objectCount,
                                                                                 bottomLeftCoordinate: self.bottomLeftPoint,
                                                                                 topRightCoordinate: self.topRightPoint)
@@ -224,6 +235,11 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
     }
     
     func testPolylineFPS() {
+        if (self.objectCount == 0) {
+            self.isCleared = false
+            self.oscillateViewpoints(toggle: true)
+            return
+        }
         let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: self.pointCount,
                                                                                 bottomLeftCoordinate: self.bottomLeftPoint,
                                                                                 topRightCoordinate: self.topRightPoint)
@@ -240,6 +256,11 @@ class MapboxBenchmarkViewController: UIViewController,BenchmarkSettingsDelegate 
     }
     
     func testPolygonFPS() {
+        if (self.objectCount == 0) {
+            self.isCleared = false
+            self.oscillateViewpoints(toggle: true)
+            return
+        }
         let coordinates = BenchmarkHelper.generateRandomCoordinatesWithinBounds(num: self.pointCount,
                                                                                 bottomLeftCoordinate: self.bottomLeftPoint,
                                                                                 topRightCoordinate: self.topRightPoint)
